@@ -3,121 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hire Talent — NEWAVƎ</title>
+  <title>Hire Vetted Remote Talent from Latin America — NEWAVƎ HIRE</title>
+  <meta name="description" content="We source, screen, and place top-tier remote professionals from Latin America. Same timezone, English-fluent, 40–70% cost savings." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="images/NEWAVEISO.png" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    .hire-page {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 9rem 1.5rem 5rem;
+    /* ── HIRE-SPECIFIC OVERRIDES ── */
+    .roles-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+      text-align: center;
     }
-    .hire-inner {
-      width: 100%;
-      max-width: 580px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
+    .roles-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .roles-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 0.75rem;
     }
-    .hire-inner .mono { color: var(--orange); margin-bottom: 0.4rem; }
-    .hire-inner h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 0.4rem;
+    .roles-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; }
+    .roles-grid {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;
     }
-    .hire-inner > p {
-      color: var(--gray);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
+    .role-tag {
+      font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
+      padding: 0.55rem 1.1rem; border-radius: 980px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .role-tag:hover { border-color: var(--orange); color: var(--white); }
+
+    /* Steps with dark bg */
+    .how-section-dark {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+    }
+    .how-section-dark .how-inner { max-width: 560px; margin: 0 auto; }
+    .how-section-dark h2 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .how-section-dark .how-sub {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--subtle); margin-bottom: 3rem; letter-spacing: 0.06em;
     }
 
-    /* FORM */
-    .hire-form { display: flex; flex-direction: column; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
-    .form-group label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(183,182,182,0.6);
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 0.85rem 1rem;
-      color: var(--white);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--orange); }
-    .form-group select {
-      appearance: none;
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B7B6B6' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-    }
-    .form-group select option { background: #1a1e26; color: var(--white); }
-    .form-group textarea { resize: vertical; min-height: 100px; }
-
-    .form-divider { border-top: 1px solid rgba(255,255,255,0.07); margin: 0.5rem 0; }
-
-    .btn-submit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--orange);
-      color: var(--white);
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.9rem 2rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      transition: opacity 0.2s;
-      margin-top: 0.5rem;
-      width: 100%;
-      font-family: 'Space Grotesk', sans-serif;
-      letter-spacing: 0.02em;
-    }
-    .btn-submit:hover { opacity: 0.88; }
-
-    /* SUCCESS STATE */
-    .hire-success {
-      display: none;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 2rem;
-      border: 1px solid rgba(252,115,66,0.3);
-      border-radius: 12px;
-      background: rgba(252,115,66,0.06);
-      margin-top: 0.5rem;
-    }
-    .hire-success h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); }
-    .hire-success p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
-
-    @media (max-width: 600px) {
-      .hire-page { padding: 7rem 1.2rem 4rem; }
+    @media (max-width: 768px) {
+      .roles-section { padding: 3.5rem 1.25rem; }
+      .roles-section h2 { font-size: 1.75rem; }
+      .how-section-dark { padding: 3.5rem 1.25rem; }
     }
   </style>
 </head>
@@ -125,62 +63,200 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a href="index.html" class="logo"><img src="images/logo.png" alt="NEWAVƎ" class="logo-img" /></a>
+    <a href="/" class="logo">
+      <img src="images/logo.png" alt="NEWAVƎ HIRE" class="logo-img" />
+    </a>
     <div class="nav-right">
-      <div class="nav-links">
-        <a href="index.html#professionals">Professionals</a>
-        <a href="index.html#companies">Companies</a>
-        <a href="index.html#contact">Contact</a>
-      </div>
-      <a href="https://www.skool.com/nomad-district/plans" target="_blank" rel="noopener" class="nav-cta">Join</a>
+      <a href="index-es.html" class="lang-toggle">ES</a>
+      <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="nav-cta">Book a call</a>
     </div>
   </nav>
 
-  <section class="hire-page">
-    <div class="hire-inner">
-      <span class="mono">For Companies</span>
-      <h1>Let's find your next<br>great hire.</h1>
-      <p>Tell us what you're looking for and we'll match you with the best-fit profiles from our community.</p>
-
-      <form class="hire-form" id="hireForm" novalidate>
-        <div class="form-group">
-          <label for="company">Company name</label>
-          <input type="text" id="company" name="company" placeholder="Acme Inc." required />
-        </div>
-        <div class="form-group">
-          <label for="email">Contact email</label>
-          <input type="email" id="email" name="email" placeholder="you@company.com" required />
-        </div>
-        <div class="form-divider"></div>
-        <div class="form-group">
-          <label for="role">Role you're hiring for</label>
-          <select id="role" name="role" required>
-            <option value="" disabled selected>Select a role</option>
-            <option>Marketing</option>
-            <option>Sales</option>
-            <option>Customer Success</option>
-            <option>Operations</option>
-            <option>Project Management</option>
-            <option>Finance & Accounting</option>
-            <option>Executive Assistant</option>
-            <option>HR & Recruiting</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="details">Anything else we should know? <span style="opacity:0.4">(optional)</span></label>
-          <textarea id="details" name="details" placeholder="Experience level, specific skills, time zone preferences…"></textarea>
-        </div>
-        <button type="submit" class="btn-submit">Send request →</button>
-      </form>
-
-      <div class="hire-success" id="hireSuccess">
-        <span class="mono" style="color: var(--orange);">Request received</span>
-        <h3>We'll be in touch shortly.</h3>
-        <p>We'll review your request and send you a curated shortlist of profiles from our community within 48 hours.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="images/NEWAVE_ISOTIPO-10.png" alt="" class="hero-corner-isotipo" aria-hidden="true" />
+    <div class="hero-content">
+      <span class="hero-eyebrow" data-animate>
+        <span class="proof-dot"></span> NEWAVƎ HIRE
+      </span>
+      <h1 data-animate data-delay="1">
+        Hire vetted remote talent<br>
+        <span class="h1-accent">from Latin America.</span>
+      </h1>
+      <p class="hero-sub" data-animate data-delay="2">
+        We source, screen, and place top-tier remote professionals from LATAM — English-fluent, timezone-compatible, and ready to hit the ground running.
+      </p>
+      <div class="hero-actions" data-animate data-delay="3">
+        <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="btn-primary btn-large">Book a free call →</a>
+      </div>
+      <div class="hero-proof" data-animate data-delay="4">
+        <span class="proof-dot"></span>
+        Trusted by companies across the US, Europe & beyond
       </div>
     </div>
   </section>
+
+  <!-- PAIN STRIP -->
+  <div class="pain-strip">
+    <div class="pain-inner">
+      <span class="pain-item">Save 40–70% vs. US hiring</span>
+      <span class="pain-sep">·</span>
+      <span class="pain-item">Same-timezone overlap</span>
+      <span class="pain-sep">·</span>
+      <span class="pain-item">English-fluent professionals</span>
+      <span class="pain-sep">·</span>
+      <span class="pain-item">Vetted &amp; interview-ready</span>
+      <span class="pain-sep">·</span>
+      <span class="pain-item">Shortlist in 5 business days</span>
+    </div>
+  </div>
+
+  <!-- WHY LATAM -->
+  <section class="why-section">
+    <div class="why-inner">
+      <span class="mono-tag section-label" data-animate>Why LATAM</span>
+      <h2 data-animate data-delay="1">The smarter way<br>to hire remotely.</h2>
+      <div class="why-grid">
+        <div class="why-card" data-animate data-delay="1">
+          <div class="why-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Timezone Compatible</h3>
+          <p>LATAM professionals overlap 4–8 hours with US and European time zones — real-time collaboration without the friction.</p>
+        </div>
+        <div class="why-card" data-animate data-delay="2">
+          <div class="why-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Cost-Effective</h3>
+          <p>Cut hiring costs by 40–70% compared to US or EU equivalents — without sacrificing quality, reliability, or professionalism.</p>
+        </div>
+        <div class="why-card" data-animate data-delay="3">
+          <div class="why-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>English-Fluent</h3>
+          <p>Every candidate in our pool is screened for professional-level English communication — written and spoken.</p>
+        </div>
+        <div class="why-card" data-animate data-delay="4">
+          <div class="why-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Pre-Vetted</h3>
+          <p>Our talent goes through a multi-step screening process — skills assessment, English proficiency, and culture-fit evaluation — before you ever see a profile.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section-dark">
+    <div class="how-inner">
+      <span class="mono-tag" data-animate>How it works</span>
+      <h2 data-animate data-delay="1">From brief to hire<br>in days, not months.</h2>
+      <p class="how-sub" data-animate data-delay="2">THREE SIMPLE STEPS</p>
+
+      <div class="how-steps">
+        <div class="how-step" data-animate data-delay="2">
+          <div class="step-indicator">
+            <div class="step-num">1</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Tell us what you need</h3>
+            <p>Book a free 30-min call and walk us through the role — skills, experience level, timezone needs, and culture fit.</p>
+            <span class="step-note step-note-time">~30 min call</span>
+          </div>
+        </div>
+
+        <div class="how-step" data-animate data-delay="3">
+          <div class="step-indicator">
+            <div class="step-num">2</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>We find your matches</h3>
+            <p>We tap our vetted LATAM talent pool and deliver a curated shortlist of interview-ready candidates within 5 business days.</p>
+            <span class="step-note step-note-time">Within 5 business days</span>
+          </div>
+        </div>
+
+        <div class="how-step how-step-last" data-animate data-delay="4">
+          <div class="step-indicator">
+            <div class="step-num">3</div>
+          </div>
+          <div class="step-content">
+            <h3>Hire with confidence</h3>
+            <p>Interview your top picks, choose the best fit, and make the hire. We stay involved to ensure a smooth onboarding.</p>
+            <span class="step-note step-note-check">✓ Placement guarantee included</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="roles-section">
+    <div class="roles-inner">
+      <span class="mono-tag section-label" data-animate>Roles we fill</span>
+      <h2 data-animate data-delay="1">Whatever the role,<br>we've got the talent.</h2>
+      <p class="roles-sub" data-animate data-delay="2">From individual contributors to team leads — across every function.</p>
+      <div class="roles-grid" data-animate data-delay="3">
+        <span class="role-tag">Marketing</span>
+        <span class="role-tag">Sales</span>
+        <span class="role-tag">Customer Success</span>
+        <span class="role-tag">Operations</span>
+        <span class="role-tag">Project Management</span>
+        <span class="role-tag">Finance &amp; Accounting</span>
+        <span class="role-tag">Executive Assistant</span>
+        <span class="role-tag">HR &amp; Recruiting</span>
+        <span class="role-tag">Content &amp; Copywriting</span>
+        <span class="role-tag">Social Media</span>
+        <span class="role-tag">Data Analysis</span>
+        <span class="role-tag">Business Development</span>
+        <span class="role-tag">Community Management</span>
+        <span class="role-tag">E-commerce</span>
+        <span class="role-tag">Other</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="mono-tag" data-animate>Get started</span>
+      <h2 data-animate data-delay="1">Ready to hire top<br>LATAM talent?</h2>
+      <p data-animate data-delay="2">Book a free 30-min call and tell us about the role. We'll take it from there.</p>
+      <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="btn-primary btn-large" data-animate data-delay="3">Book a free call →</a>
+      <span class="cta-note" data-animate data-delay="4">No commitment · Shortlist in 5 business days</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="NEWAVƎ HIRE" class="footer-logo-img" />
+          <span class="footer-tag">Hire vetted remote talent from Latin America.</span>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-label">Contact</span>
+            <a href="mailto:hello@newavehire.com" class="footer-email">hello@newavehire.com</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-label">Language</span>
+            <a href="index-es.html" style="font-size:0.875rem; color: var(--muted);">Español</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="copyright">© 2026 NEWAVƎ HIRE. All rights reserved.</span>
+        <svg class="footer-isotipo" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5"/><path d="M12 28L20 12L28 28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 23H25.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+  </footer>
 
   <script>
     /* Nav scroll hide */
@@ -192,26 +268,13 @@
       lastY = y;
     });
 
-    /* Form submit */
-    document.getElementById('hireForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const company = document.getElementById('company').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const role = document.getElementById('role').value;
-      if (!company || !email || !role) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-      const form = this;
-      form.style.display = 'none';
-      document.getElementById('hireSuccess').style.display = 'flex';
-      fetch('https://script.google.com/macros/s/AKfycbyaazLspWJWQY9RJ4aDZAQLMJmsFp3Mgcbd1CWYmMb720Y84vs1h7XtjDb_rsl3GhBD/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ company, email, role, details: document.getElementById('details').value, lang: 'en' })
-      }).catch(() => {});
-    });
+    /* Scroll animations */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   </script>
 
 </body>
