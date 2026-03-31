@@ -213,7 +213,7 @@ a   { text-decoration: none; color: inherit; }
 .hero-actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
 .hero-proof {
   display: flex; align-items: center; gap: 0.5rem;
-  font-family: var(--mono); font-size: 0.7rem;
+  font-family: var(--mono); font-size: 0.82rem;
   color: var(--subtle);
 }
 .proof-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
