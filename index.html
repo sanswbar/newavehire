@@ -72,6 +72,41 @@
     .role-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
     .role-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
+    /* ── PAIN SECTION ── */
+    .pain-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .pain-section-inner {
+      max-width: var(--max-wide); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .pain-left h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .pain-left p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 2rem; }
+    .pain-right { display: flex; flex-direction: column; gap: 0; }
+    .pain-point {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .pain-point:first-child { border-top: 1px solid var(--border); }
+    .pain-point-icon {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,60,60,0.1); color: #ff4444;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; margin-top: 2px;
+    }
+    .pain-point h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .pain-point p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin: 0; }
+
+    @media (max-width: 768px) {
+      .pain-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pain-section { padding: 3.5rem 1.25rem; }
+    }
+
     /* ── TALENT SECTION ── */
     .talent-section {
       padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
@@ -388,86 +423,44 @@
     </div>
   </div>
 
-  <!-- ROLES GRID -->
-  <section class="roles-section">
-    <div class="roles-inner">
-      <span class="mono-tag section-label" data-animate>What we fill</span>
-      <h2 data-animate data-delay="1">Every role your remote<br>team needs.</h2>
-      <p class="roles-sub" data-animate data-delay="2">From individual contributors to team leads, across every business function.</p>
-      <div class="roles-grid-cards">
-
-        <div class="role-card" data-animate>
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+  <!-- PAIN POINTS -->
+  <section class="pain-section">
+    <div class="pain-section-inner">
+      <div class="pain-left" data-animate>
+        <span class="mono-tag">The problem</span>
+        <h2>Hiring remotely is broken.<br>We fixed it.</h2>
+        <p>Most companies struggle to find reliable remote talent. Not because it doesn't exist, but because the current process is slow, expensive, and full of guesswork.</p>
+        <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="btn-ghost">Book a free call</a>
+      </div>
+      <div class="pain-right">
+        <div class="pain-point" data-animate data-delay="1">
+          <div class="pain-point-icon">✕</div>
+          <div>
+            <h4>Traditional recruiting takes 47+ days</h4>
+            <p>Job boards, screening calls, back-and-forth — all before you even interview a real candidate.</p>
           </div>
-          <h3>Executive Assistant</h3>
-          <p>Calendar management, travel coordination, executive support, done with precision.</p>
         </div>
-
-        <div class="role-card" data-animate data-delay="1">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div class="pain-point" data-animate data-delay="2">
+          <div class="pain-point-icon">✕</div>
+          <div>
+            <h4>Freelance platforms have no quality filter</h4>
+            <p>Anyone can sign up. You spend hours reviewing profiles with no real vetting behind them.</p>
           </div>
-          <h3>Marketing</h3>
-          <p>Content, paid media, email campaigns, SEO, talent that drives real growth.</p>
         </div>
-
-        <div class="role-card" data-animate data-delay="2">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="pain-point" data-animate data-delay="3">
+          <div class="pain-point-icon">✕</div>
+          <div>
+            <h4>Most remote hires aren't trained to work remotely</h4>
+            <p>Technical skills alone aren't enough. Without remote-work training, great talent underperforms.</p>
           </div>
-          <h3>Customer Success</h3>
-          <p>Onboarding, retention, and support, professionals who keep your clients happy.</p>
         </div>
-
-        <div class="role-card" data-animate data-delay="3">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="pain-point" data-animate data-delay="4">
+          <div class="pain-point-icon">✕</div>
+          <div>
+            <h4>US and EU hiring costs are unsustainable</h4>
+            <p>Salaries, benefits, and recruiting fees add up fast, making it hard to scale your team without breaking your budget.</p>
           </div>
-          <h3>Operations</h3>
-          <p>Process optimization, systems management, and operational excellence at scale.</p>
         </div>
-
-        <div class="role-card" data-animate data-delay="1">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3>Finance & Accounting</h3>
-          <p>Bookkeeping, reporting, financial analysis, reliable and detail-oriented talent.</p>
-        </div>
-
-        <div class="role-card" data-animate data-delay="2">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3>Sales</h3>
-          <p>SDRs, account executives, and closers who understand your market and product.</p>
-        </div>
-
-        <div class="role-card" data-animate data-delay="3">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <h3>Content & Copywriting</h3>
-          <p>Blog posts, social copy, email sequences, native-level English writers.</p>
-        </div>
-
-        <div class="role-card" data-animate data-delay="1">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <h3>Project Management</h3>
-          <p>Keep your projects on time and on budget with seasoned remote PMs.</p>
-        </div>
-
-        <div class="role-card" data-animate data-delay="2">
-          <div class="role-card-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <h3>Social Media</h3>
-          <p>Community management, content creation, and growth, across every platform.</p>
-        </div>
-
       </div>
     </div>
   </section>
