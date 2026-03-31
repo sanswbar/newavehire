@@ -252,7 +252,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img src="images/NEWAVE_ISOTIPO-10.png" alt="" class="hero-corner-isotipo" aria-hidden="true" />
+    <img src="images/NEWAVE_ISOTIPO-10.png" alt="" class="hero-corner-isotipo" id="heroBgIsotipo" aria-hidden="true" />
     <div class="hero-content">
       <span class="hero-eyebrow" data-animate>
         <span class="proof-dot"></span> NEWAVE HIRE
@@ -702,6 +702,15 @@
   </footer>
 
   <script>
+    /* Isotipo fade on scroll */
+    const heroBgIsotipo = document.getElementById('heroBgIsotipo');
+    window.addEventListener('scroll', () => {
+      if (heroBgIsotipo) {
+        const fade = Math.max(0, 1 - (window.scrollY / (window.innerHeight * 0.55)));
+        heroBgIsotipo.style.opacity = 0.08 * fade;
+      }
+    });
+
     /* Nav scroll hide */
     let lastY = 0;
     window.addEventListener('scroll', () => {
