@@ -343,6 +343,63 @@
     }
     .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.35rem; }
 
+    /* ── CERTIFICATION SECTION ── */
+    .cert-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .cert-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .cert-header { text-align: center; margin-bottom: 3.5rem; }
+    .cert-header h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
+    .cert-header p { color: var(--muted); font-size: 1rem; max-width: 580px; margin: 0 auto; }
+    .cert-pillars {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+    }
+    .cert-pillar { background: var(--bg-2); padding: 2rem 1.5rem; text-align: left; transition: background 0.2s; }
+    .cert-pillar:hover { background: rgba(252,115,66,0.05); }
+    .cert-pillar-num {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 1rem; display: block;
+    }
+    .cert-pillar h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .cert-pillar p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── CERT BADGES ── */
+    .cert-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+    .cert-badge {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.05em;
+      padding: 0.18rem 0.55rem; border-radius: 980px;
+      border: 1px solid var(--border); color: var(--subtle);
+    }
+    .cert-badge-en { border-color: rgba(52,211,153,0.35); color: #34d399; }
+    .cert-badge-ai { border-color: rgba(252,115,66,0.35); color: var(--orange); }
+
+    /* ── ANTHROPIC PARTNER ── */
+    .partner-section {
+      padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .partner-inner {
+      max-width: var(--max-wide); margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .partner-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--subtle); text-transform: uppercase; }
+    .partner-divider { width: 1px; height: 24px; background: var(--border); }
+    .partner-badge {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 1.25rem; border-radius: var(--r-sm);
+      border: 1px solid var(--border); background: var(--bg-3);
+      transition: border-color 0.2s;
+    }
+    .partner-badge:hover { border-color: rgba(255,255,255,0.2); }
+    .partner-badge-text { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+    .partner-badge-sub { font-family: var(--mono); font-size: 0.6rem; color: var(--subtle); display: block; margin-top: 0.1rem; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .talent-grid { grid-template-columns: repeat(3, 1fr); }
@@ -371,10 +428,19 @@
       .roles-section h2 { font-size: 1.75rem; }
       .faq-q { font-size: 0.95rem; }
     }
+    @media (max-width: 768px) {
+      .cert-pillars { grid-template-columns: 1fr 1fr; }
+      .cert-pillar:last-child { grid-column: 1 / -1; }
+      .cert-section { padding: 3.5rem 1.25rem; }
+      .partner-inner { gap: 1rem; flex-direction: column; text-align: center; }
+      .partner-divider { width: 40px; height: 1px; }
+    }
     @media (max-width: 480px) {
       .roles-grid-cards { grid-template-columns: 1fr; }
       .talent-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-inner { grid-template-columns: 1fr 1fr; }
+      .cert-pillars { grid-template-columns: 1fr; }
+      .cert-pillar:last-child { grid-column: auto; }
     }
   </style>
 </head>
@@ -396,18 +462,18 @@
     <img src="images/NEWAVE_ISOTIPO-10.png" alt="" class="hero-corner-isotipo" id="heroBgIsotipo" aria-hidden="true" />
     <div class="hero-content">
       <span class="hero-eyebrow" data-animate>
-        <span class="proof-dot"></span> NEWAVE HIRE
+        <span class="proof-dot"></span> Remote trained. AI ready. English fluent.
       </span>
       <h1 data-animate data-delay="1">
-        <span style="white-space: nowrap;">Hire qualified remote talent</span><br>
-        <span class="h1-accent">from Latin America.</span>
+        <span style="white-space: nowrap;">We don't find talent.</span><br>
+        <span class="h1-accent">We build it.</span>
       </h1>
       <p class="hero-sub" data-animate data-delay="2">
-        We embed the best LATAM remote professionals into your company. English-fluent, timezone-compatible, and ready to hit the ground running.
+        NEWAVE is the only platform that trains, certifies, and places LATAM remote professionals. Every candidate in our pipeline completed a full remote-readiness program and passed a 5-pillar certification before you ever see their profile.
       </p>
       <div class="hero-actions" data-animate data-delay="3">
         <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="btn-primary btn-large">Book a free call →</a>
-        <a href="#how" class="btn-ghost">See how it works</a>
+        <a href="#certification" class="btn-ghost">See how certification works</a>
       </div>
       <div class="hero-proof" data-animate data-delay="4">
         <span class="proof-dot"></span>
@@ -420,20 +486,20 @@
   <div class="stats-bar">
     <div class="stats-inner">
       <div class="stat-item" data-animate>
-        <span class="stat-number">Top 1%</span>
-        <span class="stat-label">Of applicants make it through</span>
+        <span class="stat-number">40+</span>
+        <span class="stat-label">Hours of training per candidate</span>
       </div>
       <div class="stat-item" data-animate data-delay="1">
-        <span class="stat-number">5 days</span>
-        <span class="stat-label">Average time to shortlist</span>
+        <span class="stat-number">5</span>
+        <span class="stat-label">Pillar certification process</span>
       </div>
       <div class="stat-item" data-animate data-delay="2">
-        <span class="stat-number">70%</span>
-        <span class="stat-label">Average cost savings vs. US hiring</span>
+        <span class="stat-number">84%</span>
+        <span class="stat-label">Member retention rate</span>
       </div>
       <div class="stat-item" data-animate data-delay="3">
-        <span class="stat-number">500+</span>
-        <span class="stat-label">Vetted professionals in our network</span>
+        <span class="stat-number">AI</span>
+        <span class="stat-label">Powered candidate matching</span>
       </div>
     </div>
   </div>
@@ -443,38 +509,77 @@
     <div class="pain-section-inner">
       <div class="pain-left" data-animate>
         <span class="mono-tag">The problem</span>
-        <h2>Hiring remotely is broken.<br>We fixed it.</h2>
-        <p>Most companies struggle to find reliable remote talent. Not because it doesn't exist, but because the current process is slow, expensive, and full of guesswork.</p>
+        <h2>Staffing agencies find people.<br>They don't prepare them.</h2>
+        <p>Most LATAM staffing agencies pull candidates from LinkedIn, run a quick screen, and send you a shortlist. The candidate looks good on paper. Then week one happens: they struggle with async communication, they've never used your tools, and they need constant direction.</p>
+        <p>The problem isn't the talent. It's that nobody prepared them to work the way your team works. That's what we do differently.</p>
         <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="btn-ghost">Book a free call</a>
       </div>
       <div class="pain-right">
         <div class="pain-point" data-animate data-delay="1">
           <div class="pain-point-icon">✕</div>
           <div>
-            <h4>Traditional recruiting takes 47+ days</h4>
-            <p>Job boards, screening calls, back-and-forth, all before you even interview a real candidate.</p>
+            <h4>They screen. They don't train.</h4>
+            <p>A LinkedIn profile check isn't preparation. Every NEWAVE candidate goes through 40+ hours of structured training before entering our pipeline.</p>
           </div>
         </div>
         <div class="pain-point" data-animate data-delay="2">
           <div class="pain-point-icon">✕</div>
           <div>
-            <h4>Freelance platforms have no quality filter</h4>
-            <p>Anyone can sign up. You spend hours reviewing profiles with no real vetting behind them.</p>
+            <h4>No one tests async communication</h4>
+            <p>Most agencies never test how a candidate communicates in writing under real work conditions. We simulate it. We score it. You see the result.</p>
           </div>
         </div>
         <div class="pain-point" data-animate data-delay="3">
           <div class="pain-point-icon">✕</div>
           <div>
-            <h4>Most remote hires aren't trained to work remotely</h4>
-            <p>Technical skills alone aren't enough. Without remote-work training, great talent underperforms.</p>
+            <h4>AI readiness is an afterthought everywhere else</h4>
+            <p>In 2026, a hire who doesn't know how to use AI is already behind. Our candidates are Anthropic-certified and AI-ready from day one.</p>
           </div>
         </div>
         <div class="pain-point" data-animate data-delay="4">
           <div class="pain-point-icon">✕</div>
           <div>
-            <h4>US and EU hiring costs are unsustainable</h4>
-            <p>Salaries, benefits, and recruiting fees add up fast, making it hard to scale your team without breaking your budget.</p>
+            <h4>You're their first remote experience. We fix that.</h4>
+            <p>Every professional in our network went through a complete training and certification program. You're not their first experience. You're their deployment.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATION SECTION -->
+  <section class="cert-section" id="certification">
+    <div class="cert-inner">
+      <div class="cert-header" data-animate>
+        <span class="mono-tag">The NEWAVE Certification</span>
+        <h2>What "NEWAVE Certified"<br>actually means.</h2>
+        <p>Every candidate is evaluated across five pillars. No self-reported skills, no guesswork. Only candidates who meet our threshold across all five receive the NEWAVE Certified credential.</p>
+      </div>
+      <div class="cert-pillars">
+        <div class="cert-pillar" data-animate>
+          <span class="cert-pillar-num">PILLAR 01</span>
+          <h3>English, validated.</h3>
+          <p>Not a checkbox on a LinkedIn profile. A real assessment of written communication, verbal fluency, and professional conversation. We test it, we score it, you see the result.</p>
+        </div>
+        <div class="cert-pillar" data-animate data-delay="1">
+          <span class="cert-pillar-num">PILLAR 02</span>
+          <h3>AI-ready.</h3>
+          <p>Certified through the Anthropic Academy program. These professionals know how to use AI to multiply their output, build workflows, and automate repetitive tasks.</p>
+        </div>
+        <div class="cert-pillar" data-animate data-delay="2">
+          <span class="cert-pillar-num">PILLAR 03</span>
+          <h3>Remote trained.</h3>
+          <p>40+ hours of structured training across six modules: career positioning, job search strategy, interview preparation, and negotiation. They understand how distributed teams operate.</p>
+        </div>
+        <div class="cert-pillar" data-animate data-delay="3">
+          <span class="cert-pillar-num">PILLAR 04</span>
+          <h3>Async communication, proven.</h3>
+          <p>We simulate real work scenarios. Write a Slack update about a blocker. Draft a status report. Communicate a delay to a client. Claude AI evaluates clarity, structure, and tone.</p>
+        </div>
+        <div class="cert-pillar" data-animate data-delay="4">
+          <span class="cert-pillar-num">PILLAR 05</span>
+          <h3>Tools proficiency.</h3>
+          <p>Slack, Notion, Google Workspace, Asana, Loom. Your team's daily toolkit. Our candidates already know how to use it. Your onboarding goes from weeks to days.</p>
         </div>
       </div>
     </div>
@@ -484,9 +589,9 @@
   <section class="talent-section">
     <div class="talent-inner">
       <div class="talent-header" data-animate>
-        <span class="mono-tag">We find elite talent for every department</span>
-        <h2>If you need a role,<br>we can fill it.</h2>
-        <p>Every professional in our network is hand-picked, English-fluent, and ready to work in your timezone.</p>
+        <span class="mono-tag">Certified professionals across every business function</span>
+        <h2>If you need a role,<br>we have certified talent.</h2>
+        <p>Every professional in our network is NEWAVE Certified across all 5 pillars. Here's what that looks like per role.</p>
       </div>
       <div class="talent-list">
 
@@ -495,6 +600,13 @@
           <div class="talent-text">
             <h3>Operations</h3>
             <p>Managers, Supervisors, Coordinators, Analysts, Specialists, and Consultants.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: C1</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 94/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">Notion · Asana · Google Workspace</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -504,6 +616,13 @@
           <div class="talent-text">
             <h3>Marketing</h3>
             <p>Managers, Coordinators, Analysts, Specialists, Copywriters, and Designers.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: C1</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 92/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">HubSpot · Canva · Loom · Notion</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -513,6 +632,13 @@
           <div class="talent-text">
             <h3>Administrative Roles</h3>
             <p>Administrative Assistants, Managers, Data Entry, Human Resources.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: B2+</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 90/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">Google Workspace · Slack · Notion</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -522,6 +648,13 @@
           <div class="talent-text">
             <h3>Customer Service</h3>
             <p>Representatives, Agents, Specialists, and Customer Success.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: C1</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 91/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">Zendesk · Intercom · Slack · Loom</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -531,6 +664,13 @@
           <div class="talent-text">
             <h3>Accounting</h3>
             <p>Accountants, Auditors, Analysts, and Payroll Specialists.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: B2+</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 89/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">QuickBooks · Excel · Google Sheets</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -540,6 +680,13 @@
           <div class="talent-text">
             <h3>Finance</h3>
             <p>Financial Analysts, Controllers, Treasurers, and Managers.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: B2+</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 90/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">Excel · Google Sheets · QuickBooks · Notion</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -549,6 +696,13 @@
           <div class="talent-text">
             <h3>Executive Assistants</h3>
             <p>Virtual Executive Assistants, Personal Assistants, and Chiefs of Staff.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: C1</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 95/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">Notion · Loom · Calendly · Google Workspace</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -558,6 +712,13 @@
           <div class="talent-text">
             <h3>Project Management</h3>
             <p>Project Managers, Coordinators, Analysts, and Consultants.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: C1</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 93/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">Asana · Notion · Slack · Loom</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -567,6 +728,13 @@
           <div class="talent-text">
             <h3>Sales</h3>
             <p>SDRs, Account Executives, Sales Managers, and Business Development Reps.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: C1</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 91/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">HubSpot · Apollo · Salesforce · Loom</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -576,6 +744,13 @@
           <div class="talent-text">
             <h3>Generalists</h3>
             <p>Startup Generalists, Operations Generalists, Administrative Generalists.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English: B2+</span>
+              <span class="cert-badge cert-badge-ai">AI certified</span>
+              <span class="cert-badge">Remote score: 90/100</span>
+              <span class="cert-badge">Async: High</span>
+              <span class="cert-badge">Notion · Slack · Asana · Google Workspace</span>
+            </div>
           </div>
           <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="talent-btn">Hire now</a>
         </div>
@@ -588,7 +763,7 @@
   <section class="how-section-dark" id="how">
     <div class="how-inner">
       <span class="mono-tag" data-animate>How it works</span>
-      <h2 data-animate data-delay="1">From brief to hire<br>in days, not months.</h2>
+      <h2 data-animate data-delay="1">From certified talent<br>to your team in days.</h2>
       <p class="how-sub" data-animate data-delay="2">THREE SIMPLE STEPS</p>
 
       <div class="how-steps">
@@ -598,8 +773,8 @@
             <div class="step-line"></div>
           </div>
           <div class="step-content">
-            <h3>Tell us what you need</h3>
-            <p>Book a free 30-min call and walk us through the role, skills, experience level, timezone needs, and culture fit.</p>
+            <h3>Your intake</h3>
+            <p>Book a 30-minute call. Walk us through the role, the skills, the tools your team uses, and what a great first 90 days looks like.</p>
             <span class="step-note step-note-time">~30 min call</span>
           </div>
         </div>
@@ -610,8 +785,8 @@
             <div class="step-line"></div>
           </div>
           <div class="step-content">
-            <h3>We find your matches</h3>
-            <p>We tap our qualified LATAM talent pool and deliver a curated shortlist of interview-ready candidates within 5 business days.</p>
+            <h3>AI-powered matching</h3>
+            <p>Our matching engine scores certified candidates against your specific requirements: English level, remote-readiness score, async rating, AI proficiency, tool familiarity, and timezone fit. You get a ranked shortlist with specific reasons why each candidate is a match.</p>
             <span class="step-note step-note-time">Within 5 business days</span>
           </div>
         </div>
@@ -621,8 +796,8 @@
             <div class="step-num">3</div>
           </div>
           <div class="step-content">
-            <h3>Hire with confidence</h3>
-            <p>Interview your top picks, choose the best fit, and make the hire. We stay involved to ensure a smooth onboarding.</p>
+            <h3>Interview and hire</h3>
+            <p>Meet your top picks, choose the best fit, and make the hire. We stay involved through onboarding and the first 90 days to make sure the placement works.</p>
             <span class="step-note step-note-check">✓ Placement guarantee included</span>
           </div>
         </div>
@@ -706,65 +881,82 @@
   <!-- COMPARISON -->
   <section class="comparison-section">
     <div class="comparison-inner">
-      <span class="mono-tag section-label" data-animate>Why NEWAVE HIRE</span>
-      <h2 data-animate data-delay="1">The smarter alternative<br>to traditional hiring.</h2>
-      <p class="comparison-sub" data-animate data-delay="2">See how we stack up against the other options.</p>
+      <span class="mono-tag section-label" data-animate>The comparison that matters</span>
+      <h2 data-animate data-delay="1">Other agencies screen.<br>We certify.</h2>
+      <p class="comparison-sub" data-animate data-delay="2">The questions employers actually care about.</p>
       <div style="overflow-x: auto;">
         <table class="comparison-table" data-animate data-delay="3">
           <thead>
             <tr>
               <th></th>
               <th class="col-hire">NEWAVE HIRE</th>
-              <th>Traditional Recruiting</th>
+              <th>Other Agencies</th>
               <th>Freelance Platforms</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Pre-qualified candidates</td>
+              <td>Candidate trained before applying?</td>
               <td class="col-hire"><span class="check-yes">✓</span></td>
               <td><span class="check-no">✕</span></td>
               <td><span class="check-no">✕</span></td>
             </tr>
             <tr>
-              <td>Shortlist in 5 days</td>
+              <td>AI certification included?</td>
               <td class="col-hire"><span class="check-yes">✓</span></td>
               <td><span class="check-no">✕</span></td>
               <td><span class="check-no">✕</span></td>
             </tr>
             <tr>
-              <td>English proficiency screened</td>
+              <td>Tested on async communication?</td>
               <td class="col-hire"><span class="check-yes">✓</span></td>
               <td><span class="check-no">✕</span></td>
               <td><span class="check-no">✕</span></td>
             </tr>
             <tr>
-              <td>Timezone-compatible talent</td>
+              <td>Remote-readiness score visible before interview?</td>
               <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">✕</span></td>
+              <td><span class="check-no">✕</span></td>
+            </tr>
+            <tr>
+              <td>AI-powered candidate matching?</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">✕</span></td>
+              <td><span class="check-no">✕</span></td>
+            </tr>
+            <tr>
+              <td>Post-placement support included?</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">✕</span></td>
+              <td><span class="check-no">✕</span></td>
+            </tr>
+            <tr>
+              <td>40–70% cost savings vs. US hiring?</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">✕</span></td>
               <td><span class="check-yes">✓</span></td>
-              <td><span class="check-no">✕</span></td>
-            </tr>
-            <tr>
-              <td>40–70% cost savings</td>
-              <td class="col-hire"><span class="check-yes">✓</span></td>
-              <td><span class="check-no">✕</span></td>
-              <td><span class="check-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td>Placement guarantee</td>
-              <td class="col-hire"><span class="check-yes">✓</span></td>
-              <td><span class="check-no">✕</span></td>
-              <td><span class="check-no">✕</span></td>
-            </tr>
-            <tr>
-              <td>Dedicated account support</td>
-              <td class="col-hire"><span class="check-yes">✓</span></td>
-              <td><span class="check-yes">✓</span></td>
-              <td><span class="check-no">✕</span></td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
+  </section>
+
+  <!-- ANTHROPIC PARTNER -->
+  <section class="partner-section">
+    <div class="partner-inner">
+      <span class="partner-label">Official partner</span>
+      <div class="partner-divider"></div>
+      <div class="partner-badge" data-animate>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13.5 2L4 13h7l-1 9 10-11h-7l1.5-9z" fill="currentColor" opacity="0.9"/></svg>
+        <div>
+          <span class="partner-badge-text">Anthropic · Claude Partner Network</span>
+          <span class="partner-badge-sub">Anthropic Academy certified candidates</span>
+        </div>
+      </div>
+      <div class="partner-divider"></div>
+      <span class="partner-label" style="max-width: 280px; text-align: center;">Our candidates are trained and certified through the official Anthropic Academy program</span>
     </div>
   </section>
 
@@ -777,6 +969,30 @@
         <p>Everything you need to know before booking a call.</p>
       </div>
       <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What is the NEWAVE Certification?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Every candidate in our pipeline completes a structured training program and passes a five-pillar evaluation: English proficiency, AI readiness, remote-work training, async communication, and tools proficiency. Only candidates who meet our threshold across all five pillars receive the NEWAVE Certified credential.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How is this different from other staffing agencies?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Most agencies source candidates and screen for skills. We train candidates through a full program, certify them across five dimensions, and match them using AI. The talent in our pipeline doesn't exist on other platforms because we built it.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What does "AI-ready" mean?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Our candidates have completed certifications through the Anthropic Academy program. They know how to use AI tools to automate tasks, build workflows, and increase their productivity. For employers, this means hiring someone who operates at a different level from day one.</div>
+        </div>
 
         <div class="faq-item">
           <button class="faq-q">
@@ -834,10 +1050,10 @@
   <section class="cta-section">
     <div class="cta-inner">
       <span class="mono-tag" data-animate>Get started</span>
-      <h2 data-animate data-delay="1">Ready to hire top<br>LATAM talent?</h2>
-      <p data-animate data-delay="2">Book a free 30-min call and tell us about the role. We'll take it from there.</p>
+      <h2 data-animate data-delay="1">Stop screening.<br>Start hiring certified talent.</h2>
+      <p data-animate data-delay="2">Book a free 30-minute call and tell us about the role. We'll show you what a NEWAVE Certified shortlist looks like.</p>
       <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="btn-primary btn-large" data-animate data-delay="3">Book a free call →</a>
-      <span class="cta-note" data-animate data-delay="4">No commitment · Shortlist in 5 business days</span>
+      <span class="cta-note" data-animate data-delay="4">No commitment · Certified shortlist in 5 business days</span>
     </div>
   </section>
 
