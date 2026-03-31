@@ -525,7 +525,7 @@ a   { text-decoration: none; color: inherit; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 1.75rem; flex-wrap: wrap; gap: 1rem; }
 .copyright { font-family: var(--mono); font-size: 0.68rem; color: var(--subtle); }
 .footer-isotipo { width: 32px; height: 32px; color: var(--border); }
-.footer-isotipo-img { width: 32px; height: 32px; object-fit: contain; opacity: 0.35; filter: brightness(0) invert(1); }
+.footer-isotipo-img { width: 28px; height: 28px; object-fit: contain; opacity: 0.25; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
