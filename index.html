@@ -233,12 +233,15 @@
     }
 
     @media (max-width: 768px) {
-      .tl-label-col { width: 90px; }
-      .tl-logo { height: 20px; }
-      .tl-label-text { font-size: 0.8rem; }
-      .tl-days { font-size: 0.55rem; }
-      .tl-bar-track { height: 30px; }
+      .tl-label-col { width: 76px; }
+      .tl-logo { height: 19px; }
+      .tl-label-text { font-size: 0.78rem; }
+      .tl-axis, .tl-row, .tl-bottom-axis { gap: 0.75rem; }
+      .tl-days { font-size: 0.6rem; }
+      .tl-bar-track { height: 28px; }
       .timeline-section { padding: 3.5rem 1.25rem; }
+      /* hide middle day labels — keep only Day 1 and last */
+      .tl-days span:not(:first-child):not(:last-child) { display: none; }
     }
 
     /* ── COMPARISON ── */
@@ -346,15 +349,22 @@
       .roles-grid-cards { grid-template-columns: 1fr 1fr; }
       .talent-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .comparison-table th, .comparison-table td { padding: 0.85rem 0.75rem; font-size: 0.82rem; }
+      .comparison-table { min-width: 560px; }
+      .comparison-table th, .comparison-table td { padding: 0.8rem 0.65rem; font-size: 0.8rem; }
       .faq-section { padding: 3.5rem 1.25rem; }
       .how-section-dark { padding: 3.5rem 1.25rem; }
       .roles-section { padding: 3.5rem 1.25rem; }
       .talent-section { padding: 3.5rem 1.25rem; }
       .talent-btn { display: none; }
-      .talent-thumb-placeholder, .talent-thumb { width: 64px; height: 64px; }
+      .talent-thumb-placeholder, .talent-thumb { width: 60px; height: 60px; border-radius: 10px; }
+      .talent-row { gap: 1rem; padding: 1.25rem 0; }
+      .talent-text h3 { font-size: 0.95rem; }
+      .talent-text p { font-size: 0.8rem; }
       .comparison-section { padding: 3.5rem 1.25rem; }
       .stats-bar { padding: 2rem 1.25rem; }
+      .stat-item { padding: 1.5rem 1rem; }
+      .roles-section h2 { font-size: 1.75rem; }
+      .faq-q { font-size: 0.95rem; }
     }
     @media (max-width: 480px) {
       .roles-grid-cards { grid-template-columns: 1fr; }
