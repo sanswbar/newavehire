@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hire Vetted Remote Talent from Latin America, NEWAVƎ HIRE</title>
+  <title>Hire Qualified Remote Talent from Latin America — NEWAVƎ HIRE</title>
   <meta name="description" content="We source, screen, and place top-tier remote professionals from Latin America. Same timezone, English-fluent, 40–70% cost savings." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,32 +11,147 @@
   <link rel="icon" type="image/png" href="images/NEWAVEISO.png" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ── HIRE-SPECIFIC OVERRIDES ── */
+    .logo-img { filter: brightness(0) invert(1); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .stats-inner {
+      max-width: var(--max-wide); margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+    }
+    .stat-item {
+      background: var(--bg-2);
+      padding: 2rem 1.5rem; text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -0.04em;
+      color: var(--orange); display: block; margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-family: var(--mono); font-size: 0.72rem;
+      letter-spacing: 0.1em; color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ── ROLES GRID ── */
     .roles-section {
       padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
-      background: var(--bg);
-      text-align: center;
+      background: var(--bg); text-align: center;
     }
     .roles-inner { max-width: var(--max-wide); margin: 0 auto; }
     .roles-section h2 {
-      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
       font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
       margin-bottom: 0.75rem;
     }
-    .roles-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; }
-    .roles-grid {
-      display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;
+    .roles-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .roles-grid-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden; margin-bottom: 2rem;
     }
-    .role-tag {
-      font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
-      padding: 0.55rem 1.1rem; border-radius: 980px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
+    .role-card {
+      background: var(--bg-3); padding: 2rem 1.75rem; text-align: left;
+      transition: background 0.2s;
     }
-    .role-tag:hover { border-color: var(--orange); color: var(--white); }
+    .role-card:hover { background: rgba(252,115,66,0.05); }
+    .role-card-icon {
+      width: 40px; height: 40px;
+      background: rgba(252,115,66,0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange); margin-bottom: 1rem;
+    }
+    .role-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .role-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
-    /* Steps with dark bg */
+    /* ── TALENT SECTION ── */
+    .talent-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+    }
+    .talent-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .talent-header { text-align: center; margin-bottom: 3rem; }
+    .talent-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .talent-header p { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto; }
+    .talent-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem;
+    }
+    .talent-card {
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .talent-card:hover { transform: translateY(-4px); border-color: rgba(252,115,66,0.3); }
+    .talent-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+    }
+    .talent-photo-placeholder {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--bg); display: flex; align-items: center; justify-content: center;
+      color: var(--subtle);
+    }
+    .talent-info { padding: 1.1rem 1rem; }
+    .talent-role {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 0.3rem;
+    }
+    .talent-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .talent-country { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── COMPARISON ── */
+    .comparison-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg); text-align: center;
+    }
+    .comparison-inner { max-width: 900px; margin: 0 auto; }
+    .comparison-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .comparison-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; }
+    .comparison-table {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+    }
+    .comparison-table th {
+      padding: 1.1rem 1.5rem; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: -0.01em; text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-table th:first-child { text-align: left; color: var(--muted); font-weight: 500; }
+    .comparison-table th.col-hire {
+      background: rgba(252,115,66,0.08); color: var(--orange);
+      border-left: 1px solid rgba(252,115,66,0.2);
+      border-right: 1px solid rgba(252,115,66,0.2);
+    }
+    .comparison-table td {
+      padding: 1rem 1.5rem; font-size: 0.9rem;
+      border-bottom: 1px solid var(--border); text-align: center;
+      color: var(--muted);
+    }
+    .comparison-table td:first-child { text-align: left; color: var(--white); font-weight: 500; }
+    .comparison-table td.col-hire {
+      background: rgba(252,115,66,0.04);
+      border-left: 1px solid rgba(252,115,66,0.2);
+      border-right: 1px solid rgba(252,115,66,0.2);
+      color: var(--white);
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .check-yes { color: #34d399; font-size: 1.1rem; }
+    .check-no  { color: var(--subtle); font-size: 1.1rem; }
+
+    /* ── HOW IT WORKS ── */
     .how-section-dark {
       padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
       background: var(--bg-2);
@@ -44,20 +159,73 @@
     .how-section-dark .how-inner { max-width: 560px; margin: 0 auto; }
     .how-section-dark h2 {
       font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
-      margin-bottom: 0.6rem;
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.6rem;
     }
     .how-section-dark .how-sub {
       font-family: var(--mono); font-size: 0.75rem;
       color: var(--subtle); margin-bottom: 3rem; letter-spacing: 0.06em;
     }
 
-    .logo-img { filter: brightness(0) invert(1); }
+    /* ── FAQ ── */
+    .faq-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .faq-inner { max-width: 680px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .faq-header p { color: var(--muted); font-size: 1rem; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--white);
+      font-family: var(--sans); font-size: 1rem; font-weight: 600;
+      text-align: left; padding: 1.35rem 0; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--orange); }
+    .faq-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: var(--muted); transition: transform 0.25s, border-color 0.25s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--orange); color: var(--orange); }
+    .faq-a {
+      font-size: 0.95rem; color: var(--muted); line-height: 1.75;
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.35rem; }
 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .talent-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
-      .roles-section { padding: 3.5rem 1.25rem; }
-      .roles-section h2 { font-size: 1.75rem; }
+      .roles-grid-cards { grid-template-columns: 1fr 1fr; }
+      .talent-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .comparison-table th, .comparison-table td { padding: 0.85rem 0.75rem; font-size: 0.82rem; }
+      .faq-section { padding: 3.5rem 1.25rem; }
       .how-section-dark { padding: 3.5rem 1.25rem; }
+      .roles-section { padding: 3.5rem 1.25rem; }
+      .talent-section { padding: 3.5rem 1.25rem; }
+      .comparison-section { padding: 3.5rem 1.25rem; }
+      .stats-bar { padding: 2rem 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .roles-grid-cards { grid-template-columns: 1fr; }
+      .talent-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -82,14 +250,15 @@
         <span class="proof-dot"></span> NEWAVE HIRE
       </span>
       <h1 data-animate data-delay="1">
-        Hire vetted remote talent<br>
+        Hire qualified remote talent<br>
         <span class="h1-accent">from Latin America.</span>
       </h1>
       <p class="hero-sub" data-animate data-delay="2">
-        We source, screen, and place top-tier remote professionals from LATAM, English-fluent, timezone-compatible, and ready to hit the ground running.
+        We embed the best LATAM remote professionals into your company. English-fluent, timezone-compatible, and ready to hit the ground running.
       </p>
       <div class="hero-actions" data-animate data-delay="3">
         <a href="https://calendly.com/hello-nwave/newave-hire" target="_blank" rel="noopener" class="btn-primary btn-large">Book a free call →</a>
+        <a href="#how" class="btn-ghost">See how it works</a>
       </div>
       <div class="hero-proof" data-animate data-delay="4">
         <span class="proof-dot"></span>
@@ -98,61 +267,182 @@
     </div>
   </section>
 
-  <!-- PAIN STRIP -->
-  <div class="pain-strip">
-    <div class="pain-inner">
-      <span class="pain-item">Save 40–70% vs. US hiring</span>
-      <span class="pain-sep">·</span>
-      <span class="pain-item">Same-timezone overlap</span>
-      <span class="pain-sep">·</span>
-      <span class="pain-item">English-fluent professionals</span>
-      <span class="pain-sep">·</span>
-      <span class="pain-item">Vetted &amp; interview-ready</span>
-      <span class="pain-sep">·</span>
-      <span class="pain-item">Shortlist in 5 business days</span>
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item" data-animate>
+        <span class="stat-number">Top 1%</span>
+        <span class="stat-label">Of applicants make it through</span>
+      </div>
+      <div class="stat-item" data-animate data-delay="1">
+        <span class="stat-number">5 days</span>
+        <span class="stat-label">Average time to shortlist</span>
+      </div>
+      <div class="stat-item" data-animate data-delay="2">
+        <span class="stat-number">70%</span>
+        <span class="stat-label">Average cost savings vs. US hiring</span>
+      </div>
+      <div class="stat-item" data-animate data-delay="3">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Vetted professionals in our network</span>
+      </div>
     </div>
   </div>
 
-  <!-- WHY LATAM -->
-  <section class="why-section">
-    <div class="why-inner">
-      <span class="mono-tag section-label" data-animate>Why LATAM</span>
-      <h2 data-animate data-delay="1">The smarter way<br>to hire remotely.</h2>
-      <div class="why-grid">
-        <div class="why-card" data-animate data-delay="1">
-          <div class="why-icon">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  <!-- ROLES GRID -->
+  <section class="roles-section">
+    <div class="roles-inner">
+      <span class="mono-tag section-label" data-animate>What we fill</span>
+      <h2 data-animate data-delay="1">Every role your remote<br>team needs.</h2>
+      <p class="roles-sub" data-animate data-delay="2">From individual contributors to team leads — across every business function.</p>
+      <div class="roles-grid-cards">
+
+        <div class="role-card" data-animate>
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <h3>Timezone Compatible</h3>
-          <p>LATAM professionals overlap 4–8 hours with US and European time zones, real-time collaboration without the friction.</p>
+          <h3>Executive Assistant</h3>
+          <p>Calendar management, travel coordination, executive support — done with precision.</p>
         </div>
-        <div class="why-card" data-animate data-delay="2">
-          <div class="why-icon">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+
+        <div class="role-card" data-animate data-delay="1">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
-          <h3>Cost-Effective</h3>
-          <p>Cut hiring costs by 40–70% compared to US or EU equivalents, without sacrificing quality, reliability, or professionalism.</p>
+          <h3>Marketing</h3>
+          <p>Content, paid media, email campaigns, SEO — talent that drives real growth.</p>
         </div>
-        <div class="why-card" data-animate data-delay="3">
-          <div class="why-icon">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+
+        <div class="role-card" data-animate data-delay="2">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
-          <h3>English-Fluent</h3>
-          <p>Every candidate in our pool is screened for professional-level English communication, written and spoken.</p>
+          <h3>Customer Success</h3>
+          <p>Onboarding, retention, and support — professionals who keep your clients happy.</p>
         </div>
-        <div class="why-card" data-animate data-delay="4">
-          <div class="why-icon">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+
+        <div class="role-card" data-animate data-delay="3">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
-          <h3>Pre-Vetted</h3>
-          <p>Our talent goes through a multi-step screening process, skills assessment, English proficiency, and culture-fit evaluation, before you ever see a profile.</p>
+          <h3>Operations</h3>
+          <p>Process optimization, systems management, and operational excellence at scale.</p>
+        </div>
+
+        <div class="role-card" data-animate data-delay="1">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Finance & Accounting</h3>
+          <p>Bookkeeping, reporting, financial analysis — reliable and detail-oriented talent.</p>
+        </div>
+
+        <div class="role-card" data-animate data-delay="2">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Sales</h3>
+          <p>SDRs, account executives, and closers who understand your market and product.</p>
+        </div>
+
+        <div class="role-card" data-animate data-delay="3">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h3>Content & Copywriting</h3>
+          <p>Blog posts, social copy, email sequences — native-level English writers.</p>
+        </div>
+
+        <div class="role-card" data-animate data-delay="1">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Project Management</h3>
+          <p>Keep your projects on time and on budget with seasoned remote PMs.</p>
+        </div>
+
+        <div class="role-card" data-animate data-delay="2">
+          <div class="role-card-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Social Media</h3>
+          <p>Community management, content creation, and growth — across every platform.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TALENT SHOWCASE -->
+  <section class="talent-section">
+    <div class="talent-inner">
+      <div class="talent-header" data-animate>
+        <span class="mono-tag">Our talent</span>
+        <h2>Meet the people who'll<br>power your team.</h2>
+        <p>Every professional in our network is hand-picked, English-fluent, and ready to work in your timezone.</p>
+      </div>
+      <div class="talent-grid">
+        <!-- FOTO 1 — reemplazar src con foto real -->
+        <div class="talent-card" data-animate data-delay="1">
+          <div class="talent-photo-placeholder">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="talent-info">
+            <div class="talent-role">Executive Assistant</div>
+            <div class="talent-name">Coming soon</div>
+            <div class="talent-country">Latin America</div>
+          </div>
+        </div>
+        <!-- FOTO 2 -->
+        <div class="talent-card" data-animate data-delay="2">
+          <div class="talent-photo-placeholder">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="talent-info">
+            <div class="talent-role">Marketing Manager</div>
+            <div class="talent-name">Coming soon</div>
+            <div class="talent-country">Latin America</div>
+          </div>
+        </div>
+        <!-- FOTO 3 -->
+        <div class="talent-card" data-animate data-delay="3">
+          <div class="talent-photo-placeholder">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="talent-info">
+            <div class="talent-role">Customer Success</div>
+            <div class="talent-name">Coming soon</div>
+            <div class="talent-country">Latin America</div>
+          </div>
+        </div>
+        <!-- FOTO 4 -->
+        <div class="talent-card" data-animate data-delay="4">
+          <div class="talent-photo-placeholder">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="talent-info">
+            <div class="talent-role">Operations Manager</div>
+            <div class="talent-name">Coming soon</div>
+            <div class="talent-country">Latin America</div>
+          </div>
+        </div>
+        <!-- FOTO 5 -->
+        <div class="talent-card" data-animate data-delay="4">
+          <div class="talent-photo-placeholder">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="talent-info">
+            <div class="talent-role">Sales Development</div>
+            <div class="talent-name">Coming soon</div>
+            <div class="talent-country">Latin America</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="how-section-dark">
+  <section class="how-section-dark" id="how">
     <div class="how-inner">
       <span class="mono-tag" data-animate>How it works</span>
       <h2 data-animate data-delay="1">From brief to hire<br>in days, not months.</h2>
@@ -166,7 +456,7 @@
           </div>
           <div class="step-content">
             <h3>Tell us what you need</h3>
-            <p>Book a free 30-min call and walk us through the role, skills, experience level, timezone needs, and culture fit.</p>
+            <p>Book a free 30-min call and walk us through the role — skills, experience level, timezone needs, and culture fit.</p>
             <span class="step-note step-note-time">~30 min call</span>
           </div>
         </div>
@@ -178,7 +468,7 @@
           </div>
           <div class="step-content">
             <h3>We find your matches</h3>
-            <p>We tap our vetted LATAM talent pool and deliver a curated shortlist of interview-ready candidates within 5 business days.</p>
+            <p>We tap our qualified LATAM talent pool and deliver a curated shortlist of interview-ready candidates within 5 business days.</p>
             <span class="step-note step-note-time">Within 5 business days</span>
           </div>
         </div>
@@ -197,28 +487,129 @@
     </div>
   </section>
 
-  <!-- ROLES -->
-  <section class="roles-section">
-    <div class="roles-inner">
-      <span class="mono-tag section-label" data-animate>Roles we fill</span>
-      <h2 data-animate data-delay="1">Whatever the role,<br>we've got the talent.</h2>
-      <p class="roles-sub" data-animate data-delay="2">From individual contributors to team leads, across every function.</p>
-      <div class="roles-grid" data-animate data-delay="3">
-        <span class="role-tag">Marketing</span>
-        <span class="role-tag">Sales</span>
-        <span class="role-tag">Customer Success</span>
-        <span class="role-tag">Operations</span>
-        <span class="role-tag">Project Management</span>
-        <span class="role-tag">Finance &amp; Accounting</span>
-        <span class="role-tag">Executive Assistant</span>
-        <span class="role-tag">HR &amp; Recruiting</span>
-        <span class="role-tag">Content &amp; Copywriting</span>
-        <span class="role-tag">Social Media</span>
-        <span class="role-tag">Data Analysis</span>
-        <span class="role-tag">Business Development</span>
-        <span class="role-tag">Community Management</span>
-        <span class="role-tag">E-commerce</span>
-        <span class="role-tag">Other</span>
+  <!-- COMPARISON -->
+  <section class="comparison-section">
+    <div class="comparison-inner">
+      <span class="mono-tag section-label" data-animate>Why NEWAVE HIRE</span>
+      <h2 data-animate data-delay="1">The smarter alternative<br>to traditional hiring.</h2>
+      <p class="comparison-sub" data-animate data-delay="2">See how we stack up against the other options.</p>
+      <div style="overflow-x: auto;">
+        <table class="comparison-table" data-animate data-delay="3">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-hire">NEWAVE HIRE</th>
+              <th>Traditional Recruiting</th>
+              <th>Freelance Platforms</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pre-qualified candidates</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+            </tr>
+            <tr>
+              <td>Shortlist in 5 days</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+            </tr>
+            <tr>
+              <td>English proficiency screened</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+            </tr>
+            <tr>
+              <td>Timezone-compatible talent</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-no">—</span></td>
+            </tr>
+            <tr>
+              <td>40–70% cost savings</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Placement guarantee</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+            </tr>
+            <tr>
+              <td>Dedicated account support</td>
+              <td class="col-hire"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-no">—</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-header" data-animate>
+        <span class="mono-tag">FAQ</span>
+        <h2>Common questions.</h2>
+        <p>Everything you need to know before booking a call.</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How long does it take to get a shortlist?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Once we have a clear brief from your discovery call, we deliver a curated shortlist of qualified candidates within 5 business days. For more specialized roles, it may take up to 7 days.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How do you screen your candidates?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Every candidate goes through a multi-step process: skills assessment, English proficiency test (written and spoken), culture-fit evaluation, and a background review. We only present candidates who pass every stage — roughly 1 out of every 100 applicants.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What roles can you fill?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">We specialize in business and operations roles: Executive Assistants, Marketing, Sales, Customer Success, Operations, Finance, Project Management, Content, and more. If you have a specific role in mind, just tell us on the call.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What's the cost?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Our pricing is discussed on the discovery call based on your role and requirements. LATAM talent typically costs 40–70% less than equivalent US or European hires, which means significant savings from day one. We charge a placement fee, not a monthly subscription.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Do you offer a placement guarantee?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Yes. If the candidate doesn't work out within the guarantee period, we'll find you a replacement at no extra cost. We're invested in making the placement work long-term.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Do I need to handle payroll and compliance?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">That depends on your preferred arrangement. We can advise on the best setup for your country and situation — many of our clients hire as independent contractors, which simplifies compliance significantly.</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -282,8 +673,18 @@
       entries.forEach(el => {
         if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    /* FAQ accordion */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
   </script>
 
 </body>
