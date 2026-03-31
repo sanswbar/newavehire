@@ -172,6 +172,8 @@
     }
     .tl-bars-col { flex: 1; position: relative; }
     .tl-logo { height: 20px; width: auto; }
+    .tl-logo-mobile { display: none; }
+    .tl-logo-full { display: block; }
     .tl-label-text { font-size: 1rem; font-weight: 600; color: var(--muted); }
 
     .tl-days {
@@ -234,7 +236,8 @@
 
     @media (max-width: 768px) {
       .tl-label-col { width: 76px; }
-      .tl-logo { height: 19px; }
+      .tl-logo-full { display: none; }
+      .tl-logo-mobile { display: block; height: 22px; width: 22px; object-fit: contain; mix-blend-mode: screen; opacity: 0.75; }
       .tl-label-text { font-size: 0.78rem; }
       .tl-axis, .tl-row, .tl-bottom-axis { gap: 0.75rem; }
       .tl-days { font-size: 0.6rem; }
@@ -653,7 +656,8 @@
         <!-- ROW 1: NEWAVE HIRE -->
         <div class="tl-row">
           <div class="tl-label-col">
-            <img src="images/HIREB1.png" alt="NEWAVE HIRE" class="tl-logo" />
+            <img src="images/HIREB1.png" alt="NEWAVE HIRE" class="tl-logo tl-logo-full" />
+            <img src="images/NEWAVEISO.png" alt="NEWAVE HIRE" class="tl-logo tl-logo-mobile" />
           </div>
           <div class="tl-bars-col">
             <div class="tl-bar-track">
