@@ -115,6 +115,97 @@
     }
     .talent-btn:hover { border-color: var(--orange); color: var(--orange); }
 
+    /* ── TIMELINE ── */
+    .timeline-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+    }
+    .timeline-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .timeline-header { text-align: center; margin-bottom: 3.5rem; }
+    .timeline-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .timeline-header p { color: var(--muted); font-size: 1rem; }
+
+    .timeline-chart { position: relative; }
+    .tl-axis, .tl-row, .tl-bottom-axis {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .tl-label-col {
+      width: 160px; flex-shrink: 0; display: flex; align-items: center;
+    }
+    .tl-bars-col { flex: 1; position: relative; }
+    .tl-logo { height: 28px; width: auto; filter: brightness(0) invert(1); opacity: 0.9; }
+    .tl-label-text { font-size: 1rem; font-weight: 600; color: var(--muted); }
+
+    .tl-days {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 0.68rem; color: var(--subtle);
+      padding-bottom: 0.5rem;
+    }
+    .tl-grid {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; justify-content: space-between; pointer-events: none;
+    }
+    .tl-gridline {
+      width: 1px; background: var(--border); height: 100%;
+    }
+
+    .tl-row { padding: 1.5rem 0; border-top: 1px solid var(--border); }
+    .tl-bar-track {
+      position: relative; height: 40px;
+      background: rgba(255,255,255,0.03); border-radius: 6px;
+    }
+    .tl-bar {
+      position: absolute; left: 0; top: 0; height: 100%;
+      border-radius: 6px; transition: width 1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .tl-bar-hire { background: var(--orange); opacity: 0.9; }
+    .tl-bar-inhouse { background: rgba(183,182,182,0.2); }
+
+    .tl-dot {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tl-dot-hire { background: var(--orange); box-shadow: 0 0 0 4px rgba(252,115,66,0.2); }
+    .tl-dot-inhouse { background: var(--muted); box-shadow: 0 0 0 4px rgba(183,182,182,0.15); }
+
+    .tl-tooltip {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      background: var(--bg-3); border: 1px solid var(--border);
+      color: var(--white); font-size: 0.72rem; font-weight: 600;
+      white-space: nowrap; padding: 0.35rem 0.75rem; border-radius: 6px;
+    }
+    .tl-tooltip-top { bottom: calc(100% + 10px); }
+    .tl-tooltip-bottom { top: calc(100% + 10px); }
+    .tl-tooltip-top::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-top-color: var(--border);
+    }
+    .tl-tooltip-bottom::before {
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-bottom-color: var(--border);
+    }
+
+    .tl-bottom-axis { padding-top: 0.5rem; border-top: 1px solid var(--border); }
+    .tl-days-bottom { padding-top: 0.5rem; padding-bottom: 0; }
+    .tl-footnote {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--subtle);
+      text-align: center; margin-top: 2rem; line-height: 1.7; max-width: 560px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .tl-label-col { width: 90px; }
+      .tl-logo { height: 20px; }
+      .tl-label-text { font-size: 0.8rem; }
+      .tl-days { font-size: 0.55rem; }
+      .tl-bar-track { height: 30px; }
+      .timeline-section { padding: 3.5rem 1.25rem; }
+    }
+
     /* ── COMPARISON ── */
     .comparison-section {
       padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
@@ -527,6 +618,78 @@
             <span class="step-note step-note-check">✓ Placement guarantee included</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE CHART -->
+  <section class="timeline-section">
+    <div class="timeline-inner">
+      <div class="timeline-header" data-animate>
+        <span class="mono-tag">Time to hire</span>
+        <h2>Start in days,<br>not months.</h2>
+        <p>See how fast we move compared to traditional in-house hiring.</p>
+      </div>
+
+      <div class="timeline-chart" data-animate data-delay="2">
+        <!-- AXIS LABELS -->
+        <div class="tl-axis">
+          <div class="tl-label-col"></div>
+          <div class="tl-bars-col">
+            <div class="tl-days">
+              <span>Day 1</span><span>Day 7</span><span>Day 14</span><span>Day 21</span><span>Day 28</span><span>Day 35</span><span>Day 42</span><span>Day 47.5*</span>
+            </div>
+            <div class="tl-grid">
+              <div class="tl-gridline"></div><div class="tl-gridline"></div><div class="tl-gridline"></div>
+              <div class="tl-gridline"></div><div class="tl-gridline"></div><div class="tl-gridline"></div>
+              <div class="tl-gridline"></div><div class="tl-gridline"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 1: NEWAVE HIRE -->
+        <div class="tl-row">
+          <div class="tl-label-col">
+            <img src="images/NEWAVEISO.png" alt="NEWAVE HIRE" class="tl-logo" />
+          </div>
+          <div class="tl-bars-col">
+            <div class="tl-bar-track">
+              <div class="tl-bar tl-bar-hire" style="width: 14.7%;">
+                <!-- Day 7 / 47.5 = 14.7% -->
+              </div>
+              <div class="tl-dot tl-dot-hire" style="left: 14.7%;">
+                <div class="tl-tooltip tl-tooltip-top">Talent start date</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: HIRING IN-HOUSE -->
+        <div class="tl-row">
+          <div class="tl-label-col">
+            <span class="tl-label-text">Hiring in-house</span>
+          </div>
+          <div class="tl-bars-col">
+            <div class="tl-bar-track">
+              <div class="tl-bar tl-bar-inhouse" style="width: 100%;"></div>
+              <div class="tl-dot tl-dot-inhouse" style="left: 99%;">
+                <div class="tl-tooltip tl-tooltip-bottom">Talent start date</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTTOM AXIS -->
+        <div class="tl-bottom-axis">
+          <div class="tl-label-col"></div>
+          <div class="tl-bars-col">
+            <div class="tl-days tl-days-bottom">
+              <span>Day 1</span><span>Day 7</span><span>Day 14</span><span>Day 21</span><span>Day 28</span><span>Day 35</span><span>Day 42</span><span>Day 47.5*</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="tl-footnote">*According to LinkedIn Talent Solutions, the average time-to-hire in the US is 47.5 days and can be even higher in some industries.</p>
       </div>
     </div>
   </section>
