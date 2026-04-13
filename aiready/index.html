@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Ready — NEWAVƎ HIRE</title>
+  <meta name="description" content="¿Ya estás construyendo con AI? Cuéntanos qué estás haciendo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="../images/NEWAVEISO.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --bg:        #080a0d;
+      --bg-2:      #12161b;
+      --bg-3:      #1a1f26;
+      --white:     #ffffff;
+      --muted:     #B7B6B6;
+      --subtle:    rgba(183, 182, 182, 0.35);
+      --orange:    #FC7342;
+      --orange-h:  #d95b28;
+      --border:    rgba(183, 182, 182, 0.1);
+      --border-focus: rgba(252, 115, 66, 0.5);
+      --sans:      'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:      'DM Mono', monospace;
+      --r:         16px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 17px; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(2.5rem, 6vw, 5rem) 1.25rem clamp(4rem, 8vw, 6rem);
+    }
+
+    /* ── LOGO ── */
+    .logo {
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+      margin: 0 auto;
+      filter: brightness(0) invert(1);
+    }
+    .logo-text {
+      font-family: var(--sans);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      border: 1.5px solid var(--orange);
+      color: var(--orange);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── HEADLINE ── */
+    .headline {
+      text-align: center;
+      margin-bottom: clamp(0.5rem, 2vw, 1rem);
+      max-width: 560px;
+    }
+    .headline h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      color: var(--white);
+    }
+    .headline h1 span {
+      color: var(--orange);
+    }
+
+    .subtext {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 440px;
+      margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+      line-height: 1.6;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(2rem, 5vw, 2.75rem) clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    .form-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 1.75rem;
+      color: var(--white);
+    }
+    .form-title span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── FIELDS ── */
+    .field {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+    label .tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--subtle);
+      margin-left: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      padding: 0.85rem 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--subtle);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(252, 115, 66, 0.08);
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+      line-height: 1.5;
+    }
+
+    /* Custom select arrow */
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--muted);
+      pointer-events: none;
+    }
+    select option {
+      background: var(--bg-3);
+      color: var(--white);
+    }
+
+    /* Radio group */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .radio-option:hover {
+      border-color: rgba(252, 115, 66, 0.3);
+    }
+    .radio-option input[type="radio"] {
+      width: 18px; height: 18px;
+      min-width: 18px;
+      padding: 0;
+      background: transparent;
+      border: 1.5px solid var(--subtle);
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .radio-option input[type="radio"]:checked {
+      border-color: var(--orange);
+      background: var(--orange);
+      box-shadow: inset 0 0 0 3px var(--bg-3);
+    }
+    .radio-option input[type="radio"]:focus {
+      box-shadow: none;
+    }
+    .radio-option span {
+      font-size: 0.9rem;
+      color: var(--white);
+      line-height: 1.4;
+    }
+    .radio-option:has(input:checked) {
+      border-color: rgba(252, 115, 66, 0.4);
+      background: rgba(252, 115, 66, 0.05);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+    }
+
+    /* ── CTA BUTTON ── */
+    .btn-submit {
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: var(--r);
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.25rem;
+    }
+    .btn-submit:hover {
+      background: var(--orange-h);
+    }
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    /* ── TRUST ── */
+    .trust {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--subtle);
+      margin-top: 1rem;
+      font-family: var(--mono);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .success-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(252, 115, 66, 0.12);
+      border: 1.5px solid rgba(252, 115, 66, 0.4);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.5rem;
+    }
+    .success-state h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .success-state p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      body { padding-bottom: 3rem; }
+      .form-card { border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGO -->
+  <a href="https://newavehire.com" class="logo">
+    <img src="../images/logo.svg" alt="NEWAVE HIRE">
+  </a>
+
+  <!-- BADGE -->
+  <div class="badge">
+    <span class="badge-dot"></span>
+    AI READY
+  </div>
+
+  <!-- HEADLINE -->
+  <div class="headline">
+    <h1>¿Ya estás<br><span>construyendo con AI?</span></h1>
+  </div>
+
+  <p class="subtext">
+    Queremos aprender cómo estás usando IA y lo que has construido hasta ahora para conectarte con las mejores oportunidades.
+  </p>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <p class="form-title">Tu perfil <span>(tarda 2 min)</span></p>
+
+    <form id="aiready-form">
+
+      <!-- Nombre -->
+      <div class="field">
+        <label for="nombre">Nombre completo</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre completo"
+          required
+          autocomplete="name"
+        />
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="field">
+        <label for="whatsapp">WhatsApp</label>
+        <input
+          type="tel"
+          id="whatsapp"
+          name="whatsapp"
+          placeholder="+52 55 1234 5678"
+          required
+          autocomplete="tel"
+        />
+      </div>
+
+      <!-- Qué estás construyendo -->
+      <div class="field">
+        <label for="building">¿Qué estás construyendo con AI ahorita?</label>
+        <textarea
+          id="building"
+          name="building"
+          placeholder="Ej. Un agente de WhatsApp para ventas, automatizaciones con n8n, un SaaS con Claude..."
+          required
+        ></textarea>
+      </div>
+
+      <!-- Demo link / Loom -->
+      <div class="field">
+        <label for="demo">¿Tienes un link o video Loom para compartir? <span class="tag">opcional</span></label>
+        <input
+          type="url"
+          id="demo"
+          name="demo"
+          placeholder="https://loom.com/share/... o tu proyecto"
+        />
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Área de trabajo -->
+      <div class="field">
+        <label for="area">¿En qué área trabajas o quieres trabajar? <span class="tag">para Hire</span></label>
+        <div class="select-wrap">
+          <select id="area" name="area" required>
+            <option value="" disabled selected>Selecciona un área</option>
+            <option value="engineering">Ingeniería / Desarrollo</option>
+            <option value="product">Producto / PM</option>
+            <option value="design">Diseño / UX</option>
+            <option value="data">Datos / Analítica</option>
+            <option value="marketing">Marketing / Growth</option>
+            <option value="sales">Ventas / BizDev</option>
+            <option value="ops">Operaciones</option>
+            <option value="finance">Finanzas / Contabilidad</option>
+            <option value="customer">Customer Success / Soporte</option>
+            <option value="other">Otra</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Experiencia en tech -->
+      <div class="field">
+        <label>¿Tienes experiencia laboral en tech o estás en transición? <span class="tag">para segmentar</span></label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="experiencia" value="senior" required />
+            <span>Sí, trabajo en tech o startup</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="experiencia" value="transitioning" />
+            <span>Estoy haciendo transición hacia tech</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="experiencia" value="self-taught" />
+            <span>Soy autodidacta / builder independiente</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="experiencia" value="other-industry" />
+            <span>Vengo de otra industria</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submit-btn">
+        Enviar mi perfil →
+      </button>
+
+      <p class="trust">Tu info está segura. Solo la usamos para conectarte con oportunidades.</p>
+    </form>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-state" id="success-state">
+      <div class="success-icon">✓</div>
+      <h2>Perfil recibido</h2>
+      <p>Te contactamos pronto con oportunidades que hagan sentido para lo que estás construyendo.</p>
+    </div>
+  </div>
+
+  <script>
+    // Reemplaza esta URL con la de tu Apps Script desplegado
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyCB2GQgDgX9k_wFYTdDvT28GiCYGjMBXHC0rVr0XOSCCturZnR4mKMkQMJ4LT8E0BBLw/exec';
+
+    const form = document.getElementById('aiready-form');
+    const successState = document.getElementById('success-state');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+
+      // Usamos iframe oculto para que Apps Script no redirija la página
+      const iframe = document.createElement('iframe');
+      iframe.name = 'hidden_iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      const tempForm = document.createElement('form');
+      tempForm.method = 'POST';
+      tempForm.action = SHEET_URL;
+      tempForm.target = 'hidden_iframe';
+
+      const fields = ['nombre', 'whatsapp', 'building', 'demo', 'area', 'experiencia'];
+      fields.forEach(function(name) {
+        const el = form.elements[name];
+        if (!el) return;
+        const val = el.type === 'radio'
+          ? (form.querySelector('input[name="' + name + '"]:checked') || {}).value || ''
+          : el.value;
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = val;
+        tempForm.appendChild(input);
+      });
+
+      document.body.appendChild(tempForm);
+
+      iframe.onload = function() {
+        form.style.display = 'none';
+        successState.style.display = 'block';
+        document.body.removeChild(tempForm);
+        document.body.removeChild(iframe);
+      };
+
+      tempForm.submit();
+    });
+
+    // WhatsApp: auto-format
+    const waInput = document.getElementById('whatsapp');
+    waInput.addEventListener('input', function() {
+      let val = this.value.replace(/[^\d+]/g, '');
+      if (val && !val.startsWith('+')) val = '+' + val;
+      this.value = val;
+    });
+  </script>
+
+</body>
+</html>
