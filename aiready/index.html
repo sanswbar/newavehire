@@ -357,7 +357,7 @@
 
   <!-- FORM CARD -->
   <div class="form-card">
-    <p class="form-title">Tu perfil <span>(tarda 2 min)</span></p>
+    <p class="form-title" id="form-title">Completa el formulario</p>
 
     <form id="aiready-form">
 
@@ -512,6 +512,7 @@
       iframe.onload = function() {
         form.style.display = 'none';
         successState.style.display = 'block';
+        document.getElementById('form-title').textContent = 'Recibimos tu respuesta.';
         document.body.removeChild(tempForm);
         document.body.removeChild(iframe);
       };
