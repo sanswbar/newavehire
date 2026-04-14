@@ -546,7 +546,7 @@ a   { text-decoration: none; color: inherit; }
 
   /* Hero */
   .hero { padding: 5.5rem 1.25rem 3.5rem; text-align: center; }
-  .hero h1 { font-size: 8vw;letter-spacing: -0.05em; }
+  .hero h1 { font-size: 11vw;letter-spacing: -0.05em; }
   .hero-sub { font-size: 1rem; }
   .hero-eyebrow {
     font-size: 0.60rem;
@@ -653,7 +653,7 @@ a   { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 420px) {
-  .hero h1 { font-size: 8vw;}
+  .hero h1 { font-size: 11vw;}
   .logo-img { height: 14px; }
   .why-grid { grid-template-columns: 1fr; }
   .tcard { flex: 0 0 88vw; }
