@@ -13,34 +13,6 @@
   <style>
     .logo-img { }
 
-    /* ── STATS BAR ── */
-    .stats-bar {
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem);
-    }
-    .stats-inner {
-      max-width: var(--max-wide); margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
-    }
-    .stat-item {
-      background: var(--bg-2);
-      padding: 2rem 1.5rem; text-align: center;
-    }
-    .stat-number {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700; letter-spacing: -0.04em;
-      color: var(--orange); display: block; margin-bottom: 0.3rem;
-    }
-    .stat-label {
-      font-family: var(--mono); font-size: 0.72rem;
-      letter-spacing: 0.1em; color: var(--muted);
-      text-transform: uppercase;
-    }
-
     /* ── ROLES GRID ── */
     .roles-section {
       padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
@@ -403,12 +375,10 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .talent-grid { grid-template-columns: repeat(3, 1fr); }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .roles-grid-cards { grid-template-columns: 1fr 1fr; }
       .talent-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .comparison-table { min-width: 560px; }
       .hero h1 { font-size: 5.5vw !important; }
       h1 span { white-space: nowrap; }
@@ -423,8 +393,6 @@
       .talent-text h3 { font-size: 0.95rem; }
       .talent-text p { font-size: 0.8rem; }
       .comparison-section { padding: 3.5rem 1.25rem; }
-      .stats-bar { padding: 2rem 1.25rem; }
-      .stat-item { padding: 1.5rem 1rem; }
       .roles-section h2 { font-size: 1.75rem; }
       .faq-q { font-size: 0.95rem; }
     }
@@ -438,7 +406,6 @@
     @media (max-width: 480px) {
       .roles-grid-cards { grid-template-columns: 1fr; }
       .talent-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-inner { grid-template-columns: 1fr 1fr; }
       .cert-pillars { grid-template-columns: 1fr; }
       .cert-pillar:last-child { grid-column: auto; }
     }
@@ -475,31 +442,40 @@
         <a href="#contact" class="btn-primary btn-large">Hire certified talent →</a>
         <a href="#certification" class="btn-ghost">See how certification works</a>
       </div>
-      <div class="hero-proof" data-animate data-delay="4">
-        <span class="proof-dot"></span>
-        Trusted by companies across the US, Europe & beyond
-      </div>
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item" data-animate>
-        <span class="stat-number">40+</span>
-        <span class="stat-label">Hours of training per candidate</span>
-      </div>
-      <div class="stat-item" data-animate data-delay="1">
-        <span class="stat-number">5</span>
-        <span class="stat-label">Pillar certification process</span>
-      </div>
-      <div class="stat-item" data-animate data-delay="2">
-        <span class="stat-number">84%</span>
-        <span class="stat-label">Member retention rate</span>
-      </div>
-      <div class="stat-item" data-animate data-delay="3">
-        <span class="stat-number">AI</span>
-        <span class="stat-label">Powered candidate matching</span>
+  <!-- EMPRESAS -->
+  <div class="logos-strip">
+    <p class="logos-label">Where our certified talent works</p>
+    <div class="logos-viewport">
+      <div class="logos-track">
+        <div class="logos-group">
+          <span class="logo-name">noCRM.io</span>
+          <span class="logo-name">Topsort</span>
+          <span class="logo-name">Praxent</span>
+          <span class="logo-name">The Outloud Group</span>
+          <span class="logo-name">Zappi</span>
+          <span class="logo-name">EPOC</span>
+          <span class="logo-name">SimplyAgree</span>
+          <span class="logo-name">CNaught</span>
+          <span class="logo-name">Stripe</span>
+          <span class="logo-name">Pulse Protocol</span>
+          <span class="logo-name">BairesDev</span>
+        </div>
+        <div class="logos-group" aria-hidden="true">
+          <span class="logo-name">noCRM.io</span>
+          <span class="logo-name">Topsort</span>
+          <span class="logo-name">Praxent</span>
+          <span class="logo-name">The Outloud Group</span>
+          <span class="logo-name">Zappi</span>
+          <span class="logo-name">EPOC</span>
+          <span class="logo-name">SimplyAgree</span>
+          <span class="logo-name">CNaught</span>
+          <span class="logo-name">Stripe</span>
+          <span class="logo-name">Pulse Protocol</span>
+          <span class="logo-name">BairesDev</span>
+        </div>
       </div>
     </div>
   </div>
