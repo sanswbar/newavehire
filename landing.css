@@ -10,7 +10,7 @@
   --wide: 1240px;
   --ink: #f4f4f2;
   --soft: #c9c8c6;
-  --tile: clamp(80px, 7.4vw, 116px);
+  --tile: clamp(76px, min(6.6vw, 12.5vh), 108px);
   --edge: max(var(--pad), calc((100vw - var(--wide)) / 2 + var(--pad)));
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -41,7 +41,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outlin
 .hero {
   display: block;
   min-height: 0;
-  padding: calc(56px + clamp(2.5rem, 7vh, 5.5rem)) 0 clamp(3rem, 6vw, 5rem);
+  padding: calc(56px + clamp(1.5rem, 5vh, 3.75rem)) 0 clamp(3rem, 6vw, 5rem);
   text-align: left;
   background: var(--bg);
 }
@@ -56,7 +56,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outlin
 }
 .hero h1 {
   grid-column: 1 / -1;
-  font-size: clamp(2.4rem, 6.9vw, 6.6rem);
+  font-size: clamp(2.4rem, min(6.6vw, 11.5vh), 6rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
   margin-bottom: clamp(1.5rem, 2.6vw, 2.25rem);
@@ -72,13 +72,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outlin
 }
 .hero-actions { margin: clamp(1.75rem, 3vw, 2.25rem) 0 0; justify-content: flex-start; gap: 1.75rem; flex-wrap: wrap; }
 .hero-note {
-  margin-top: 1.1rem;
+  margin-top: 0.9rem;
   font-size: 0.95rem; color: var(--soft);
 }
 
 /* Banda de la comunidad: fotos reales de miembros de NEWAVE Academy, con su rol */
 .hero-band {
-  margin-top: clamp(2.5rem, 5vw, 4rem);
+  margin-top: clamp(1.75rem, 4.5vh, 3rem);
   overflow: hidden;
 }
 .band-track { display: flex; width: max-content; animation: band-scroll 70s linear infinite; }
@@ -423,3 +423,4 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outlin
 @media (prefers-reduced-motion: reduce) {
   .waves-a, .waves-b, .live-dot::after { animation: none; }
 }
+
