@@ -18,7 +18,7 @@
     ['.faq-list', '.faq-item', 'rise'],
     ['.partner-inner', '.partner-inner > :not(.partner-divider)', 'rise'],
     ['.cta-field .form-head', '.cta-field .form-head > *', 'rise'],
-    ['.footer', '.footer-top > *, .footer-giant', 'rise']
+    ['.footer', '.footer-top > *', 'rise']
   ];
 
   var io = new IntersectionObserver(function (entries) {

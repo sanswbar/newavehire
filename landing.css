@@ -307,7 +307,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outlin
 .footer-col-label { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.9rem; color: var(--soft); }
 .footer-tag { font-size: 0.95rem; color: var(--soft); }
 .footer-email { font-size: 0.95rem; }
-.footer-giant { width: 100%; height: auto; margin: clamp(3rem, 7vw, 6rem) 0 0; mix-blend-mode: screen; }
 .copyright { font-family: var(--sans); font-size: 0.85rem; color: var(--soft); }
 
 /* ── Entradas al hacer scroll (las asigna landing.js) ── */
