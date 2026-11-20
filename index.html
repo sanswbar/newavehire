@@ -22,55 +22,514 @@
   <meta name="twitter:image" content="https://newavehire.com/images/HIREB1.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="images/NEWAVEISO.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .logo-img { }
+
+    /* ── ROLES GRID ── */
+    .roles-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg); text-align: center;
+    }
+    .roles-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .roles-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .roles-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .roles-grid-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden; margin-bottom: 2rem;
+    }
+    .role-card {
+      background: var(--bg-3); padding: 2rem 1.75rem; text-align: left;
+      transition: background 0.2s;
+    }
+    .role-card:hover { background: rgba(252,115,66,0.05); }
+    .role-card-icon {
+      width: 40px; height: 40px;
+      background: rgba(252,115,66,0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange); margin-bottom: 1rem;
+    }
+    .role-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .role-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── PAIN SECTION ── */
+    .pain-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .pain-section-inner {
+      max-width: var(--max-wide); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .pain-left h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .pain-left p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 2rem; }
+    .pain-right { display: flex; flex-direction: column; gap: 0; }
+    .pain-point {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .pain-point:first-child { border-top: 1px solid var(--border); }
+    .pain-point-icon {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,60,60,0.1); color: #ff4444;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; margin-top: 2px;
+    }
+    .pain-point h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .pain-point p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin: 0; }
+
+    @media (max-width: 768px) {
+      .pain-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pain-section { padding: 3.5rem 1.25rem; }
+    }
+
+    /* ── TALENT SECTION ── */
+    .talent-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem) calc(var(--section) / 2);
+      background: var(--bg-2);
+    }
+    .talent-inner { max-width: 860px; margin: 0 auto; }
+    .talent-header { text-align: center; margin-bottom: 3rem; }
+    .talent-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .talent-header p { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto; }
+
+    .talent-list { display: flex; flex-direction: column; }
+    .talent-row {
+      display: flex; align-items: center; gap: 1.75rem;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .talent-row:first-child { border-top: 1px solid var(--border); }
+    .talent-thumb {
+      width: 88px; height: 88px; border-radius: 12px; object-fit: cover;
+      flex-shrink: 0; background: var(--bg-3);
+      border: 1px solid var(--border);
+    }
+    .talent-thumb-placeholder {
+      width: 88px; height: 88px; border-radius: 12px; flex-shrink: 0;
+      background: var(--bg-3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; color: var(--subtle);
+    }
+    .talent-text { flex: 1; }
+    .talent-text h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .talent-text p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+    .talent-btn {
+      flex-shrink: 0;
+      font-size: 0.82rem; font-weight: 600; font-family: var(--sans);
+      padding: 0.6rem 1.4rem; border-radius: 980px;
+      border: 1px solid var(--border); color: var(--white); background: transparent;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .talent-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ── TIMELINE ── */
+    .timeline-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+    }
+    .timeline-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .timeline-header { text-align: center; margin-bottom: 3.5rem; }
+    .timeline-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .timeline-header p { color: var(--muted); font-size: 1rem; }
+
+    .timeline-chart { position: relative; }
+    .tl-axis, .tl-row, .tl-bottom-axis {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .tl-label-col {
+      width: 160px; flex-shrink: 0; display: flex; align-items: center;
+    }
+    .tl-bars-col { flex: 1; position: relative; }
+    .tl-logo { height: 20px; width: auto; }
+    .tl-logo-mobile { display: none; }
+    .tl-logo-full { display: block; }
+    .tl-label-text { font-size: 1rem; font-weight: 600; color: var(--muted); }
+
+    .tl-days {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 0.68rem; color: var(--subtle);
+      padding-bottom: 0.5rem;
+    }
+    .tl-grid {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; justify-content: space-between; pointer-events: none;
+    }
+    .tl-gridline {
+      width: 1px; background: var(--border); height: 100%;
+    }
+
+    .tl-row { padding: 1.5rem 0; border-top: 1px solid var(--border); }
+    .tl-bar-track {
+      position: relative; height: 40px;
+      background: rgba(255,255,255,0.03); border-radius: 6px;
+    }
+    .tl-bar {
+      position: absolute; left: 0; top: 0; height: 100%;
+      border-radius: 6px; transition: width 1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .tl-bar-hire { background: var(--orange); opacity: 0.9; }
+    .tl-bar-inhouse { background: rgba(183,182,182,0.2); }
+
+    .tl-dot {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tl-dot-hire { background: var(--orange); box-shadow: 0 0 0 4px rgba(252,115,66,0.2); }
+    .tl-dot-inhouse { background: var(--muted); box-shadow: 0 0 0 4px rgba(183,182,182,0.15); }
+
+    .tl-tooltip {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      background: var(--bg-3); border: 1px solid var(--border);
+      color: var(--white); font-size: 0.72rem; font-weight: 600;
+      white-space: nowrap; padding: 0.35rem 0.75rem; border-radius: 6px;
+    }
+    .tl-tooltip-top { bottom: calc(100% + 10px); }
+    .tl-tooltip-bottom { top: calc(100% + 10px); }
+    .tl-tooltip-top::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-top-color: var(--border);
+    }
+    .tl-tooltip-bottom::before {
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-bottom-color: var(--border);
+    }
+
+    .tl-bottom-axis { padding-top: 0.5rem; border-top: 1px solid var(--border); }
+    .tl-days-bottom { padding-top: 0.5rem; padding-bottom: 0; }
+    .tl-footnote {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--subtle);
+      text-align: center; margin-top: 2rem; line-height: 1.7; max-width: 560px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .tl-label-col { width: 76px; }
+      .tl-logo-full { display: none; }
+      .tl-logo-mobile { display: block; font-size: 0.78rem; font-weight: 700; color: var(--white); letter-spacing: 0.02em; }
+      .tl-label-text { font-size: 0.78rem; }
+      .tl-axis, .tl-row, .tl-bottom-axis { gap: 0.75rem; }
+      .tl-days { font-size: 0.6rem; }
+      .tl-bar-track { height: 28px; }
+      .timeline-section { padding: 3.5rem 1.25rem; }
+      /* hide middle day labels — keep only Day 1 and last */
+      .tl-days span:not(:first-child):not(:last-child) { display: none; }
+    }
+
+    /* ── COMPARISON ── */
+    .comparison-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg); text-align: center;
+    }
+    .comparison-inner { max-width: 900px; margin: 0 auto; }
+    .comparison-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .comparison-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; }
+    .comparison-table {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+    }
+    .comparison-table th {
+      padding: 1.1rem 1.5rem; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: -0.01em; text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-table th:first-child { text-align: left; color: var(--muted); font-weight: 500; }
+    .comparison-table th.col-hire {
+      background: rgba(252,115,66,0.08); color: var(--orange);
+      border-left: 1px solid rgba(252,115,66,0.2);
+      border-right: 1px solid rgba(252,115,66,0.2);
+    }
+    .comparison-table td {
+      padding: 1rem 1.5rem; font-size: 0.9rem;
+      border-bottom: 1px solid var(--border); text-align: center;
+      color: var(--muted);
+    }
+    .comparison-table td:first-child { text-align: left; color: var(--white); font-weight: 500; }
+    .comparison-table td.col-hire {
+      background: rgba(252,115,66,0.04);
+      border-left: 1px solid rgba(252,115,66,0.2);
+      border-right: 1px solid rgba(252,115,66,0.2);
+      color: var(--white);
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .check-yes { color: #34d399; font-size: 1.1rem; }
+    .check-no  { color: var(--subtle); font-size: 1.1rem; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section-dark {
+      padding: calc(var(--section) / 2) clamp(1.25rem, 5vw, 2.5rem) var(--section);
+      background: var(--bg-2);
+    }
+    .how-section-dark .how-inner { max-width: 560px; margin: 0 auto; }
+    .how-section-dark h2 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.6rem;
+    }
+    .how-section-dark .how-sub {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--subtle); margin-bottom: 3rem; letter-spacing: 0.06em;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .faq-inner { max-width: 680px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .faq-header p { color: var(--muted); font-size: 1rem; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--white);
+      font-family: var(--sans); font-size: 1rem; font-weight: 600;
+      text-align: left; padding: 1.35rem 0; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--orange); }
+    .faq-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: var(--muted); transition: transform 0.25s, border-color 0.25s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--orange); color: var(--orange); }
+    .faq-a {
+      font-size: 0.95rem; color: var(--muted); line-height: 1.75;
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.35rem; }
+
+    /* ── CERTIFICATION SECTION ── */
+    .cert-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .cert-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .cert-header { text-align: center; margin-bottom: 3.5rem; }
+    .cert-header h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
+    .cert-header p { color: var(--muted); font-size: 1rem; max-width: 580px; margin: 0 auto; }
+    .cert-pillars {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+    }
+    .cert-pillar { background: var(--bg-2); padding: 2rem 1.5rem; text-align: left; transition: background 0.2s; }
+    .cert-pillar:hover { background: rgba(252,115,66,0.05); }
+    .cert-pillar-num {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 1rem; display: block;
+    }
+    .cert-pillar h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .cert-pillar p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── CERT BADGES ── */
+    .cert-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+    .cert-badge {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.05em;
+      padding: 0.18rem 0.55rem; border-radius: 980px;
+      border: 1px solid var(--border); color: var(--subtle);
+    }
+    .cert-badge-en { border-color: rgba(52,211,153,0.35); color: #34d399; }
+    .cert-badge-ai { border-color: rgba(252,115,66,0.35); color: var(--orange); }
+
+    /* ── ANTHROPIC PARTNER ── */
+    .partner-section {
+      padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .partner-inner {
+      max-width: var(--max-wide); margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .partner-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--subtle); text-transform: uppercase; }
+    .partner-divider { width: 1px; height: 24px; background: var(--border); }
+    .partner-badge {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 1.25rem; border-radius: var(--r-sm);
+      border: 1px solid var(--border); background: var(--bg-3);
+      transition: border-color 0.2s;
+    }
+    .partner-badge:hover { border-color: rgba(255,255,255,0.2); }
+    .partner-badge-text { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+    .partner-badge-sub { font-family: var(--mono); font-size: 0.6rem; color: var(--subtle); display: block; margin-top: 0.1rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .talent-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .roles-grid-cards { grid-template-columns: 1fr 1fr; }
+      .talent-grid { grid-template-columns: repeat(2, 1fr); }
+      .comparison-table { min-width: 560px; }
+      .hero h1 { font-size: 5.5vw !important; }
+      h1 span { white-space: nowrap; }
+      .comparison-table th, .comparison-table td { padding: 0.8rem 0.65rem; font-size: 0.8rem; }
+      .faq-section { padding: 3.5rem 1.25rem; }
+      .how-section-dark { padding: 3.5rem 1.25rem; }
+      .roles-section { padding: 3.5rem 1.25rem; }
+      .talent-section { padding: 3.5rem 1.25rem; }
+      .talent-btn { display: none; }
+      .talent-thumb-placeholder, .talent-thumb { width: 60px; height: 60px; border-radius: 10px; }
+      .talent-row { gap: 1rem; padding: 1.25rem 0; }
+      .talent-text h3 { font-size: 0.95rem; }
+      .talent-text p { font-size: 0.8rem; }
+      .comparison-section { padding: 3.5rem 1.25rem; }
+      .roles-section h2 { font-size: 1.75rem; }
+      .faq-q { font-size: 0.95rem; }
+    }
+    @media (max-width: 768px) {
+      .cert-pillars { grid-template-columns: 1fr 1fr; }
+      .cert-pillar:last-child { grid-column: 1 / -1; }
+      .cert-section { padding: 3.5rem 1.25rem; }
+      .partner-inner { gap: 1rem; flex-direction: column; text-align: center; }
+      .partner-divider { width: 40px; height: 1px; }
+    }
+    @media (max-width: 480px) {
+      .roles-grid-cards { grid-template-columns: 1fr; }
+      .talent-grid { grid-template-columns: repeat(2, 1fr); }
+      .cert-pillars { grid-template-columns: 1fr; }
+      .cert-pillar:last-child { grid-column: auto; }
+    }
+
+    .nav-login { font-size: 0.82rem; font-weight: 600; color: var(--white); padding: 0.45rem 0.5rem; transition: opacity 0.2s; }
+    .nav-login:hover { opacity: 0.7; }
+    .nav-login, .nav-right .nav-cta { white-space: nowrap; }
+    @media (max-width: 480px) { .nav-login { display: none; } }
+  </style>
   <link rel="stylesheet" href="landing.css" />
-  <script>document.documentElement.classList.add('js')</script>
+  <noscript><style>[data-animate]{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
 <body>
 
   <!-- NAV -->
-  <header class="top">
-    <a href="/" class="wordmark"><img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" width="1476" height="208" /></a>
-    <nav class="top-links">
+  <nav class="nav">
+    <a href="/" class="logo">
+      <img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" class="logo-img" width="1476" height="208" />
+    </a>
+    <div class="nav-right">
+      <a href="index-es.html" class="lang-toggle">ES</a>
       <!-- TODO-CONFIRM-9: URL de inicio de sesión de la app. /login/ es temporal y hoy no existe. -->
-      <a href="/login/">Log in</a>
-      <a href="index-es.html" class="lang" lang="es">ES</a>
-    </nav>
-    <a href="/start/" class="btn btn-orange btn-small">Get started</a>
-  </header>
-
-  <main id="main">
-
-  <!-- HERO: la generación de NEWAVE Academy como portada -->
-  <section class="hero">
-    <div class="roster" role="list" aria-label="Members of NEWAVE Academy by role">
-      <figure class="roster-face" role="listitem" data-role="Customer Success"><img src="images/roster/customer-success.jpg" alt="Customer Success" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="AI Strategist"><img src="images/roster/diana.jpg" alt="AI Strategist" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Growth"><img src="images/roster/growth.jpg" alt="Growth" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <div class="roster-tile tile-orange" aria-hidden="true"></div>
-      <figure class="roster-face" role="listitem" data-role="Operations"><img src="images/roster/operations.jpg" alt="Operations" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Marketing"><img src="images/roster/pamela.jpg" alt="Marketing" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Administrative Roles"><img src="images/roster/customer1.jpg" alt="Administrative Roles" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Customer Service"><img src="images/roster/customer-service.jpg" alt="Customer Service" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <div class="roster-tile tile-paper" aria-hidden="true"></div>
-      <figure class="roster-face" role="listitem" data-role="Accounting"><img src="images/roster/accounting1.jpg" alt="Accounting" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Finance"><img src="images/roster/finance.jpg" alt="Finance" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Executive Assistants"><img src="images/roster/ximena.jpg" alt="Executive Assistants" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Project Management"><img src="images/roster/pm.jpg" alt="Project Management" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <div class="roster-tile tile-dark" aria-hidden="true"></div>
-      <figure class="roster-face" role="listitem" data-role="Sales"><img src="images/roster/sales.jpg" alt="Sales" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Generalists"><img src="images/roster/generalist.jpg" alt="Generalists" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
+      <a href="/login/" class="nav-login">Log in</a>
+      <a href="/start/" class="nav-cta">Get started</a>
     </div>
-    <div class="grid hero-body">
-      <h1><span class="line"><span>We don't find talent.</span></span><span class="line accent"><span>We build it.</span></span></h1>
-      <p class="hero-note">Free pilot for recruiters.</p>
-      <div class="hero-right">
-        <!-- TODO-CONFIRM-3: "the only platform" claim. Proposed replacement, apply only after Santiago confirms: "Every professional here trained in NEWAVE Academy. Browse pre-screened profiles with verified English and real AI skills, request an intro, and our team connects you." -->
-        <p class="lead">NEWAVE is the only platform that trains, certifies, and places LATAM remote professionals.</p>
-        <div class="actions">
-          <a href="/start/" class="btn btn-light">Get started →</a>
-          <a href="/login/" class="link">Log in</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 data-animate data-delay="1">
+        <span class="h1-line">We don't find talent.</span> <br>
+        <span class="h1-accent">We build it.</span>
+      </h1>
+      <!-- TODO-CONFIRM-3: "the only platform" claim. Proposed replacement, apply only after Santiago confirms: "Every professional here trained in NEWAVE Academy. Browse pre-screened profiles with verified English and real AI skills, request an intro, and our team connects you." -->
+      <p class="hero-sub" data-animate data-delay="2">
+        NEWAVE is the only platform that trains, certifies, and places LATAM remote professionals.
+      </p>
+      <div class="hero-actions" data-animate data-delay="3">
+        <a href="/start/" class="btn-primary btn-large">Get started →</a>
+        <a href="/login/" class="btn-ghost">Log in</a>
+      </div>
+      <p class="hero-note" data-animate data-delay="4">Free pilot for recruiters.</p>
+    </div>
+    <div class="hero-band" data-animate data-delay="4">
+      <div class="band-track">
+        <div class="band-group">
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="Customer Success" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="AI Strategist" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="Growth" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="Operations" width="480" height="480" decoding="async" /><figcaption>Operations</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="Marketing" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="Administrative Roles" width="480" height="480" decoding="async" /><figcaption>Administrative Roles</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="Customer Service" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="Accounting" width="480" height="480" decoding="async" /><figcaption>Accounting</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="Finance" width="480" height="480" decoding="async" /><figcaption>Finance</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="Executive Assistants" width="480" height="480" decoding="async" /><figcaption>Executive Assistants</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="Project Management" width="480" height="480" decoding="async" /><figcaption>Project Management</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="Sales" width="480" height="480" decoding="async" /><figcaption>Sales</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="Generalists" width="480" height="480" decoding="async" /><figcaption>Generalists</figcaption></figure>
+        </div>
+        <div class="band-group" aria-hidden="true">
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Operations</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Administrative Roles</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Accounting</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Finance</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Executive Assistants</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Project Management</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Sales</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Generalists</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="hero-band band-alt" aria-hidden="true" data-animate data-delay="4">
+      <div class="band-track">
+        <div class="band-group">
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Accounting</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Finance</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Executive Assistants</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Project Management</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Sales</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Generalists</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Operations</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Administrative Roles</figcaption></figure>
+        </div>
+        <div class="band-group">
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Accounting</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Finance</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Executive Assistants</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Project Management</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Sales</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Generalists</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Operations</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Administrative Roles</figcaption></figure>
         </div>
       </div>
     </div>
@@ -78,464 +537,554 @@
 
   <!-- EMPRESAS -->
   <!-- TODO-CONFIRM-1: confirm each company below is verified and allowed to be shown. If not, remove the whole strip. -->
-  <section class="grid names">
-    <h2 class="small-h">Where our certified talent works</h2>
-    <ul class="name-cols">
-          <li>noCRM.io</li>
-          <li>Topsort</li>
-          <li>Praxent</li>
-          <li>The Outloud Group</li>
-          <li>Zappi</li>
-          <li>EPOC</li>
-          <li>SimplyAgree</li>
-          <li>CNaught</li>
-          <li>Stripe</li>
-          <li>Pulse Protocol</li>
-          <li>BairesDev</li>
-    </ul>
-  </section>
-
-  <!-- EL PROBLEMA -->
-  <section class="split">
-    <div class="split-light">
-      <h2><span>Staffing agencies find people.</span><span class="push">They don't prepare them.</span></h2>
-      <div class="split-foot">
-        <div class="split-text">
-          <p>Most LATAM staffing agencies pull candidates from LinkedIn, run a quick screen, and send you a shortlist. The candidate looks good on paper. Then week one happens: they struggle with async communication, they've never used your tools, and they need constant direction.</p>
-          <p>The problem isn't the talent. It's that nobody prepared them to work the way your team works. That's what we do differently.</p>
+  <div class="logos-strip">
+    <p class="logos-label">Where our certified talent works</p>
+    <div class="logos-viewport">
+      <div class="logos-track">
+        <div class="logos-group">
+          <span class="logo-name">noCRM.io</span>
+          <span class="logo-name">Topsort</span>
+          <span class="logo-name">Praxent</span>
+          <span class="logo-name">The Outloud Group</span>
+          <span class="logo-name">Zappi</span>
+          <span class="logo-name">EPOC</span>
+          <span class="logo-name">SimplyAgree</span>
+          <span class="logo-name">CNaught</span>
+          <span class="logo-name">Stripe</span>
+          <span class="logo-name">Pulse Protocol</span>
+          <span class="logo-name">BairesDev</span>
         </div>
-        <a href="/start/" class="link link-dark">Get started</a>
+        <div class="logos-group" aria-hidden="true">
+          <span class="logo-name">noCRM.io</span>
+          <span class="logo-name">Topsort</span>
+          <span class="logo-name">Praxent</span>
+          <span class="logo-name">The Outloud Group</span>
+          <span class="logo-name">Zappi</span>
+          <span class="logo-name">EPOC</span>
+          <span class="logo-name">SimplyAgree</span>
+          <span class="logo-name">CNaught</span>
+          <span class="logo-name">Stripe</span>
+          <span class="logo-name">Pulse Protocol</span>
+          <span class="logo-name">BairesDev</span>
+        </div>
       </div>
     </div>
-    <div class="split-dark">
-        <div class="dark-row">
-          <h3>They screen. They don't train.</h3>
-          <p>A LinkedIn profile check isn't preparation. Every NEWAVE candidate goes through 40+ hours of structured training before entering our pipeline.</p>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <section class="pain-section">
+    <div class="pain-section-inner">
+      <div class="pain-left" data-animate>
+        <h2>Staffing agencies find people. <br>They don't prepare them.</h2>
+        <p>Most LATAM staffing agencies pull candidates from LinkedIn, run a quick screen, and send you a shortlist. The candidate looks good on paper. Then week one happens: they struggle with async communication, they've never used your tools, and they need constant direction.</p>
+        <p>The problem isn't the talent. It's that nobody prepared them to work the way your team works. That's what we do differently.</p>
+        <a href="/start/" class="btn-ghost">Get started</a>
+      </div>
+      <div class="pain-right">
+        <div class="pain-point" data-animate data-delay="1">
+          <div>
+            <h4>They screen. They don't train.</h4>
+            <p>A LinkedIn profile check isn't preparation. Every NEWAVE candidate goes through 40+ hours of structured training before entering our pipeline.</p>
+          </div>
         </div>
-        <div class="dark-row">
-          <h3>No one tests async communication</h3>
-          <p>Most agencies never test how a candidate communicates in writing under real work conditions. We simulate it. We score it. You see the result.</p>
+        <div class="pain-point" data-animate data-delay="2">
+          <div>
+            <h4>No one tests async communication</h4>
+            <p>Most agencies never test how a candidate communicates in writing under real work conditions. We simulate it. We score it. You see the result.</p>
+          </div>
         </div>
-        <div class="dark-row">
-          <h3>AI readiness is an afterthought everywhere else</h3>
-          <p>AI skills are now part of most remote roles. We check real AI work before you see a profile.</p>
+        <div class="pain-point" data-animate data-delay="3">
+          <div>
+            <h4>AI readiness is an afterthought everywhere else</h4>
+            <p>AI skills are now part of most remote roles. We check real AI work before you see a profile.</p>
+          </div>
         </div>
-        <div class="dark-row">
-          <h3>You're their first remote experience. We fix that.</h3>
-          <p>Every professional in our network went through a complete training and certification program. You're not their first experience. You're their deployment.</p>
+        <div class="pain-point" data-animate data-delay="4">
+          <div>
+            <h4>You're their first remote experience. We fix that.</h4>
+            <p>Every professional in our network went through a complete training and certification program. You're not their first experience. You're their deployment.</p>
+          </div>
         </div>
+      </div>
     </div>
   </section>
 
-  <!-- CERTIFICACIÓN -->
-  <section class="grid cert" id="certification">
-    <h2>What "NEWAVE Certified" actually means.</h2>
-    <p class="lead">Every candidate is evaluated across five pillars. No self-reported skills, no guesswork. Only candidates who meet our threshold across all five receive the NEWAVE Certified credential.</p>
-    <div class="pillars">
-        <div class="pillar">
+  <!-- CERTIFICATION SECTION -->
+  <section class="cert-section" id="certification">
+    <div class="cert-inner">
+      <div class="cert-header" data-animate>
+        <h2>What "NEWAVE Certified" <br>actually means.</h2>
+        <p>Every candidate is evaluated across five pillars. No self-reported skills, no guesswork. Only candidates who meet our threshold across all five receive the NEWAVE Certified credential.</p>
+      </div>
+      <div class="cert-pillars">
+        <div class="cert-pillar" data-animate>
           <h3>English, validated.</h3>
           <p>Not a checkbox on a LinkedIn profile. A real assessment of written communication, verbal fluency, and professional conversation. We test it, we score it, you see the result.</p>
         </div>
-        <!-- TODO-CONFIRM-2: confirm the Anthropic Academy wording in this pillar is accurate. -->
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="1">
+          <!-- TODO-CONFIRM-2: confirm the Anthropic Academy wording in this pillar is accurate. -->
           <h3>AI-ready.</h3>
           <p>Certified through the Anthropic Academy program. These professionals know how to use AI to multiply their output, build workflows, and automate repetitive tasks.</p>
         </div>
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="2">
           <h3>Remote trained.</h3>
           <p>40+ hours of structured training across six modules: career positioning, job search strategy, interview preparation, and negotiation. They understand how distributed teams operate.</p>
         </div>
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="3">
           <h3>Async communication, proven.</h3>
           <p>We simulate real work scenarios. Write a Slack update about a blocker. Draft a status report. Communicate a delay to a client. Claude AI evaluates clarity, structure, and tone.</p>
         </div>
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="4">
           <h3>Tools proficiency.</h3>
           <p>Slack, Notion, Google Workspace, Asana, Loom. Your team's daily toolkit. Our candidates already know how to use it. Less tool training during onboarding.</p>
         </div>
+      </div>
     </div>
   </section>
 
-  <!-- ROLES: elige un rol y ve qué validó NEWAVE -->
-  <section class="roles">
-    <div class="grid roles-head">
-      <h2>Browse by role.</h2>
-      <p class="lead">Every profile shows what NEWAVE validated. Here is what that looks like by role.</p>
-      <a href="/start/" class="btn btn-orange">See profiles →</a>
-    </div>
-    <!-- TODO-CONFIRM-4: every role photo below appears to show a real person. Confirm consent for each, not only pamela/diana/ximena. -->
-    <div class="roles-body">
-      <div class="role-tabs" role="tablist" aria-label="Roles">
-          <button type="button" role="tab" id="tab-rol-customer-success" aria-controls="rol-customer-success" aria-selected="true" tabindex="0">Customer Success</button>
-          <button type="button" role="tab" id="tab-rol-ai-strategist" aria-controls="rol-ai-strategist" aria-selected="false" tabindex="-1">AI Strategist</button>
-          <button type="button" role="tab" id="tab-rol-growth" aria-controls="rol-growth" aria-selected="false" tabindex="-1">Growth</button>
-          <button type="button" role="tab" id="tab-rol-operations" aria-controls="rol-operations" aria-selected="false" tabindex="-1">Operations</button>
-          <button type="button" role="tab" id="tab-rol-marketing" aria-controls="rol-marketing" aria-selected="false" tabindex="-1">Marketing</button>
-          <button type="button" role="tab" id="tab-rol-administrative-roles" aria-controls="rol-administrative-roles" aria-selected="false" tabindex="-1">Administrative Roles</button>
-          <button type="button" role="tab" id="tab-rol-customer-service" aria-controls="rol-customer-service" aria-selected="false" tabindex="-1">Customer Service</button>
-          <button type="button" role="tab" id="tab-rol-accounting" aria-controls="rol-accounting" aria-selected="false" tabindex="-1">Accounting</button>
-          <button type="button" role="tab" id="tab-rol-finance" aria-controls="rol-finance" aria-selected="false" tabindex="-1">Finance</button>
-          <button type="button" role="tab" id="tab-rol-executive-assistants" aria-controls="rol-executive-assistants" aria-selected="false" tabindex="-1">Executive Assistants</button>
-          <button type="button" role="tab" id="tab-rol-project-management" aria-controls="rol-project-management" aria-selected="false" tabindex="-1">Project Management</button>
-          <button type="button" role="tab" id="tab-rol-sales" aria-controls="rol-sales" aria-selected="false" tabindex="-1">Sales</button>
-          <button type="button" role="tab" id="tab-rol-generalists" aria-controls="rol-generalists" aria-selected="false" tabindex="-1">Generalists</button>
+  <!-- TALENT SHOWCASE -->
+  <section class="talent-section">
+    <div class="talent-inner">
+      <div class="talent-header" data-animate>
+        <h2>Browse by role.</h2>
+        <p>Every profile shows what NEWAVE validated. Here is what that looks like by role.</p>
       </div>
-      <div class="role-panels">
-        <div class="role-panel" role="tabpanel" id="rol-customer-success" aria-labelledby="tab-rol-customer-success" tabindex="0">
-          <div class="role-head">
-            <img src="images/band/customer-success.jpg" alt="Customer Success" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Customer Success</h3>
-              <p>Customer Success Managers, Onboarding Specialists, Account Managers, and Renewal Specialists.</p>
+      <div class="talent-list">
+        <!-- TODO-CONFIRM-4: every role photo below appears to show a real person. Confirm consent for each, not only pamela/diana/ximena. -->
+
+        <div class="talent-row" data-animate>
+          <img src="images/customer-success.jpg" alt="Customer Success" class="talent-thumb" width="593" height="593" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Customer Success</h3>
+            <p>Customer Success Managers, Onboarding Specialists, Account Managers, and Renewal Specialists.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Gainsight · HubSpot · Intercom · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Gainsight · HubSpot · Intercom · Notion</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-ai-strategist" aria-labelledby="tab-rol-ai-strategist" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/diana.jpg" alt="AI Strategist" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>AI Strategist</h3>
-              <p>AI Strategists, AI Operations Specialists, Automation Specialists, and AI Project Leads.</p>
+
+        <div class="talent-row" data-animate data-delay="1">
+          <img src="images/diana.jpg" alt="AI Strategist" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>AI Strategist</h3>
+            <p>AI Strategists, AI Operations Specialists, Automation Specialists, and AI Project Leads.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Claude · ChatGPT · n8n · Make</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Claude · ChatGPT · n8n · Make</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-growth" aria-labelledby="tab-rol-growth" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/growth.jpg" alt="Growth" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Growth</h3>
-              <p>Growth Marketers, Lifecycle and CRM Specialists, Performance Marketers, and Growth Analysts.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/growth.jpg" alt="Growth" class="talent-thumb" width="339" height="339" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Growth</h3>
+            <p>Growth Marketers, Lifecycle and CRM Specialists, Performance Marketers, and Growth Analysts.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">HubSpot · GA4 · Meta Ads · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>HubSpot · GA4 · Meta Ads · Notion</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-operations" aria-labelledby="tab-rol-operations" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/operations.jpg" alt="Operations" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Operations</h3>
-              <p>Managers, Supervisors, Coordinators, Analysts, Specialists, and Consultants.</p>
+
+        <div class="talent-row" data-animate data-delay="3">
+          <img src="images/operations.jpeg" alt="Operations" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Operations</h3>
+            <p>Managers, Supervisors, Coordinators, Analysts, Specialists, and Consultants.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Notion · Asana · Google Workspace</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Notion · Asana · Google Workspace</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-marketing" aria-labelledby="tab-rol-marketing" tabindex="0" data-hidden>
+
+        <div class="talent-row" data-animate data-delay="1">
           <!-- TODO-CONFIRM-4: if this is a real person, confirm consent. Do not swap the image. -->
-          <div class="role-head">
-            <img src="images/band/pamela.jpg" alt="Marketing" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Marketing</h3>
-              <p>Managers, Coordinators, Analysts, Specialists, Copywriters, and Designers.</p>
+          <img src="images/pamela.jpg" alt="Marketing" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Marketing</h3>
+            <p>Managers, Coordinators, Analysts, Specialists, Copywriters, and Designers.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">HubSpot · Canva · Loom · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>HubSpot · Canva · Loom · Notion</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-administrative-roles" aria-labelledby="tab-rol-administrative-roles" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/customer1.jpg" alt="Administrative Roles" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Administrative Roles</h3>
-              <p>Administrative Assistants, Managers, Data Entry, Human Resources.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/customer1.jpeg" alt="Administrative Roles" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Administrative Roles</h3>
+            <p>Administrative Assistants, Managers, Data Entry, Human Resources.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Google Workspace · Slack · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Google Workspace · Slack · Notion</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-customer-service" aria-labelledby="tab-rol-customer-service" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/customer-service.jpg" alt="Customer Service" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Customer Service</h3>
-              <p>Representatives, Agents, Specialists, and Customer Success.</p>
+
+        <div class="talent-row" data-animate data-delay="3">
+          <img src="images/customer-service.jpg" alt="Customer Service" class="talent-thumb" width="400" height="400" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Customer Service</h3>
+            <p>Representatives, Agents, Specialists, and Customer Success.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Zendesk · Intercom · Slack · Loom</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Zendesk · Intercom · Slack · Loom</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-accounting" aria-labelledby="tab-rol-accounting" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/accounting1.jpg" alt="Accounting" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Accounting</h3>
-              <p>Accountants, Auditors, Analysts, and Payroll Specialists.</p>
+
+        <div class="talent-row" data-animate data-delay="1">
+          <img src="images/accounting1.jpeg" alt="Accounting" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Accounting</h3>
+            <p>Accountants, Auditors, Analysts, and Payroll Specialists.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">QuickBooks · Excel · Google Sheets</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>QuickBooks · Excel · Google Sheets</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-finance" aria-labelledby="tab-rol-finance" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/finance.jpg" alt="Finance" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Finance</h3>
-              <p>Financial Analysts, Controllers, Treasurers, and Managers.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/finance.jpeg" alt="Finance" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Finance</h3>
+            <p>Financial Analysts, Controllers, Treasurers, and Managers.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Excel · Google Sheets · QuickBooks · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Excel · Google Sheets · QuickBooks · Notion</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-executive-assistants" aria-labelledby="tab-rol-executive-assistants" tabindex="0" data-hidden>
+
+        <div class="talent-row" data-animate data-delay="3">
           <!-- TODO-CONFIRM-4: if this is a real person, confirm consent. Do not swap the image. -->
-          <div class="role-head">
-            <img src="images/band/ximena.jpg" alt="Executive Assistants" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Executive Assistants</h3>
-              <p>Virtual Executive Assistants, Personal Assistants, and Chiefs of Staff.</p>
+          <img src="images/ximena.jpg" alt="Executive Assistants" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Executive Assistants</h3>
+            <p>Virtual Executive Assistants, Personal Assistants, and Chiefs of Staff.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Notion · Loom · Calendly · Google Workspace</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Notion · Loom · Calendly · Google Workspace</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-project-management" aria-labelledby="tab-rol-project-management" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/pm.jpg" alt="Project Management" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Project Management</h3>
-              <p>Project Managers, Coordinators, Analysts, and Consultants.</p>
+
+        <div class="talent-row" data-animate data-delay="1">
+          <img src="images/pm.jpeg" alt="Project Management" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Project Management</h3>
+            <p>Project Managers, Coordinators, Analysts, and Consultants.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Asana · Notion · Slack · Loom</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Asana · Notion · Slack · Loom</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-sales" aria-labelledby="tab-rol-sales" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/sales.jpg" alt="Sales" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Sales</h3>
-              <p>SDRs, Account Executives, Sales Managers, and Business Development Reps.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/sales.jpg" alt="Sales" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Sales</h3>
+            <p>SDRs, Account Executives, Sales Managers, and Business Development Reps.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">HubSpot · Apollo · Salesforce · Loom</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>HubSpot · Apollo · Salesforce · Loom</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-generalists" aria-labelledby="tab-rol-generalists" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/generalist.jpg" alt="Generalists" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Generalists</h3>
-              <p>Startup Generalists, Operations Generalists, Administrative Generalists.</p>
+
+        <div class="talent-row" data-animate data-delay="3">
+          <img src="images/generalist.jpeg" alt="Generalists" class="talent-thumb" width="400" height="400" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Generalists</h3>
+            <p>Startup Generalists, Operations Generalists, Administrative Generalists.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">English verified by NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">AI evidence reviewed</span>
+              <span class="cert-badge">Remote trained</span>
+              <span class="cert-badge">Notion · Slack · Asana · Google Workspace</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>English verified by NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>AI evidence reviewed</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Remote trained</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Tools</span><span>Notion · Slack · Asana · Google Workspace</span></li>
-          </ul>
-          <a href="/start/" class="btn btn-light">See profiles</a>
+          <a href="/start/" class="talent-btn">See profiles</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section-dark" id="how">
+    <div class="how-inner">
+      <h2 data-animate data-delay="1">From NEWAVE Academy <br>to your hiring process.</h2>
+
+      <div class="how-steps">
+        <div class="how-step" data-animate data-delay="2">
+          <div class="step-indicator">
+            <div class="step-num">1</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Create your account</h3>
+            <p>Tell us who you are and the roles you hire for. We review each recruiter during the pilot.</p>
+            <span class="step-note step-note-time">~3 min to complete</span>
+          </div>
+        </div>
+
+        <div class="how-step" data-animate data-delay="3">
+          <div class="step-indicator">
+            <div class="step-num">2</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Browse pre-screened profiles</h3>
+            <p>Every profile comes from NEWAVE Academy and uses the same fields: role, experience, verified English, AI evidence, tools and timezone.</p>
+            <span class="step-note step-note-time">Free during the pilot</span>
+          </div>
+        </div>
+
+        <div class="how-step how-step-last" data-animate data-delay="4">
+          <div class="step-indicator">
+            <div class="step-num">3</div>
+          </div>
+          <div class="step-content">
+            <h3>Request an intro</h3>
+            <p>Pick a profile and tell us about the role. We check with the professional and, if they accept, introduce you both by email.</p>
+            <span class="step-note step-note-check">NEWAVE handles every intro</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA -->
-  <section class="how" id="how">
-    <h2>From NEWAVE Academy to your hiring process.</h2>
-    <svg class="diagram" viewBox="0 0 900 200" role="presentation" aria-hidden="true" focusable="false"><rect class="d-b" x="90.1" y="34.2" width="10" height="10" style="--d:90ms"/><rect class="d-a" x="177.1" y="20.6" width="10" height="10" style="--d:177ms"/><rect class="d-b" x="146.5" y="71.6" width="10" height="10" style="--d:146ms"/><rect class="d-a" x="19.4" y="96.3" width="10" height="10" style="--d:19ms"/><rect class="d-b" x="14.0" y="83.5" width="10" height="10" style="--d:13ms"/><rect class="d-a" x="22.6" y="23.8" width="10" height="10" style="--d:22ms"/><rect class="d-b" x="116.9" y="151.9" width="10" height="10" style="--d:116ms"/><rect class="d-a" x="36.9" y="46.8" width="10" height="10" style="--d:36ms"/><rect class="d-b" x="170.9" y="172.9" width="10" height="10" style="--d:170ms"/><rect class="d-a" x="157.5" y="77.0" width="10" height="10" style="--d:157ms"/><rect class="d-b" x="263.7" y="16.1" width="10" height="10" style="--d:263ms"/><rect class="d-a" x="232.4" y="58.4" width="10" height="10" style="--d:232ms"/><rect class="d-b" x="42.4" y="28.5" width="10" height="10" style="--d:42ms"/><rect class="d-a" x="86.1" y="150.0" width="10" height="10" style="--d:86ms"/><rect class="d-b" x="52.1" y="109.2" width="10" height="10" style="--d:52ms"/><rect class="d-a" x="174.0" y="72.8" width="10" height="10" style="--d:173ms"/><rect class="d-b" x="149.7" y="18.9" width="10" height="10" style="--d:149ms"/><rect class="d-a" x="19.9" y="43.8" width="10" height="10" style="--d:19ms"/><rect class="d-b" x="185.0" y="82.4" width="10" height="10" style="--d:184ms"/><rect class="d-a" x="87.6" y="109.9" width="10" height="10" style="--d:87ms"/><rect class="d-b" x="124.5" y="60.2" width="10" height="10" style="--d:124ms"/><rect class="d-a" x="215.3" y="129.6" width="10" height="10" style="--d:215ms"/><rect class="d-b" x="68.9" y="107.9" width="10" height="10" style="--d:68ms"/><rect class="d-a" x="143.7" y="160.3" width="10" height="10" style="--d:143ms"/><rect class="d-b" x="198.0" y="58.1" width="10" height="10" style="--d:198ms"/><rect class="d-a" x="264.7" y="28.5" width="10" height="10" style="--d:264ms"/><rect class="d-b" x="115.2" y="139.7" width="10" height="10" style="--d:115ms"/><rect class="d-a" x="44.4" y="93.1" width="10" height="10" style="--d:44ms"/><rect class="d-b" x="14.4" y="124.3" width="10" height="10" style="--d:14ms"/><rect class="d-a" x="207.4" y="107.7" width="10" height="10" style="--d:207ms"/><rect class="d-b" x="236.9" y="62.6" width="10" height="10" style="--d:236ms"/><rect class="d-a" x="188.9" y="111.4" width="10" height="10" style="--d:188ms"/><rect class="d-b" x="158.3" y="87.4" width="10" height="10" style="--d:158ms"/><rect class="d-a" x="227.4" y="172.4" width="10" height="10" style="--d:227ms"/><rect class="d-b" x="130.1" y="123.6" width="10" height="10" style="--d:130ms"/><rect class="d-a" x="20.1" y="130.1" width="10" height="10" style="--d:20ms"/><rect class="d-b" x="176.1" y="180.8" width="10" height="10" style="--d:176ms"/><rect class="d-a" x="222.6" y="57.5" width="10" height="10" style="--d:222ms"/><rect class="d-b" x="106.6" y="124.3" width="10" height="10" style="--d:106ms"/><rect class="d-a" x="10.0" y="88.3" width="10" height="10" style="--d:10ms"/><rect class="d-b" x="48.7" y="28.4" width="10" height="10" style="--d:48ms"/><rect class="d-a" x="19.7" y="141.7" width="10" height="10" style="--d:19ms"/><rect class="d-b" x="38.4" y="51.1" width="10" height="10" style="--d:38ms"/><rect class="d-a" x="108.0" y="159.6" width="10" height="10" style="--d:107ms"/><rect class="d-b" x="25.4" y="86.2" width="10" height="10" style="--d:25ms"/><rect class="d-a" x="150.2" y="161.7" width="10" height="10" style="--d:150ms"/><rect class="d-b" x="221.9" y="158.3" width="10" height="10" style="--d:221ms"/><rect class="d-a" x="78.1" y="80.3" width="10" height="10" style="--d:78ms"/><rect class="d-b" x="99.4" y="161.8" width="10" height="10" style="--d:99ms"/><rect class="d-a" x="258.8" y="34.3" width="10" height="10" style="--d:258ms"/><rect class="d-b" x="50.9" y="48.4" width="10" height="10" style="--d:50ms"/><rect class="d-a" x="66.1" y="92.4" width="10" height="10" style="--d:66ms"/><rect class="d-b" x="160.7" y="53.7" width="10" height="10" style="--d:160ms"/><rect class="d-a" x="5.1" y="80.9" width="10" height="10" style="--d:5ms"/><rect class="d-b" x="330.0" y="78.0" width="10" height="10" style="--d:330ms"/><rect class="d-b" x="330.0" y="93.0" width="10" height="10" style="--d:330ms"/><rect class="d-b" x="330.0" y="108.0" width="10" height="10" style="--d:330ms"/><rect class="d-b" x="345.0" y="78.0" width="10" height="10" style="--d:345ms"/><rect class="d-b" x="345.0" y="93.0" width="10" height="10" style="--d:345ms"/><rect class="d-b" x="345.0" y="108.0" width="10" height="10" style="--d:345ms"/><rect class="d-b" x="360.0" y="78.0" width="10" height="10" style="--d:360ms"/><rect class="d-b" x="360.0" y="93.0" width="10" height="10" style="--d:360ms"/><rect class="d-b" x="360.0" y="108.0" width="10" height="10" style="--d:360ms"/><rect class="d-b" x="375.0" y="78.0" width="10" height="10" style="--d:375ms"/><rect class="d-b" x="375.0" y="93.0" width="10" height="10" style="--d:375ms"/><rect class="d-b" x="375.0" y="108.0" width="10" height="10" style="--d:375ms"/><rect class="d-b" x="390.0" y="78.0" width="10" height="10" style="--d:390ms"/><rect class="d-b" x="390.0" y="93.0" width="10" height="10" style="--d:390ms"/><rect class="d-b" x="390.0" y="108.0" width="10" height="10" style="--d:390ms"/><rect class="d-b" x="405.0" y="78.0" width="10" height="10" style="--d:405ms"/><rect class="d-b" x="405.0" y="93.0" width="10" height="10" style="--d:405ms"/><rect class="d-b" x="405.0" y="108.0" width="10" height="10" style="--d:405ms"/><rect class="d-b" x="420.0" y="78.0" width="10" height="10" style="--d:420ms"/><rect class="d-b" x="420.0" y="93.0" width="10" height="10" style="--d:420ms"/><rect class="d-b" x="420.0" y="108.0" width="10" height="10" style="--d:420ms"/><rect class="d-b" x="435.0" y="78.0" width="10" height="10" style="--d:435ms"/><rect class="d-b" x="435.0" y="93.0" width="10" height="10" style="--d:435ms"/><rect class="d-b" x="435.0" y="108.0" width="10" height="10" style="--d:435ms"/><rect class="d-b" x="450.0" y="78.0" width="10" height="10" style="--d:450ms"/><rect class="d-b" x="450.0" y="93.0" width="10" height="10" style="--d:450ms"/><rect class="d-b" x="450.0" y="108.0" width="10" height="10" style="--d:450ms"/><rect class="d-b" x="465.0" y="78.0" width="10" height="10" style="--d:465ms"/><rect class="d-b" x="465.0" y="93.0" width="10" height="10" style="--d:465ms"/><rect class="d-b" x="465.0" y="108.0" width="10" height="10" style="--d:465ms"/><rect class="d-b" x="480.0" y="78.0" width="10" height="10" style="--d:480ms"/><rect class="d-b" x="480.0" y="93.0" width="10" height="10" style="--d:480ms"/><rect class="d-b" x="480.0" y="108.0" width="10" height="10" style="--d:480ms"/><rect class="d-b" x="495.0" y="78.0" width="10" height="10" style="--d:495ms"/><rect class="d-b" x="495.0" y="93.0" width="10" height="10" style="--d:495ms"/><rect class="d-b" x="495.0" y="108.0" width="10" height="10" style="--d:495ms"/><rect class="d-b" x="510.0" y="78.0" width="10" height="10" style="--d:510ms"/><rect class="d-b" x="510.0" y="93.0" width="10" height="10" style="--d:510ms"/><rect class="d-b" x="510.0" y="108.0" width="10" height="10" style="--d:510ms"/><rect class="d-b" x="525.0" y="78.0" width="10" height="10" style="--d:525ms"/><rect class="d-b" x="525.0" y="93.0" width="10" height="10" style="--d:525ms"/><rect class="d-b" x="525.0" y="108.0" width="10" height="10" style="--d:525ms"/><rect class="d-b" x="540.0" y="78.0" width="10" height="10" style="--d:540ms"/><rect class="d-b" x="540.0" y="93.0" width="10" height="10" style="--d:540ms"/><rect class="d-b" x="540.0" y="108.0" width="10" height="10" style="--d:540ms"/><rect class="d-b" x="555.0" y="78.0" width="10" height="10" style="--d:555ms"/><rect class="d-b" x="555.0" y="93.0" width="10" height="10" style="--d:555ms"/><rect class="d-b" x="555.0" y="108.0" width="10" height="10" style="--d:555ms"/><rect class="d-c" x="640.0" y="22.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="22.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="22.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="22.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="22.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="22.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="22.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="50.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="50.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="50.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="50.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="50.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="50.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="50.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="78.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="78.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="78.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="78.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="78.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="78.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="78.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="106.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="106.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="106.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="106.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="106.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="106.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="106.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="134.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="134.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="134.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="134.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="134.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="134.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="134.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="162.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="162.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="162.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="162.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="162.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="162.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="162.0" width="10" height="10" style="--d:856ms"/></svg>
-    <div class="steps">
-        <div class="step">
-          <h3>Create your account</h3>
-          <p>Tell us who you are and the roles you hire for. We review each recruiter during the pilot.</p>
-          <p class="step-note">~3 min to complete</p>
-        </div>
-        <div class="step">
-          <h3>Browse pre-screened profiles</h3>
-          <p>Every profile comes from NEWAVE Academy and uses the same fields: role, experience, verified English, AI evidence, tools and timezone.</p>
-          <p class="step-note">Free during the pilot</p>
-        </div>
-        <div class="step">
-          <h3>Request an intro</h3>
-          <p>Pick a profile and tell us about the role. We check with the professional and, if they accept, introduce you both by email.</p>
-          <p class="step-note">NEWAVE handles every intro</p>
-        </div>
-    </div>
-  </section>
-
-  <!-- COMPARACIÓN -->
-  <section class="paper">
-    <div class="grid">
-      <div class="paper-head">
-        <h2>Other agencies screen. We certify.</h2>
-        <p>The questions employers actually care about.</p>
-      </div>
-      <div class="table-wrap">
-        <table class="compare">
-          <thead><tr><td></td><th scope="col" class="col-hire">NEWAVE HIRE</th><th scope="col">Other Agencies</th><th scope="col">Freelance Platforms</th></tr></thead>
+  <!-- COMPARISON -->
+  <section class="comparison-section">
+    <div class="comparison-inner">
+      <h2 data-animate data-delay="1">Other agencies screen. <br>We certify.</h2>
+      <p class="comparison-sub" data-animate data-delay="2">The questions employers actually care about.</p>
+      <div style="overflow-x: auto;">
+        <table class="comparison-table" data-animate data-delay="3">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-hire">NEWAVE HIRE</th>
+              <th>Other Agencies</th>
+              <th>Freelance Platforms</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><th scope="row">Candidate trained before applying?</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
-            <tr><th scope="row">AI certification included?</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
-            <tr><th scope="row">Tested on async communication?</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
-            <tr><th scope="row">Verified English and AI evidence on every profile?</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
+            <tr>
+              <td>Candidate trained before applying?</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Yes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>AI certification included?</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Yes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>Tested on async communication?</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Yes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>Verified English and AI evidence on every profile?</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Yes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- SOCIO -->
+  <!-- ANTHROPIC PARTNER -->
   <!-- TODO-CONFIRM-2: confirm the Anthropic partnership wording ("Official partner", "Claude Partner Network", "Anthropic Academy certified") is accurate before keeping this block. -->
-  <section class="grid partner">
-    <p class="partner-label">Official partner</p>
-    <div class="partner-body">
-      <p class="partner-name">Anthropic · Claude Partner Network</p>
-      <p>Anthropic Academy certified candidates. Our candidates are trained and certified through the official Anthropic Academy program.</p>
+  <section class="partner-section">
+    <div class="partner-inner">
+      <span class="partner-label">Official partner</span>
+      <div class="partner-divider"></div>
+      <div class="partner-badge" data-animate>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13.5 2L4 13h7l-1 9 10-11h-7l1.5-9z" fill="currentColor" opacity="0.9"/></svg>
+        <div>
+          <span class="partner-badge-text">Anthropic · Claude Partner Network</span>
+          <span class="partner-badge-sub">Anthropic Academy certified candidates</span>
+        </div>
+      </div>
+      <div class="partner-divider"></div>
+      <span class="partner-label" style="max-width: 280px; text-align: center;">Our candidates are trained and certified through the official Anthropic Academy program</span>
     </div>
   </section>
 
-  <!-- PREGUNTAS -->
-  <section class="grid faq">
-    <div class="faq-head">
-      <h2>Common questions.</h2>
-      <p>Everything you need to know before sending your request.</p>
-    </div>
-    <div class="faq-cols">
-          <div class="qa">
-            <h3>What is the NEWAVE Certification?</h3>
-            <p>Every candidate in our pipeline completes a structured training program and passes a five-pillar evaluation: English proficiency, AI readiness, remote-work training, async communication, and tools proficiency. Only candidates who meet our threshold across all five pillars receive the NEWAVE Certified credential.</p>
-          </div>
-          <div class="qa">
-            <h3>How is this different from other staffing agencies?</h3>
-            <p>Most agencies source candidates and screen for skills. Every NEWAVE profile comes from NEWAVE Academy, where members train for remote work, and we validate English and AI skills before a recruiter sees the profile.</p>
-          </div>
-          <!-- TODO-CONFIRM-2: answer below mentions the Anthropic Academy program. -->
-          <div class="qa">
-            <h3>What does "AI-ready" mean?</h3>
-            <p>Our candidates have completed certifications through the Anthropic Academy program. They know how to use AI tools to automate tasks, build workflows, and increase their productivity. For employers, this means hiring someone who operates at a different level from day one.</p>
-          </div>
-          <div class="qa">
-            <h3>How does an intro work?</h3>
-            <p>You request contact from a profile and tell us about the role. We check with the professional. If they accept, we introduce you both by email. Recruiters do not contact candidates directly.</p>
-          </div>
-          <div class="qa">
-            <h3>How do you screen your candidates?</h3>
-            <p>Every candidate in our network goes through our full coaching program, where we train them on how to work remotely at a professional level, communication, async workflows, time management, and client expectations. By the time they reach you, they're not just qualified for the role, they're already the ideal remote professional for your company.</p>
-          </div>
-          <div class="qa">
-            <h3>What roles are in the pilot?</h3>
-            <p>Business and operations roles, including Customer Success, AI Strategy, Growth, Operations, Sales, Executive Assistants, Project Management and Finance. If you need another role, tell us in the form.</p>
-          </div>
-          <div class="qa">
-            <h3>What does it cost?</h3>
-            <p>The pilot is free for recruiters and companies. Candidates never pay.</p>
-          </div>
-          <div class="qa">
-            <h3>Do I need to handle payroll and compliance?</h3>
-            <p>Hiring terms, payroll and compliance are agreed between you and the professional. NEWAVE makes the intro.</p>
-          </div>
-          <div class="qa">
-            <h3>Who are the professionals?</h3>
-            <p>Members of NEWAVE Academy who asked to be considered and agreed to share their profile. Names are visible. Contact details stay with NEWAVE until an intro.</p>
-          </div>
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-header" data-animate>
+        <h2>Common questions.</h2>
+        <p>Everything you need to know before sending your request.</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What is the NEWAVE Certification?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Every candidate in our pipeline completes a structured training program and passes a five-pillar evaluation: English proficiency, AI readiness, remote-work training, async communication, and tools proficiency. Only candidates who meet our threshold across all five pillars receive the NEWAVE Certified credential.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How is this different from other staffing agencies?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Most agencies source candidates and screen for skills. Every NEWAVE profile comes from NEWAVE Academy, where members train for remote work, and we validate English and AI skills before a recruiter sees the profile.</div>
+        </div>
+
+        <!-- TODO-CONFIRM-2: answer below mentions the Anthropic Academy program. -->
+        <div class="faq-item">
+          <button class="faq-q">
+            What does "AI-ready" mean?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Our candidates have completed certifications through the Anthropic Academy program. They know how to use AI tools to automate tasks, build workflows, and increase their productivity. For employers, this means hiring someone who operates at a different level from day one.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How does an intro work?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">You request contact from a profile and tell us about the role. We check with the professional. If they accept, we introduce you both by email. Recruiters do not contact candidates directly.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How do you screen your candidates?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Every candidate in our network goes through our full coaching program, where we train them on how to work remotely at a professional level, communication, async workflows, time management, and client expectations. By the time they reach you, they're not just qualified for the role, they're already the ideal remote professional for your company.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What roles are in the pilot?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Business and operations roles, including Customer Success, AI Strategy, Growth, Operations, Sales, Executive Assistants, Project Management and Finance. If you need another role, tell us in the form.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What does it cost?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">The pilot is free for recruiters and companies. Candidates never pay.</div>
+        </div>
+
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Do I need to handle payroll and compliance?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Hiring terms, payroll and compliance are agreed between you and the professional. NEWAVE makes the intro.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Who are the professionals?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Members of NEWAVE Academy who asked to be considered and agreed to share their profile. Names are visible. Contact details stay with NEWAVE until an intro.</div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- CIERRE -->
-  <section class="close" id="contact">
-    <div class="grid">
-      <div class="close-text">
-        <h2>Fewer screening steps. Start with the pilot.</h2>
-        <p>Tell us who you are and the roles you hire for. We review each request and reply by email.</p>
-        <a href="/start/" class="btn btn-dark">Get started →</a>
-        <p class="close-note">Free pilot · No commitment</p>
-        <p class="close-note">Already have an account? <a href="/login/">Log in</a></p>
-      </div>
-      <div class="close-faces" aria-hidden="true">
-        <img src="images/roster/customer-success.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/diana.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/growth.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/operations.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/pamela.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/customer1.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
+  <!-- FORMULARIO -->
+  <section class="form-section cta-field" id="contact">
+    <div class="form-inner">
+      <div class="form-head">
+        <h2 data-animate data-delay="1">Fewer screening steps. <br>Start with the pilot.</h2>
+        <p data-animate data-delay="2">Tell us who you are and the roles you hire for. We review each request and reply by email.</p>
+        <a href="/start/" class="btn-primary btn-large" data-animate data-delay="3">Get started →</a>
+        <span class="form-note">Free pilot · No commitment</span>
+        <span class="form-note">Already have an account? <a href="/login/" class="footer-email">Log in</a></span>
       </div>
     </div>
   </section>
 
-  </main>
-
-  <!-- PIE: el contacto es el titular -->
-  <footer class="foot">
-    <div class="grid foot-top">
-      <div class="foot-brand">
-        <img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" width="1476" height="208" loading="lazy" decoding="async" />
-        <p>Pre-screened remote talent from Latin America.</p>
-      </div>
-      <div class="foot-links">
-          <p class="foot-label">More</p>
-          <a href="https://newaveacademy.com" target="_blank" rel="noopener">NEWAVE Academy</a>
-          <a href="/privacy/">Privacy notice</a>
-          <a href="/terms/">Pilot terms</a>
-          <a href="/aiready/">For NEWAVE members</a>
-      </div>
-      <div class="foot-social">
-        <p class="foot-label">Follow us</p>
-        <div class="footer-social-icons">
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" class="footer-logo-img" width="1476" height="208" loading="lazy" decoding="async" />
+          <p class="footer-tag">Pre-screened remote talent from Latin America.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-label">Contact</span>
+            <!-- TODO-CONFIRM-5: confirm contact address. -->
+            <a href="mailto:hello@nwave.co" class="footer-email">hello@nwave.co</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-label">More</span>
+            <a href="https://newaveacademy.com" target="_blank" rel="noopener" class="footer-email">NEWAVE Academy</a>
+            <a href="/privacy/" class="footer-email">Privacy notice</a>
+            <a href="/terms/" class="footer-email">Pilot terms</a>
+            <a href="/aiready/" class="footer-email">For NEWAVE members</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-label">Follow us</span>
+            <div class="footer-social-icons">
               <a href="https://www.instagram.com/newave.academy/" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Instagram">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               </a>
@@ -543,18 +1092,51 @@
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               </a>
             </div>
+          </div>
+        </div>
+      </div>
+      <img src="images/nwhirelogofooter.png" alt="" aria-hidden="true" class="footer-giant" width="1476" height="208" loading="lazy" decoding="async" />
+      <div class="footer-bottom">
+        <span class="copyright">© 2026 NEWAVE HIRE. All rights reserved.</span>
       </div>
     </div>
-    <div class="foot-contact">
-      <p class="foot-label">Contact</p>
-      <!-- TODO-CONFIRM-5: confirm contact address. -->
-      <a href="mailto:hello@nwave.co" class="foot-email">hello<wbr>@nwave.co</a>
-    </div>
-    <div class="foot-meta">
-      <span>© 2026 NEWAVE HIRE. All rights reserved.</span>
-      <a href="#main">Back to top ↑</a>
-    </div>
   </footer>
+
+  <script>
+
+    /* Nav scroll hide */
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      const y = window.scrollY;
+      nav.style.transform = y > lastY && y > 80 ? 'translateY(-100%)' : 'translateY(0)';
+      lastY = y;
+    });
+
+    /* Scroll animations */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    // Salvaguarda: sin IntersectionObserver, mostramos todo en vez de dejarlo invisible
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-animate]').forEach(el => el.classList.add('visible'));
+    }
+
+    /* FAQ accordion */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+
+  </script>
 
   <script src="landing.js" defer></script>
 </body>

@@ -22,55 +22,509 @@
   <meta name="twitter:image" content="https://newavehire.com/images/HIREB1.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="images/NEWAVEISO.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .logo-img { }
+
+    /* ── ROLES GRID ── */
+    .roles-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg); text-align: center;
+    }
+    .roles-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .roles-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .roles-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .roles-grid-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden; margin-bottom: 2rem;
+    }
+    .role-card {
+      background: var(--bg-3); padding: 2rem 1.75rem; text-align: left;
+      transition: background 0.2s;
+    }
+    .role-card:hover { background: rgba(252,115,66,0.05); }
+    .role-card-icon {
+      width: 40px; height: 40px;
+      background: rgba(252,115,66,0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange); margin-bottom: 1rem;
+    }
+    .role-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .role-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── PAIN SECTION ── */
+    .pain-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .pain-section-inner {
+      max-width: var(--max-wide); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .pain-left h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .pain-left p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 2rem; }
+    .pain-right { display: flex; flex-direction: column; gap: 0; }
+    .pain-point {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .pain-point:first-child { border-top: 1px solid var(--border); }
+    .pain-point-icon {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,60,60,0.1); color: #ff4444;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; margin-top: 2px;
+    }
+    .pain-point h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .pain-point p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin: 0; }
+
+    @media (max-width: 768px) {
+      .pain-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pain-section { padding: 3.5rem 1.25rem; }
+    }
+
+    /* ── TALENT SECTION ── */
+    .talent-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem) calc(var(--section) / 2);
+      background: var(--bg-2);
+    }
+    .talent-inner { max-width: 860px; margin: 0 auto; }
+    .talent-header { text-align: center; margin-bottom: 3rem; }
+    .talent-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .talent-header p { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto; }
+
+    .talent-list { display: flex; flex-direction: column; }
+    .talent-row {
+      display: flex; align-items: center; gap: 1.75rem;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .talent-row:first-child { border-top: 1px solid var(--border); }
+    .talent-thumb {
+      width: 88px; height: 88px; border-radius: 12px; object-fit: cover;
+      flex-shrink: 0; background: var(--bg-3);
+      border: 1px solid var(--border);
+    }
+    .talent-thumb-placeholder {
+      width: 88px; height: 88px; border-radius: 12px; flex-shrink: 0;
+      background: var(--bg-3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; color: var(--subtle);
+    }
+    .talent-text { flex: 1; }
+    .talent-text h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .talent-text p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+    .talent-btn {
+      flex-shrink: 0;
+      font-size: 0.82rem; font-weight: 600; font-family: var(--sans);
+      padding: 0.6rem 1.4rem; border-radius: 980px;
+      border: 1px solid var(--border); color: var(--white); background: transparent;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .talent-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ── TIMELINE ── */
+    .timeline-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+    }
+    .timeline-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .timeline-header { text-align: center; margin-bottom: 3.5rem; }
+    .timeline-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .timeline-header p { color: var(--muted); font-size: 1rem; }
+
+    .timeline-chart { position: relative; }
+    .tl-axis, .tl-row, .tl-bottom-axis {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .tl-label-col {
+      width: 160px; flex-shrink: 0; display: flex; align-items: center;
+    }
+    .tl-bars-col { flex: 1; position: relative; }
+    .tl-logo { height: 20px; width: auto; }
+    .tl-logo-mobile { display: none; }
+    .tl-logo-full { display: block; }
+    .tl-label-text { font-size: 1rem; font-weight: 600; color: var(--muted); }
+
+    .tl-days {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 0.68rem; color: var(--subtle);
+      padding-bottom: 0.5rem;
+    }
+    .tl-grid {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; justify-content: space-between; pointer-events: none;
+    }
+    .tl-gridline {
+      width: 1px; background: var(--border); height: 100%;
+    }
+
+    .tl-row { padding: 1.5rem 0; border-top: 1px solid var(--border); }
+    .tl-bar-track {
+      position: relative; height: 40px;
+      background: rgba(255,255,255,0.03); border-radius: 6px;
+    }
+    .tl-bar {
+      position: absolute; left: 0; top: 0; height: 100%;
+      border-radius: 6px; transition: width 1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .tl-bar-hire { background: var(--orange); opacity: 0.9; }
+    .tl-bar-inhouse { background: rgba(183,182,182,0.2); }
+
+    .tl-dot {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tl-dot-hire { background: var(--orange); box-shadow: 0 0 0 4px rgba(252,115,66,0.2); }
+    .tl-dot-inhouse { background: var(--muted); box-shadow: 0 0 0 4px rgba(183,182,182,0.15); }
+
+    .tl-tooltip {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      background: var(--bg-3); border: 1px solid var(--border);
+      color: var(--white); font-size: 0.72rem; font-weight: 600;
+      white-space: nowrap; padding: 0.35rem 0.75rem; border-radius: 6px;
+    }
+    .tl-tooltip-top { bottom: calc(100% + 10px); }
+    .tl-tooltip-bottom { top: calc(100% + 10px); }
+    .tl-tooltip-top::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-top-color: var(--border);
+    }
+    .tl-tooltip-bottom::before {
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-bottom-color: var(--border);
+    }
+
+    .tl-bottom-axis { padding-top: 0.5rem; border-top: 1px solid var(--border); }
+    .tl-days-bottom { padding-top: 0.5rem; padding-bottom: 0; }
+    .tl-footnote {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--subtle);
+      text-align: center; margin-top: 2rem; line-height: 1.7; max-width: 560px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .tl-label-col { width: 76px; }
+      .tl-logo-full { display: none; }
+      .tl-logo-mobile { display: block; font-size: 0.78rem; font-weight: 700; color: var(--white); letter-spacing: 0.02em; }
+      .tl-label-text { font-size: 0.78rem; }
+      .tl-axis, .tl-row, .tl-bottom-axis { gap: 0.75rem; }
+      .tl-days { font-size: 0.6rem; }
+      .tl-bar-track { height: 28px; }
+      .timeline-section { padding: 3.5rem 1.25rem; }
+      .tl-days span:not(:first-child):not(:last-child) { display: none; }
+    }
+
+    /* ── COMPARISON ── */
+    .comparison-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg); text-align: center;
+    }
+    .comparison-inner { max-width: 900px; margin: 0 auto; }
+    .comparison-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .comparison-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; }
+    .comparison-table {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+    }
+    .comparison-table th {
+      padding: 1.1rem 1.5rem; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: -0.01em; text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-table th:first-child { text-align: left; color: var(--muted); font-weight: 500; }
+    .comparison-table th.col-hire {
+      background: rgba(252,115,66,0.08); color: var(--orange);
+      border-left: 1px solid rgba(252,115,66,0.2);
+      border-right: 1px solid rgba(252,115,66,0.2);
+    }
+    .comparison-table td {
+      padding: 1rem 1.5rem; font-size: 0.9rem;
+      border-bottom: 1px solid var(--border); text-align: center;
+      color: var(--muted);
+    }
+    .comparison-table td:first-child { text-align: left; color: var(--white); font-weight: 500; }
+    .comparison-table td.col-hire {
+      background: rgba(252,115,66,0.04);
+      border-left: 1px solid rgba(252,115,66,0.2);
+      border-right: 1px solid rgba(252,115,66,0.2);
+      color: var(--white);
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .check-yes { color: #34d399; font-size: 1.1rem; }
+    .check-no  { color: var(--subtle); font-size: 1.1rem; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section-dark {
+      padding: calc(var(--section) / 2) clamp(1.25rem, 5vw, 2.5rem) var(--section);
+      background: var(--bg-2);
+    }
+    .how-section-dark .how-inner { max-width: 560px; margin: 0 auto; }
+    .how-section-dark h2 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.6rem;
+    }
+    .how-section-dark .how-sub {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--subtle); margin-bottom: 3rem; letter-spacing: 0.06em;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .faq-inner { max-width: 680px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .faq-header p { color: var(--muted); font-size: 1rem; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--white);
+      font-family: var(--sans); font-size: 1rem; font-weight: 600;
+      text-align: left; padding: 1.35rem 0; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--orange); }
+    .faq-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: var(--muted); transition: transform 0.25s, border-color 0.25s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--orange); color: var(--orange); }
+    .faq-a {
+      font-size: 0.95rem; color: var(--muted); line-height: 1.75;
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.35rem; }
+
+    /* ── CERTIFICATION SECTION ── */
+    .cert-section {
+      padding: var(--section) clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg);
+    }
+    .cert-inner { max-width: var(--max-wide); margin: 0 auto; }
+    .cert-header { text-align: center; margin-bottom: 3.5rem; }
+    .cert-header h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
+    .cert-header p { color: var(--muted); font-size: 1rem; max-width: 580px; margin: 0 auto; }
+    .cert-pillars {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+    }
+    .cert-pillar { background: var(--bg-2); padding: 2rem 1.5rem; text-align: left; transition: background 0.2s; }
+    .cert-pillar:hover { background: rgba(252,115,66,0.05); }
+    .cert-pillar-num {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 1rem; display: block;
+    }
+    .cert-pillar h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .cert-pillar p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .cert-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+    .cert-badge {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.05em;
+      padding: 0.18rem 0.55rem; border-radius: 980px;
+      border: 1px solid var(--border); color: var(--subtle);
+    }
+    .cert-badge-en { border-color: rgba(52,211,153,0.35); color: #34d399; }
+    .cert-badge-ai { border-color: rgba(252,115,66,0.35); color: var(--orange); }
+    .partner-section {
+      padding: 2.5rem clamp(1.25rem, 5vw, 2.5rem);
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .partner-inner {
+      max-width: var(--max-wide); margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .partner-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--subtle); text-transform: uppercase; }
+    .partner-divider { width: 1px; height: 24px; background: var(--border); }
+    .partner-badge {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 1.25rem; border-radius: var(--r-sm);
+      border: 1px solid var(--border); background: var(--bg-3);
+      transition: border-color 0.2s;
+    }
+    .partner-badge:hover { border-color: rgba(255,255,255,0.2); }
+    .partner-badge-text { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+    .partner-badge-sub { font-family: var(--mono); font-size: 0.6rem; color: var(--subtle); display: block; margin-top: 0.1rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .talent-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .roles-grid-cards { grid-template-columns: 1fr 1fr; }
+      .talent-grid { grid-template-columns: repeat(2, 1fr); }
+      .comparison-table { min-width: 560px; }
+      .hero h1 { font-size: 4.8vw !important; }
+      h1 span { white-space: nowrap; }
+      .comparison-table th, .comparison-table td { padding: 0.8rem 0.65rem; font-size: 0.8rem; }
+      .faq-section { padding: 3.5rem 1.25rem; }
+      .how-section-dark { padding: 3.5rem 1.25rem; }
+      .roles-section { padding: 3.5rem 1.25rem; }
+      .talent-section { padding: 3.5rem 1.25rem; }
+      .talent-btn { display: none; }
+      .talent-thumb-placeholder, .talent-thumb { width: 60px; height: 60px; border-radius: 10px; }
+      .talent-row { gap: 1rem; padding: 1.25rem 0; }
+      .talent-text h3 { font-size: 0.95rem; }
+      .talent-text p { font-size: 0.8rem; }
+      .comparison-section { padding: 3.5rem 1.25rem; }
+      .roles-section h2 { font-size: 1.75rem; }
+      .faq-q { font-size: 0.95rem; }
+    }
+    @media (max-width: 768px) {
+      .cert-pillars { grid-template-columns: 1fr 1fr; }
+      .cert-pillar:last-child { grid-column: 1 / -1; }
+      .cert-section { padding: 3.5rem 1.25rem; }
+      .partner-inner { gap: 1rem; flex-direction: column; text-align: center; }
+      .partner-divider { width: 40px; height: 1px; }
+    }
+    @media (max-width: 480px) {
+      .roles-grid-cards { grid-template-columns: 1fr; }
+      .talent-grid { grid-template-columns: repeat(2, 1fr); }
+      .cert-pillars { grid-template-columns: 1fr; }
+      .cert-pillar:last-child { grid-column: auto; }
+    }
+
+    .nav-login { font-size: 0.82rem; font-weight: 600; color: var(--white); padding: 0.45rem 0.5rem; transition: opacity 0.2s; }
+    .nav-login:hover { opacity: 0.7; }
+    .nav-login, .nav-right .nav-cta { white-space: nowrap; }
+    @media (max-width: 480px) { .nav-login { display: none; } }
+  </style>
   <link rel="stylesheet" href="landing.css" />
-  <script>document.documentElement.classList.add('js')</script>
+  <noscript><style>[data-animate]{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
 <body>
 
   <!-- NAV -->
-  <header class="top">
-    <a href="/" class="wordmark"><img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" width="1476" height="208" /></a>
-    <nav class="top-links">
+  <nav class="nav">
+    <a href="/" class="logo">
+      <img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" class="logo-img" width="1476" height="208" />
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="lang-toggle">EN</a>
       <!-- TODO-CONFIRM-9: URL de inicio de sesión de la app. /login/ es temporal y hoy no existe. -->
-      <a href="/login/">Iniciar sesión</a>
-      <a href="index.html" class="lang" lang="en">EN</a>
-    </nav>
-    <a href="/empezar/" class="btn btn-orange btn-small">Crear cuenta</a>
-  </header>
-
-  <main id="main">
-
-  <!-- HERO: la generación de NEWAVE Academy como portada -->
-  <section class="hero">
-    <div class="roster" role="list" aria-label="Miembros de NEWAVE Academy por rol">
-      <figure class="roster-face" role="listitem" data-role="Customer Success"><img src="images/roster/customer-success.jpg" alt="Customer Success" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="AI Strategist"><img src="images/roster/diana.jpg" alt="AI Strategist" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Growth"><img src="images/roster/growth.jpg" alt="Growth" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <div class="roster-tile tile-orange" aria-hidden="true"></div>
-      <figure class="roster-face" role="listitem" data-role="Operaciones"><img src="images/roster/operations.jpg" alt="Operaciones" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Marketing"><img src="images/roster/pamela.jpg" alt="Marketing" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Roles Administrativos"><img src="images/roster/customer1.jpg" alt="Roles Administrativos" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Customer Service"><img src="images/roster/customer-service.jpg" alt="Customer Service" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <div class="roster-tile tile-paper" aria-hidden="true"></div>
-      <figure class="roster-face" role="listitem" data-role="Contabilidad"><img src="images/roster/accounting1.jpg" alt="Contabilidad" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Finanzas"><img src="images/roster/finance.jpg" alt="Finanzas" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Asistentes Ejecutivos"><img src="images/roster/ximena.jpg" alt="Asistentes Ejecutivos" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Gestión de Proyectos"><img src="images/roster/pm.jpg" alt="Gestión de Proyectos" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <div class="roster-tile tile-dark" aria-hidden="true"></div>
-      <figure class="roster-face" role="listitem" data-role="Ventas"><img src="images/roster/sales.jpg" alt="Ventas" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
-      <figure class="roster-face" role="listitem" data-role="Generalistas"><img src="images/roster/generalist.jpg" alt="Generalistas" width="240" height="240" decoding="async" fetchpriority="high" /></figure>
+      <a href="/login/" class="nav-login">Iniciar sesión</a>
+      <a href="/empezar/" class="nav-cta">Crear cuenta</a>
     </div>
-    <div class="grid hero-body">
-      <h1><span class="line"><span>No encontramos talento.</span></span><span class="line accent"><span>Lo construimos.</span></span></h1>
-      <p class="hero-note">Piloto gratuito para reclutadores.</p>
-      <div class="hero-right">
-        <!-- TODO-CONFIRM-3: "the only platform" claim. Proposed replacement, apply only after Santiago confirms: "Cada profesional aquí se formó en NEWAVE Academy. Revisa perfiles pre-filtrados con inglés verificado y habilidades reales de IA, pide una presentación y nuestro equipo hace la conexión." -->
-        <p class="lead">NEWAVE es la única plataforma que entrena, certifica y coloca profesionales remotos de LATAM.</p>
-        <div class="actions">
-          <a href="/empezar/" class="btn btn-light">Crear cuenta →</a>
-          <a href="/login/" class="link">Iniciar sesión</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 data-animate data-delay="1">
+        <span class="h1-line">No encontramos talento.</span> <br>
+        <span class="h1-accent">Lo construimos.</span>
+      </h1>
+      <!-- TODO-CONFIRM-3: "the only platform" claim. Proposed replacement, apply only after Santiago confirms: "Cada profesional aquí se formó en NEWAVE Academy. Revisa perfiles pre-filtrados con inglés verificado y habilidades reales de IA, pide una presentación y nuestro equipo hace la conexión." -->
+      <p class="hero-sub" data-animate data-delay="2">
+        NEWAVE es la única plataforma que entrena, certifica y coloca profesionales remotos de LATAM.
+      </p>
+      <div class="hero-actions" data-animate data-delay="3">
+        <a href="/empezar/" class="btn-primary btn-large">Crear cuenta →</a>
+        <a href="/login/" class="btn-ghost">Iniciar sesión</a>
+      </div>
+      <p class="hero-note" data-animate data-delay="4">Piloto gratuito para reclutadores.</p>
+    </div>
+    <div class="hero-band" data-animate data-delay="4">
+      <div class="band-track">
+        <div class="band-group">
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="Customer Success" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="AI Strategist" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="Growth" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="Operaciones" width="480" height="480" decoding="async" /><figcaption>Operaciones</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="Marketing" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="Roles Administrativos" width="480" height="480" decoding="async" /><figcaption>Roles Administrativos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="Customer Service" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="Contabilidad" width="480" height="480" decoding="async" /><figcaption>Contabilidad</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="Finanzas" width="480" height="480" decoding="async" /><figcaption>Finanzas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="Asistentes Ejecutivos" width="480" height="480" decoding="async" /><figcaption>Asistentes Ejecutivos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="Gestión de Proyectos" width="480" height="480" decoding="async" /><figcaption>Gestión de Proyectos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="Ventas" width="480" height="480" decoding="async" /><figcaption>Ventas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="Generalistas" width="480" height="480" decoding="async" /><figcaption>Generalistas</figcaption></figure>
+        </div>
+        <div class="band-group" aria-hidden="true">
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Operaciones</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Roles Administrativos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Contabilidad</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Finanzas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Asistentes Ejecutivos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Gestión de Proyectos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Ventas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Generalistas</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="hero-band band-alt" aria-hidden="true" data-animate data-delay="4">
+      <div class="band-track">
+        <div class="band-group">
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Contabilidad</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Finanzas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Asistentes Ejecutivos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Gestión de Proyectos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Ventas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Generalistas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Operaciones</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Roles Administrativos</figcaption></figure>
+        </div>
+        <div class="band-group">
+          <figure class="band-tile"><img src="images/band/customer-service.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Service</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/accounting1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Contabilidad</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/finance.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Finanzas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/ximena.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Asistentes Ejecutivos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pm.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Gestión de Proyectos</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/sales.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Ventas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/generalist.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Generalistas</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer-success.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Customer Success</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/diana.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>AI Strategist</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/growth.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Growth</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/operations.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Operaciones</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/pamela.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Marketing</figcaption></figure>
+          <figure class="band-tile"><img src="images/band/customer1.jpg" alt="" width="480" height="480" decoding="async" /><figcaption>Roles Administrativos</figcaption></figure>
         </div>
       </div>
     </div>
@@ -78,464 +532,554 @@
 
   <!-- EMPRESAS -->
   <!-- TODO-CONFIRM-1: confirm each company below is verified and allowed to be shown. If not, remove the whole strip. -->
-  <section class="grid names">
-    <h2 class="small-h">Donde trabaja nuestro talento certificado</h2>
-    <ul class="name-cols">
-          <li>noCRM.io</li>
-          <li>Topsort</li>
-          <li>Praxent</li>
-          <li>The Outloud Group</li>
-          <li>Zappi</li>
-          <li>EPOC</li>
-          <li>SimplyAgree</li>
-          <li>CNaught</li>
-          <li>Stripe</li>
-          <li>Pulse Protocol</li>
-          <li>BairesDev</li>
-    </ul>
-  </section>
-
-  <!-- EL PROBLEMA -->
-  <section class="split">
-    <div class="split-light">
-      <h2><span>Las agencias encuentran personas.</span><span class="push">No las preparan.</span></h2>
-      <div class="split-foot">
-        <div class="split-text">
-          <p>La mayoría de las agencias de staffing de LATAM buscan candidatos en LinkedIn, hacen un filtro rápido y te mandan un shortlist. El candidato se ve bien en papel. Luego llega la semana uno: luchan con la comunicación asíncrona, nunca usaron tus herramientas y necesitan dirección constante.</p>
-          <p>El problema no es el talento. Es que nadie los preparó para trabajar como trabaja tu equipo. Eso es lo que hacemos diferente.</p>
+  <div class="logos-strip">
+    <p class="logos-label">Donde trabaja nuestro talento certificado</p>
+    <div class="logos-viewport">
+      <div class="logos-track">
+        <div class="logos-group">
+          <span class="logo-name">noCRM.io</span>
+          <span class="logo-name">Topsort</span>
+          <span class="logo-name">Praxent</span>
+          <span class="logo-name">The Outloud Group</span>
+          <span class="logo-name">Zappi</span>
+          <span class="logo-name">EPOC</span>
+          <span class="logo-name">SimplyAgree</span>
+          <span class="logo-name">CNaught</span>
+          <span class="logo-name">Stripe</span>
+          <span class="logo-name">Pulse Protocol</span>
+          <span class="logo-name">BairesDev</span>
         </div>
-        <a href="/empezar/" class="link link-dark">Crear cuenta</a>
+        <div class="logos-group" aria-hidden="true">
+          <span class="logo-name">noCRM.io</span>
+          <span class="logo-name">Topsort</span>
+          <span class="logo-name">Praxent</span>
+          <span class="logo-name">The Outloud Group</span>
+          <span class="logo-name">Zappi</span>
+          <span class="logo-name">EPOC</span>
+          <span class="logo-name">SimplyAgree</span>
+          <span class="logo-name">CNaught</span>
+          <span class="logo-name">Stripe</span>
+          <span class="logo-name">Pulse Protocol</span>
+          <span class="logo-name">BairesDev</span>
+        </div>
       </div>
     </div>
-    <div class="split-dark">
-        <div class="dark-row">
-          <h3>Filtran. No entrenan.</h3>
-          <p>Revisar un perfil de LinkedIn no es preparación. Cada candidato NEWAVE pasa por más de 40 horas de entrenamiento estructurado antes de entrar a nuestro pipeline.</p>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <section class="pain-section">
+    <div class="pain-section-inner">
+      <div class="pain-left" data-animate>
+        <h2>Las agencias encuentran personas. <br>No las preparan.</h2>
+        <p>La mayoría de las agencias de staffing de LATAM buscan candidatos en LinkedIn, hacen un filtro rápido y te mandan un shortlist. El candidato se ve bien en papel. Luego llega la semana uno: luchan con la comunicación asíncrona, nunca usaron tus herramientas y necesitan dirección constante.</p>
+        <p>El problema no es el talento. Es que nadie los preparó para trabajar como trabaja tu equipo. Eso es lo que hacemos diferente.</p>
+        <a href="/empezar/" class="btn-ghost">Crear cuenta</a>
+      </div>
+      <div class="pain-right">
+        <div class="pain-point" data-animate data-delay="1">
+          <div>
+            <h4>Filtran. No entrenan.</h4>
+            <p>Revisar un perfil de LinkedIn no es preparación. Cada candidato NEWAVE pasa por más de 40 horas de entrenamiento estructurado antes de entrar a nuestro pipeline.</p>
+          </div>
         </div>
-        <div class="dark-row">
-          <h3>Nadie evalúa la comunicación asíncrona</h3>
-          <p>La mayoría de las agencias nunca prueban cómo se comunica un candidato por escrito en condiciones reales de trabajo. Nosotros lo simulamos, lo calificamos y tú ves el resultado.</p>
+        <div class="pain-point" data-animate data-delay="2">
+          <div>
+            <h4>Nadie evalúa la comunicación asíncrona</h4>
+            <p>La mayoría de las agencias nunca prueban cómo se comunica un candidato por escrito en condiciones reales de trabajo. Nosotros lo simulamos, lo calificamos y tú ves el resultado.</p>
+          </div>
         </div>
-        <div class="dark-row">
-          <h3>La preparación en IA no existe en ningún otro lado</h3>
-          <p>Las habilidades de IA ya son parte de casi todo rol remoto. Revisamos trabajo real con IA antes de que veas un perfil.</p>
+        <div class="pain-point" data-animate data-delay="3">
+          <div>
+            <h4>La preparación en IA no existe en ningún otro lado</h4>
+            <p>Las habilidades de IA ya son parte de casi todo rol remoto. Revisamos trabajo real con IA antes de que veas un perfil.</p>
+          </div>
         </div>
-        <div class="dark-row">
-          <h3>Tú no eres su primera experiencia remota. Eso lo arreglamos.</h3>
-          <p>Cada profesional en nuestra red pasó por un programa completo de entrenamiento y certificación. No eres su primer cliente. Eres su despliegue.</p>
+        <div class="pain-point" data-animate data-delay="4">
+          <div>
+            <h4>Tú no eres su primera experiencia remota. Eso lo arreglamos.</h4>
+            <p>Cada profesional en nuestra red pasó por un programa completo de entrenamiento y certificación. No eres su primer cliente. Eres su despliegue.</p>
+          </div>
         </div>
+      </div>
     </div>
   </section>
 
-  <!-- CERTIFICACIÓN -->
-  <section class="grid cert" id="certification">
-    <h2>Qué significa "NEWAVE Certificado" en la práctica.</h2>
-    <p class="lead">Cada candidato es evaluado en cinco pilares. Sin habilidades autodeclaradas, sin suposiciones. Solo los candidatos que cumplen nuestro umbral en los cinco pilares reciben la credencial NEWAVE Certificado.</p>
-    <div class="pillars">
-        <div class="pillar">
+  <!-- CERTIFICATION SECTION -->
+  <section class="cert-section" id="certification">
+    <div class="cert-inner">
+      <div class="cert-header" data-animate>
+        <h2>Qué significa "NEWAVE <br>Certificado" en la práctica.</h2>
+        <p>Cada candidato es evaluado en cinco pilares. Sin habilidades autodeclaradas, sin suposiciones. Solo los candidatos que cumplen nuestro umbral en los cinco pilares reciben la credencial NEWAVE Certificado.</p>
+      </div>
+      <div class="cert-pillars">
+        <div class="cert-pillar" data-animate>
           <h3>Inglés, validado.</h3>
           <p>No un checkbox en LinkedIn. Una evaluación real de comunicación escrita, fluidez verbal y conversación profesional. Lo medimos, lo calificamos, tú ves el resultado.</p>
         </div>
-        <!-- TODO-CONFIRM-2: confirm the Anthropic Academy wording in this pillar is accurate. -->
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="1">
+          <!-- TODO-CONFIRM-2: confirm the Anthropic Academy wording in this pillar is accurate. -->
           <h3>IA-ready.</h3>
           <p>Certificados a través del programa Anthropic Academy. Estos profesionales saben usar IA para multiplicar su output, construir flujos de trabajo y automatizar tareas repetitivas.</p>
         </div>
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="2">
           <h3>Entrenados para remoto.</h3>
           <p>40+ horas de entrenamiento estructurado en seis módulos: posicionamiento profesional, estrategia de búsqueda, preparación para entrevistas y negociación.</p>
         </div>
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="3">
           <h3>Comunicación asíncrona, probada.</h3>
           <p>Simulamos escenarios reales. Redactar un update en Slack sobre un blocker. Un reporte de estatus. Comunicar un retraso a un cliente. Claude AI evalúa claridad, estructura y tono.</p>
         </div>
-        <div class="pillar">
+        <div class="cert-pillar" data-animate data-delay="4">
           <h3>Dominio de herramientas.</h3>
           <p>Slack, Notion, Google Workspace, Asana, Loom. El toolkit diario de tu equipo. Nuestros candidatos ya saben usarlo. Menos capacitación en herramientas durante el onboarding.</p>
         </div>
+      </div>
     </div>
   </section>
 
-  <!-- ROLES: elige un rol y ve qué validó NEWAVE -->
-  <section class="roles">
-    <div class="grid roles-head">
-      <h2>Busca por rol.</h2>
-      <p class="lead">Cada perfil muestra lo que NEWAVE validó. Así se ve por rol.</p>
-      <a href="/empezar/" class="btn btn-orange">Ver perfiles →</a>
-    </div>
-    <!-- TODO-CONFIRM-4: every role photo below appears to show a real person. Confirm consent for each, not only pamela/diana/ximena. -->
-    <div class="roles-body">
-      <div class="role-tabs" role="tablist" aria-label="Roles">
-          <button type="button" role="tab" id="tab-rol-customer-success" aria-controls="rol-customer-success" aria-selected="true" tabindex="0">Customer Success</button>
-          <button type="button" role="tab" id="tab-rol-ai-strategist" aria-controls="rol-ai-strategist" aria-selected="false" tabindex="-1">AI Strategist</button>
-          <button type="button" role="tab" id="tab-rol-growth" aria-controls="rol-growth" aria-selected="false" tabindex="-1">Growth</button>
-          <button type="button" role="tab" id="tab-rol-operaciones" aria-controls="rol-operaciones" aria-selected="false" tabindex="-1">Operaciones</button>
-          <button type="button" role="tab" id="tab-rol-marketing" aria-controls="rol-marketing" aria-selected="false" tabindex="-1">Marketing</button>
-          <button type="button" role="tab" id="tab-rol-roles-administrativos" aria-controls="rol-roles-administrativos" aria-selected="false" tabindex="-1">Roles Administrativos</button>
-          <button type="button" role="tab" id="tab-rol-customer-service" aria-controls="rol-customer-service" aria-selected="false" tabindex="-1">Customer Service</button>
-          <button type="button" role="tab" id="tab-rol-contabilidad" aria-controls="rol-contabilidad" aria-selected="false" tabindex="-1">Contabilidad</button>
-          <button type="button" role="tab" id="tab-rol-finanzas" aria-controls="rol-finanzas" aria-selected="false" tabindex="-1">Finanzas</button>
-          <button type="button" role="tab" id="tab-rol-asistentes-ejecutivos" aria-controls="rol-asistentes-ejecutivos" aria-selected="false" tabindex="-1">Asistentes Ejecutivos</button>
-          <button type="button" role="tab" id="tab-rol-gesti-n-de-proyectos" aria-controls="rol-gesti-n-de-proyectos" aria-selected="false" tabindex="-1">Gestión de Proyectos</button>
-          <button type="button" role="tab" id="tab-rol-ventas" aria-controls="rol-ventas" aria-selected="false" tabindex="-1">Ventas</button>
-          <button type="button" role="tab" id="tab-rol-generalistas" aria-controls="rol-generalistas" aria-selected="false" tabindex="-1">Generalistas</button>
+  <!-- TALENT SHOWCASE -->
+  <section class="talent-section">
+    <div class="talent-inner">
+      <div class="talent-header" data-animate>
+        <h2>Busca por rol.</h2>
+        <p>Cada perfil muestra lo que NEWAVE validó. Así se ve por rol.</p>
       </div>
-      <div class="role-panels">
-        <div class="role-panel" role="tabpanel" id="rol-customer-success" aria-labelledby="tab-rol-customer-success" tabindex="0">
-          <div class="role-head">
-            <img src="images/band/customer-success.jpg" alt="Customer Success" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Customer Success</h3>
-              <p>Customer Success Managers, especialistas de onboarding, account managers y especialistas en renovaciones.</p>
+      <div class="talent-list">
+        <!-- TODO-CONFIRM-4: every role photo below appears to show a real person. Confirm consent for each, not only pamela/diana/ximena. -->
+
+        <div class="talent-row" data-animate>
+          <img src="images/customer-success.jpg" alt="Customer Success" class="talent-thumb" width="593" height="593" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Customer Success</h3>
+            <p>Customer Success Managers, especialistas de onboarding, account managers y especialistas en renovaciones.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Gainsight · HubSpot · Intercom · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Gainsight · HubSpot · Intercom · Notion</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-ai-strategist" aria-labelledby="tab-rol-ai-strategist" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/diana.jpg" alt="AI Strategist" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>AI Strategist</h3>
-              <p>AI Strategists, especialistas en operaciones con IA, especialistas en automatización y líderes de proyectos de IA.</p>
+
+        <div class="talent-row" data-animate data-delay="1">
+          <img src="images/diana.jpg" alt="AI Strategist" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>AI Strategist</h3>
+            <p>AI Strategists, especialistas en operaciones con IA, especialistas en automatización y líderes de proyectos de IA.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Claude · ChatGPT · n8n · Make</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Claude · ChatGPT · n8n · Make</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-growth" aria-labelledby="tab-rol-growth" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/growth.jpg" alt="Growth" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Growth</h3>
-              <p>Growth marketers, especialistas en lifecycle y CRM, performance marketers y analistas de growth.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/growth.jpg" alt="Growth" class="talent-thumb" width="339" height="339" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Growth</h3>
+            <p>Growth marketers, especialistas en lifecycle y CRM, performance marketers y analistas de growth.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">HubSpot · GA4 · Meta Ads · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>HubSpot · GA4 · Meta Ads · Notion</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-operaciones" aria-labelledby="tab-rol-operaciones" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/operations.jpg" alt="Operaciones" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Operaciones</h3>
-              <p>Managers, Supervisores, Coordinadores, Analistas, Especialistas y Consultores.</p>
+
+        <div class="talent-row" data-animate data-delay="3">
+          <img src="images/operations.jpeg" alt="Operaciones" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Operaciones</h3>
+            <p>Managers, Supervisores, Coordinadores, Analistas, Especialistas y Consultores.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Notion · Asana · Google Workspace</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Notion · Asana · Google Workspace</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-marketing" aria-labelledby="tab-rol-marketing" tabindex="0" data-hidden>
+
+        <div class="talent-row" data-animate data-delay="1">
           <!-- TODO-CONFIRM-4: if this is a real person, confirm consent. Do not swap the image. -->
-          <div class="role-head">
-            <img src="images/band/pamela.jpg" alt="Marketing" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Marketing</h3>
-              <p>Managers, Coordinadores, Analistas, Especialistas, Copywriters y Diseñadores.</p>
+          <img src="images/pamela.jpg" alt="Marketing" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Marketing</h3>
+            <p>Managers, Coordinadores, Analistas, Especialistas, Copywriters y Diseñadores.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">HubSpot · Canva · Loom · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>HubSpot · Canva · Loom · Notion</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-roles-administrativos" aria-labelledby="tab-rol-roles-administrativos" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/customer1.jpg" alt="Roles Administrativos" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Roles Administrativos</h3>
-              <p>Asistentes Administrativos, Managers, Captura de Datos, Recursos Humanos.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/customer1.jpeg" alt="Roles Administrativos" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Roles Administrativos</h3>
+            <p>Asistentes Administrativos, Managers, Captura de Datos, Recursos Humanos.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Google Workspace · Slack · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Google Workspace · Slack · Notion</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-customer-service" aria-labelledby="tab-rol-customer-service" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/customer-service.jpg" alt="Customer Service" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Customer Service</h3>
-              <p>Representantes, Agentes, Especialistas y Customer Success.</p>
+
+        <div class="talent-row" data-animate data-delay="3">
+          <img src="images/customer-service.jpg" alt="Customer Service" class="talent-thumb" width="400" height="400" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Customer Service</h3>
+            <p>Representantes, Agentes, Especialistas y Customer Success.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Zendesk · Intercom · Slack · Loom</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Zendesk · Intercom · Slack · Loom</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-contabilidad" aria-labelledby="tab-rol-contabilidad" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/accounting1.jpg" alt="Contabilidad" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Contabilidad</h3>
-              <p>Contadores, Auditores, Analistas y Especialistas en Nómina.</p>
+
+        <div class="talent-row" data-animate data-delay="1">
+          <img src="images/accounting1.jpeg" alt="Contabilidad" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Contabilidad</h3>
+            <p>Contadores, Auditores, Analistas y Especialistas en Nómina.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">QuickBooks · Excel · Google Sheets</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>QuickBooks · Excel · Google Sheets</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-finanzas" aria-labelledby="tab-rol-finanzas" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/finance.jpg" alt="Finanzas" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Finanzas</h3>
-              <p>Analistas Financieros, Controllers, Tesoreros y Managers.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/finance.jpeg" alt="Finanzas" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Finanzas</h3>
+            <p>Analistas Financieros, Controllers, Tesoreros y Managers.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Excel · Google Sheets · QuickBooks · Notion</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Excel · Google Sheets · QuickBooks · Notion</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-asistentes-ejecutivos" aria-labelledby="tab-rol-asistentes-ejecutivos" tabindex="0" data-hidden>
+
+        <div class="talent-row" data-animate data-delay="3">
           <!-- TODO-CONFIRM-4: if this is a real person, confirm consent. Do not swap the image. -->
-          <div class="role-head">
-            <img src="images/band/ximena.jpg" alt="Asistentes Ejecutivos" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Asistentes Ejecutivos</h3>
-              <p>Asistentes Ejecutivos Virtuales, Asistentes Personales y Chiefs of Staff.</p>
+          <img src="images/ximena.jpg" alt="Asistentes Ejecutivos" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Asistentes Ejecutivos</h3>
+            <p>Asistentes Ejecutivos Virtuales, Asistentes Personales y Chiefs of Staff.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Notion · Loom · Calendly · Google Workspace</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Notion · Loom · Calendly · Google Workspace</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-gesti-n-de-proyectos" aria-labelledby="tab-rol-gesti-n-de-proyectos" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/pm.jpg" alt="Gestión de Proyectos" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Gestión de Proyectos</h3>
-              <p>Project Managers, Coordinadores, Analistas y Consultores.</p>
+
+        <div class="talent-row" data-animate data-delay="1">
+          <img src="images/pm.jpeg" alt="Gestión de Proyectos" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Gestión de Proyectos</h3>
+            <p>Project Managers, Coordinadores, Analistas y Consultores.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Asana · Notion · Slack · Loom</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Asana · Notion · Slack · Loom</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-ventas" aria-labelledby="tab-rol-ventas" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/sales.jpg" alt="Ventas" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Ventas</h3>
-              <p>SDRs, Account Executives, Sales Managers y Business Development Reps.</p>
+
+        <div class="talent-row" data-animate data-delay="2">
+          <img src="images/sales.jpg" alt="Ventas" class="talent-thumb" width="800" height="800" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Ventas</h3>
+            <p>SDRs, Account Executives, Sales Managers y Business Development Reps.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">HubSpot · Apollo · Salesforce · Loom</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>HubSpot · Apollo · Salesforce · Loom</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
         </div>
-        <div class="role-panel" role="tabpanel" id="rol-generalistas" aria-labelledby="tab-rol-generalistas" tabindex="0" data-hidden>
-          <div class="role-head">
-            <img src="images/band/generalist.jpg" alt="Generalistas" width="480" height="480" loading="lazy" decoding="async" />
-            <div>
-              <h3>Generalistas</h3>
-              <p>Generalistas de Startup, Generalistas de Operaciones, Generalistas Administrativos.</p>
+
+        <div class="talent-row" data-animate data-delay="3">
+          <img src="images/generalist.jpeg" alt="Generalistas" class="talent-thumb" width="400" height="400" loading="lazy" decoding="async" />
+          <div class="talent-text">
+            <h3>Generalistas</h3>
+            <p>Generalistas de Startup, Generalistas de Operaciones, Generalistas Administrativos.</p>
+            <div class="cert-badges">
+              <span class="cert-badge cert-badge-en">Inglés verificado por NEWAVE</span>
+              <span class="cert-badge cert-badge-ai">Evidencia de IA revisada</span>
+              <span class="cert-badge">Entrenado para remoto</span>
+              <span class="cert-badge">Notion · Slack · Asana · Google Workspace</span>
             </div>
           </div>
-          <ul class="bands">
-              <li class="band"><span>Inglés verificado por NEWAVE</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Evidencia de IA revisada</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band"><span>Entrenado para remoto</span><span class="band-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-              <li class="band band-tools"><span>Herramientas</span><span>Notion · Slack · Asana · Google Workspace</span></li>
-          </ul>
-          <a href="/empezar/" class="btn btn-light">Ver perfiles</a>
+          <a href="/empezar/" class="talent-btn">Ver perfiles</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section-dark" id="how">
+    <div class="how-inner">
+      <h2 data-animate data-delay="1">De NEWAVE Academy <br>a tu proceso de contratación.</h2>
+
+      <div class="how-steps">
+        <div class="how-step" data-animate data-delay="2">
+          <div class="step-indicator">
+            <div class="step-num">1</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Crea tu cuenta</h3>
+            <p>Cuéntanos quién eres y qué roles contratas. Revisamos a cada reclutador durante el piloto.</p>
+            <span class="step-note step-note-time">~3 min para completarlo</span>
+          </div>
+        </div>
+
+        <div class="how-step" data-animate data-delay="3">
+          <div class="step-indicator">
+            <div class="step-num">2</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Revisa perfiles pre-filtrados</h3>
+            <p>Cada perfil viene de NEWAVE Academy y usa los mismos campos: rol, experiencia, inglés verificado, evidencia de IA, herramientas y zona horaria.</p>
+            <span class="step-note step-note-time">Gratis durante el piloto</span>
+          </div>
+        </div>
+
+        <div class="how-step how-step-last" data-animate data-delay="4">
+          <div class="step-indicator">
+            <div class="step-num">3</div>
+          </div>
+          <div class="step-content">
+            <h3>Pide una presentación</h3>
+            <p>Elige un perfil y cuéntanos del rol. Lo confirmamos con la persona y, si acepta, los presentamos por correo.</p>
+            <span class="step-note step-note-check">NEWAVE hace cada presentación</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA -->
-  <section class="how" id="how">
-    <h2>De NEWAVE Academy a tu proceso de contratación.</h2>
-    <svg class="diagram" viewBox="0 0 900 200" role="presentation" aria-hidden="true" focusable="false"><rect class="d-b" x="90.1" y="34.2" width="10" height="10" style="--d:90ms"/><rect class="d-a" x="177.1" y="20.6" width="10" height="10" style="--d:177ms"/><rect class="d-b" x="146.5" y="71.6" width="10" height="10" style="--d:146ms"/><rect class="d-a" x="19.4" y="96.3" width="10" height="10" style="--d:19ms"/><rect class="d-b" x="14.0" y="83.5" width="10" height="10" style="--d:13ms"/><rect class="d-a" x="22.6" y="23.8" width="10" height="10" style="--d:22ms"/><rect class="d-b" x="116.9" y="151.9" width="10" height="10" style="--d:116ms"/><rect class="d-a" x="36.9" y="46.8" width="10" height="10" style="--d:36ms"/><rect class="d-b" x="170.9" y="172.9" width="10" height="10" style="--d:170ms"/><rect class="d-a" x="157.5" y="77.0" width="10" height="10" style="--d:157ms"/><rect class="d-b" x="263.7" y="16.1" width="10" height="10" style="--d:263ms"/><rect class="d-a" x="232.4" y="58.4" width="10" height="10" style="--d:232ms"/><rect class="d-b" x="42.4" y="28.5" width="10" height="10" style="--d:42ms"/><rect class="d-a" x="86.1" y="150.0" width="10" height="10" style="--d:86ms"/><rect class="d-b" x="52.1" y="109.2" width="10" height="10" style="--d:52ms"/><rect class="d-a" x="174.0" y="72.8" width="10" height="10" style="--d:173ms"/><rect class="d-b" x="149.7" y="18.9" width="10" height="10" style="--d:149ms"/><rect class="d-a" x="19.9" y="43.8" width="10" height="10" style="--d:19ms"/><rect class="d-b" x="185.0" y="82.4" width="10" height="10" style="--d:184ms"/><rect class="d-a" x="87.6" y="109.9" width="10" height="10" style="--d:87ms"/><rect class="d-b" x="124.5" y="60.2" width="10" height="10" style="--d:124ms"/><rect class="d-a" x="215.3" y="129.6" width="10" height="10" style="--d:215ms"/><rect class="d-b" x="68.9" y="107.9" width="10" height="10" style="--d:68ms"/><rect class="d-a" x="143.7" y="160.3" width="10" height="10" style="--d:143ms"/><rect class="d-b" x="198.0" y="58.1" width="10" height="10" style="--d:198ms"/><rect class="d-a" x="264.7" y="28.5" width="10" height="10" style="--d:264ms"/><rect class="d-b" x="115.2" y="139.7" width="10" height="10" style="--d:115ms"/><rect class="d-a" x="44.4" y="93.1" width="10" height="10" style="--d:44ms"/><rect class="d-b" x="14.4" y="124.3" width="10" height="10" style="--d:14ms"/><rect class="d-a" x="207.4" y="107.7" width="10" height="10" style="--d:207ms"/><rect class="d-b" x="236.9" y="62.6" width="10" height="10" style="--d:236ms"/><rect class="d-a" x="188.9" y="111.4" width="10" height="10" style="--d:188ms"/><rect class="d-b" x="158.3" y="87.4" width="10" height="10" style="--d:158ms"/><rect class="d-a" x="227.4" y="172.4" width="10" height="10" style="--d:227ms"/><rect class="d-b" x="130.1" y="123.6" width="10" height="10" style="--d:130ms"/><rect class="d-a" x="20.1" y="130.1" width="10" height="10" style="--d:20ms"/><rect class="d-b" x="176.1" y="180.8" width="10" height="10" style="--d:176ms"/><rect class="d-a" x="222.6" y="57.5" width="10" height="10" style="--d:222ms"/><rect class="d-b" x="106.6" y="124.3" width="10" height="10" style="--d:106ms"/><rect class="d-a" x="10.0" y="88.3" width="10" height="10" style="--d:10ms"/><rect class="d-b" x="48.7" y="28.4" width="10" height="10" style="--d:48ms"/><rect class="d-a" x="19.7" y="141.7" width="10" height="10" style="--d:19ms"/><rect class="d-b" x="38.4" y="51.1" width="10" height="10" style="--d:38ms"/><rect class="d-a" x="108.0" y="159.6" width="10" height="10" style="--d:107ms"/><rect class="d-b" x="25.4" y="86.2" width="10" height="10" style="--d:25ms"/><rect class="d-a" x="150.2" y="161.7" width="10" height="10" style="--d:150ms"/><rect class="d-b" x="221.9" y="158.3" width="10" height="10" style="--d:221ms"/><rect class="d-a" x="78.1" y="80.3" width="10" height="10" style="--d:78ms"/><rect class="d-b" x="99.4" y="161.8" width="10" height="10" style="--d:99ms"/><rect class="d-a" x="258.8" y="34.3" width="10" height="10" style="--d:258ms"/><rect class="d-b" x="50.9" y="48.4" width="10" height="10" style="--d:50ms"/><rect class="d-a" x="66.1" y="92.4" width="10" height="10" style="--d:66ms"/><rect class="d-b" x="160.7" y="53.7" width="10" height="10" style="--d:160ms"/><rect class="d-a" x="5.1" y="80.9" width="10" height="10" style="--d:5ms"/><rect class="d-b" x="330.0" y="78.0" width="10" height="10" style="--d:330ms"/><rect class="d-b" x="330.0" y="93.0" width="10" height="10" style="--d:330ms"/><rect class="d-b" x="330.0" y="108.0" width="10" height="10" style="--d:330ms"/><rect class="d-b" x="345.0" y="78.0" width="10" height="10" style="--d:345ms"/><rect class="d-b" x="345.0" y="93.0" width="10" height="10" style="--d:345ms"/><rect class="d-b" x="345.0" y="108.0" width="10" height="10" style="--d:345ms"/><rect class="d-b" x="360.0" y="78.0" width="10" height="10" style="--d:360ms"/><rect class="d-b" x="360.0" y="93.0" width="10" height="10" style="--d:360ms"/><rect class="d-b" x="360.0" y="108.0" width="10" height="10" style="--d:360ms"/><rect class="d-b" x="375.0" y="78.0" width="10" height="10" style="--d:375ms"/><rect class="d-b" x="375.0" y="93.0" width="10" height="10" style="--d:375ms"/><rect class="d-b" x="375.0" y="108.0" width="10" height="10" style="--d:375ms"/><rect class="d-b" x="390.0" y="78.0" width="10" height="10" style="--d:390ms"/><rect class="d-b" x="390.0" y="93.0" width="10" height="10" style="--d:390ms"/><rect class="d-b" x="390.0" y="108.0" width="10" height="10" style="--d:390ms"/><rect class="d-b" x="405.0" y="78.0" width="10" height="10" style="--d:405ms"/><rect class="d-b" x="405.0" y="93.0" width="10" height="10" style="--d:405ms"/><rect class="d-b" x="405.0" y="108.0" width="10" height="10" style="--d:405ms"/><rect class="d-b" x="420.0" y="78.0" width="10" height="10" style="--d:420ms"/><rect class="d-b" x="420.0" y="93.0" width="10" height="10" style="--d:420ms"/><rect class="d-b" x="420.0" y="108.0" width="10" height="10" style="--d:420ms"/><rect class="d-b" x="435.0" y="78.0" width="10" height="10" style="--d:435ms"/><rect class="d-b" x="435.0" y="93.0" width="10" height="10" style="--d:435ms"/><rect class="d-b" x="435.0" y="108.0" width="10" height="10" style="--d:435ms"/><rect class="d-b" x="450.0" y="78.0" width="10" height="10" style="--d:450ms"/><rect class="d-b" x="450.0" y="93.0" width="10" height="10" style="--d:450ms"/><rect class="d-b" x="450.0" y="108.0" width="10" height="10" style="--d:450ms"/><rect class="d-b" x="465.0" y="78.0" width="10" height="10" style="--d:465ms"/><rect class="d-b" x="465.0" y="93.0" width="10" height="10" style="--d:465ms"/><rect class="d-b" x="465.0" y="108.0" width="10" height="10" style="--d:465ms"/><rect class="d-b" x="480.0" y="78.0" width="10" height="10" style="--d:480ms"/><rect class="d-b" x="480.0" y="93.0" width="10" height="10" style="--d:480ms"/><rect class="d-b" x="480.0" y="108.0" width="10" height="10" style="--d:480ms"/><rect class="d-b" x="495.0" y="78.0" width="10" height="10" style="--d:495ms"/><rect class="d-b" x="495.0" y="93.0" width="10" height="10" style="--d:495ms"/><rect class="d-b" x="495.0" y="108.0" width="10" height="10" style="--d:495ms"/><rect class="d-b" x="510.0" y="78.0" width="10" height="10" style="--d:510ms"/><rect class="d-b" x="510.0" y="93.0" width="10" height="10" style="--d:510ms"/><rect class="d-b" x="510.0" y="108.0" width="10" height="10" style="--d:510ms"/><rect class="d-b" x="525.0" y="78.0" width="10" height="10" style="--d:525ms"/><rect class="d-b" x="525.0" y="93.0" width="10" height="10" style="--d:525ms"/><rect class="d-b" x="525.0" y="108.0" width="10" height="10" style="--d:525ms"/><rect class="d-b" x="540.0" y="78.0" width="10" height="10" style="--d:540ms"/><rect class="d-b" x="540.0" y="93.0" width="10" height="10" style="--d:540ms"/><rect class="d-b" x="540.0" y="108.0" width="10" height="10" style="--d:540ms"/><rect class="d-b" x="555.0" y="78.0" width="10" height="10" style="--d:555ms"/><rect class="d-b" x="555.0" y="93.0" width="10" height="10" style="--d:555ms"/><rect class="d-b" x="555.0" y="108.0" width="10" height="10" style="--d:555ms"/><rect class="d-c" x="640.0" y="22.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="22.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="22.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="22.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="22.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="22.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="22.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="50.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="50.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="50.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="50.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="50.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="50.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="50.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="78.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="78.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="78.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="78.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="78.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="78.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="78.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="106.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="106.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="106.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="106.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="106.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="106.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="106.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="134.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="134.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="134.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="134.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="134.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="134.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="134.0" width="10" height="10" style="--d:856ms"/><rect class="d-c" x="640.0" y="162.0" width="10" height="10" style="--d:640ms"/><rect class="d-c" x="676.0" y="162.0" width="10" height="10" style="--d:676ms"/><rect class="d-c" x="712.0" y="162.0" width="10" height="10" style="--d:712ms"/><rect class="d-c" x="748.0" y="162.0" width="10" height="10" style="--d:748ms"/><rect class="d-c" x="784.0" y="162.0" width="10" height="10" style="--d:784ms"/><rect class="d-c" x="820.0" y="162.0" width="10" height="10" style="--d:820ms"/><rect class="d-c" x="856.0" y="162.0" width="10" height="10" style="--d:856ms"/></svg>
-    <div class="steps">
-        <div class="step">
-          <h3>Crea tu cuenta</h3>
-          <p>Cuéntanos quién eres y qué roles contratas. Revisamos a cada reclutador durante el piloto.</p>
-          <p class="step-note">~3 min para completarlo</p>
-        </div>
-        <div class="step">
-          <h3>Revisa perfiles pre-filtrados</h3>
-          <p>Cada perfil viene de NEWAVE Academy y usa los mismos campos: rol, experiencia, inglés verificado, evidencia de IA, herramientas y zona horaria.</p>
-          <p class="step-note">Gratis durante el piloto</p>
-        </div>
-        <div class="step">
-          <h3>Pide una presentación</h3>
-          <p>Elige un perfil y cuéntanos del rol. Lo confirmamos con la persona y, si acepta, los presentamos por correo.</p>
-          <p class="step-note">NEWAVE hace cada presentación</p>
-        </div>
-    </div>
-  </section>
-
-  <!-- COMPARACIÓN -->
-  <section class="paper">
-    <div class="grid">
-      <div class="paper-head">
-        <h2>Las otras agencias filtran. Nosotros certificamos.</h2>
-        <p>Las preguntas que realmente le importan a los empleadores.</p>
-      </div>
-      <div class="table-wrap">
-        <table class="compare">
-          <thead><tr><td></td><th scope="col" class="col-hire">NEWAVE HIRE</th><th scope="col">Otras Agencias</th><th scope="col">Plataformas Freelance</th></tr></thead>
+  <!-- COMPARISON -->
+  <section class="comparison-section">
+    <div class="comparison-inner">
+      <h2 data-animate data-delay="1">Las otras agencias filtran. <br>Nosotros certificamos.</h2>
+      <p class="comparison-sub" data-animate data-delay="2">Las preguntas que realmente le importan a los empleadores.</p>
+      <div style="overflow-x: auto;">
+        <table class="comparison-table" data-animate data-delay="3">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-hire">NEWAVE HIRE</th>
+              <th>Otras Agencias</th>
+              <th>Plataformas Freelance</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><th scope="row">El candidato fue entrenado antes de aplicar</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Sí"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
-            <tr><th scope="row">Tiene certificación en IA</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Sí"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
-            <tr><th scope="row">Fue evaluado en comunicación asíncrona</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Sí"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
-            <tr><th scope="row">Inglés verificado y evidencia de IA en cada perfil</th><td class="col-hire"><span class="mark-yes" role="img" aria-label="Sí"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td><td><span class="mark-no" role="img" aria-label="No"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span></td></tr>
+            <tr>
+              <td>El candidato fue entrenado antes de aplicar</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Sí"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>Tiene certificación en IA</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Sí"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>Fue evaluado en comunicación asíncrona</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Sí"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>Inglés verificado y evidencia de IA en cada perfil</td>
+              <td class="col-hire"><span class="check-yes" role="img" aria-label="Sí"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+              <td><span class="check-no" role="img" aria-label="No"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- SOCIO -->
+  <!-- ANTHROPIC PARTNER -->
   <!-- TODO-CONFIRM-2: confirm the Anthropic partnership wording ("Official partner", "Claude Partner Network", "Anthropic Academy certified") is accurate before keeping this block. -->
-  <section class="grid partner">
-    <p class="partner-label">Socio oficial</p>
-    <div class="partner-body">
-      <p class="partner-name">Anthropic · Claude Partner Network</p>
-      <p>Candidatos certificados por Anthropic Academy. Nuestros candidatos son entrenados y certificados a través del programa oficial de Anthropic Academy.</p>
+  <section class="partner-section">
+    <div class="partner-inner">
+      <span class="partner-label">Socio oficial</span>
+      <div class="partner-divider"></div>
+      <div class="partner-badge" data-animate>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13.5 2L4 13h7l-1 9 10-11h-7l1.5-9z" fill="currentColor" opacity="0.9"/></svg>
+        <div>
+          <span class="partner-badge-text">Anthropic · Claude Partner Network</span>
+          <span class="partner-badge-sub">Candidatos certificados por Anthropic Academy</span>
+        </div>
+      </div>
+      <div class="partner-divider"></div>
+      <span class="partner-label" style="max-width: 280px; text-align: center;">Nuestros candidatos son entrenados y certificados a través del programa oficial de Anthropic Academy</span>
     </div>
   </section>
 
-  <!-- PREGUNTAS -->
-  <section class="grid faq">
-    <div class="faq-head">
-      <h2>Preguntas frecuentes.</h2>
-      <p>Todo lo que necesitas saber antes de enviar tu solicitud.</p>
-    </div>
-    <div class="faq-cols">
-          <div class="qa">
-            <h3>Qué es la Certificación NEWAVE</h3>
-            <p>Cada candidato en nuestro pipeline completa un programa de entrenamiento estructurado y pasa una evaluación de cinco pilares: dominio del inglés, preparación en IA, entrenamiento para trabajo remoto, comunicación asíncrona y dominio de herramientas. Solo los candidatos que cumplen nuestro umbral en los cinco pilares reciben la credencial NEWAVE Certificado.</p>
-          </div>
-          <div class="qa">
-            <h3>En qué se diferencia de otras agencias</h3>
-            <p>La mayoría de las agencias buscan candidatos y evalúan habilidades. Cada perfil NEWAVE viene de NEWAVE Academy, donde los miembros se preparan para el trabajo remoto, y validamos inglés e IA antes de que un reclutador vea el perfil.</p>
-          </div>
-          <!-- TODO-CONFIRM-2: answer below mentions the Anthropic Academy program. -->
-          <div class="qa">
-            <h3>Qué significa IA-ready</h3>
-            <p>Nuestros candidatos han completado certificaciones a través del programa Anthropic Academy. Saben usar herramientas de IA para automatizar tareas, construir flujos de trabajo y aumentar su productividad. Para los empleadores, esto significa contratar a alguien que opera a un nivel diferente desde el primer día.</p>
-          </div>
-          <div class="qa">
-            <h3>Cómo funciona una presentación</h3>
-            <p>Pides el contacto desde un perfil y nos cuentas del rol. Lo confirmamos con la persona. Si acepta, los presentamos por correo. Los reclutadores no contactan directo a los candidatos.</p>
-          </div>
-          <div class="qa">
-            <h3>Cómo evaluamos a los candidatos</h3>
-            <p>Cada candidato en nuestra red pasa por nuestro programa completo de coaching, donde los entrenamos para trabajar de forma remota a nivel profesional: comunicación, flujos de trabajo asíncrono, gestión del tiempo y expectativas del cliente. Cuando llegan contigo, ya son el profesional remoto ideal para tu empresa.</p>
-          </div>
-          <div class="qa">
-            <h3>Qué roles hay en el piloto</h3>
-            <p>Roles de negocio y operaciones, como Customer Success, Estrategia de IA, Growth, Operaciones, Ventas, Asistentes Ejecutivos, Gestión de Proyectos y Finanzas. Si buscas otro rol, cuéntanos en el formulario.</p>
-          </div>
-          <div class="qa">
-            <h3>Cuánto cuesta</h3>
-            <p>El piloto es gratis para reclutadores y empresas. Los candidatos nunca pagan.</p>
-          </div>
-          <div class="qa">
-            <h3>Nómina y cumplimiento legal</h3>
-            <p>Las condiciones de contratación, nómina y cumplimiento se acuerdan entre tú y la persona. NEWAVE hace la presentación.</p>
-          </div>
-          <div class="qa">
-            <h3>Quiénes son los profesionales</h3>
-            <p>Miembros de NEWAVE Academy que pidieron ser considerados y aceptaron compartir su perfil. Los nombres son visibles. Los datos de contacto se quedan con NEWAVE hasta la presentación.</p>
-          </div>
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-header" data-animate>
+        <h2>Preguntas frecuentes.</h2>
+        <p>Todo lo que necesitas saber antes de enviar tu solicitud.</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Qué es la Certificación NEWAVE
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Cada candidato en nuestro pipeline completa un programa de entrenamiento estructurado y pasa una evaluación de cinco pilares: dominio del inglés, preparación en IA, entrenamiento para trabajo remoto, comunicación asíncrona y dominio de herramientas. Solo los candidatos que cumplen nuestro umbral en los cinco pilares reciben la credencial NEWAVE Certificado.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            En qué se diferencia de otras agencias
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">La mayoría de las agencias buscan candidatos y evalúan habilidades. Cada perfil NEWAVE viene de NEWAVE Academy, donde los miembros se preparan para el trabajo remoto, y validamos inglés e IA antes de que un reclutador vea el perfil.</div>
+        </div>
+
+        <!-- TODO-CONFIRM-2: answer below mentions the Anthropic Academy program. -->
+        <div class="faq-item">
+          <button class="faq-q">
+            Qué significa IA-ready
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Nuestros candidatos han completado certificaciones a través del programa Anthropic Academy. Saben usar herramientas de IA para automatizar tareas, construir flujos de trabajo y aumentar su productividad. Para los empleadores, esto significa contratar a alguien que opera a un nivel diferente desde el primer día.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Cómo funciona una presentación
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Pides el contacto desde un perfil y nos cuentas del rol. Lo confirmamos con la persona. Si acepta, los presentamos por correo. Los reclutadores no contactan directo a los candidatos.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Cómo evaluamos a los candidatos
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Cada candidato en nuestra red pasa por nuestro programa completo de coaching, donde los entrenamos para trabajar de forma remota a nivel profesional: comunicación, flujos de trabajo asíncrono, gestión del tiempo y expectativas del cliente. Cuando llegan contigo, ya son el profesional remoto ideal para tu empresa.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Qué roles hay en el piloto
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Roles de negocio y operaciones, como Customer Success, Estrategia de IA, Growth, Operaciones, Ventas, Asistentes Ejecutivos, Gestión de Proyectos y Finanzas. Si buscas otro rol, cuéntanos en el formulario.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Cuánto cuesta
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">El piloto es gratis para reclutadores y empresas. Los candidatos nunca pagan.</div>
+        </div>
+
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Nómina y cumplimiento legal
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Las condiciones de contratación, nómina y cumplimiento se acuerdan entre tú y la persona. NEWAVE hace la presentación.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Quiénes son los profesionales
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Miembros de NEWAVE Academy que pidieron ser considerados y aceptaron compartir su perfil. Los nombres son visibles. Los datos de contacto se quedan con NEWAVE hasta la presentación.</div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- CIERRE -->
-  <section class="close" id="contact">
-    <div class="grid">
-      <div class="close-text">
-        <h2>Menos pasos de filtro. Empieza con el piloto.</h2>
-        <p>Cuéntanos quién eres y qué roles contratas. Revisamos cada solicitud y te respondemos por correo.</p>
-        <a href="/empezar/" class="btn btn-dark">Crear cuenta →</a>
-        <p class="close-note">Piloto gratuito · Sin compromiso</p>
-        <p class="close-note">Si ya tienes cuenta, <a href="/login/">inicia sesión</a></p>
-      </div>
-      <div class="close-faces" aria-hidden="true">
-        <img src="images/roster/customer-success.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/diana.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/growth.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/operations.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/pamela.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <img src="images/roster/customer1.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" />
+  <!-- FORMULARIO -->
+  <section class="form-section cta-field" id="contact">
+    <div class="form-inner">
+      <div class="form-head">
+        <h2 data-animate data-delay="1">Menos pasos de filtro. <br>Empieza con el piloto.</h2>
+        <p data-animate data-delay="2">Cuéntanos quién eres y qué roles contratas. Revisamos cada solicitud y te respondemos por correo.</p>
+        <a href="/empezar/" class="btn-primary btn-large" data-animate data-delay="3">Crear cuenta →</a>
+        <span class="form-note">Piloto gratuito · Sin compromiso</span>
+        <span class="form-note">Si ya tienes cuenta, <a href="/login/" class="footer-email">inicia sesión</a></span>
       </div>
     </div>
   </section>
 
-  </main>
-
-  <!-- PIE: el contacto es el titular -->
-  <footer class="foot">
-    <div class="grid foot-top">
-      <div class="foot-brand">
-        <img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" width="1476" height="208" loading="lazy" decoding="async" />
-        <p>Talento remoto pre-filtrado de Latinoamérica.</p>
-      </div>
-      <div class="foot-links">
-          <p class="foot-label">Más</p>
-          <a href="https://newaveacademy.com" target="_blank" rel="noopener">NEWAVE Academy</a>
-          <a href="/privacy/">Aviso de privacidad</a>
-          <a href="/terms/">Términos del piloto</a>
-          <a href="/aiready/">Para miembros NEWAVE</a>
-      </div>
-      <div class="foot-social">
-        <p class="foot-label">Síguenos</p>
-        <div class="footer-social-icons">
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" class="footer-logo-img" width="1476" height="208" loading="lazy" decoding="async" />
+          <p class="footer-tag">Talento remoto pre-filtrado de Latinoamérica.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-col-label">Contacto</span>
+            <!-- TODO-CONFIRM-5: confirm contact address. -->
+            <a href="mailto:hello@nwave.co" class="footer-email">hello@nwave.co</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-label">Más</span>
+            <a href="https://newaveacademy.com" target="_blank" rel="noopener" class="footer-email">NEWAVE Academy</a>
+            <a href="/privacy/" class="footer-email">Aviso de privacidad</a>
+            <a href="/terms/" class="footer-email">Términos del piloto</a>
+            <a href="/aiready/" class="footer-email">Para miembros NEWAVE</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-label">Síguenos</span>
+            <div class="footer-social-icons">
               <a href="https://www.instagram.com/newave.academy/" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Instagram">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               </a>
@@ -543,18 +1087,51 @@
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               </a>
             </div>
+          </div>
+        </div>
+      </div>
+      <img src="images/nwhirelogofooter.png" alt="" aria-hidden="true" class="footer-giant" width="1476" height="208" loading="lazy" decoding="async" />
+      <div class="footer-bottom">
+        <span class="copyright">© 2026 NEWAVE HIRE. Todos los derechos reservados.</span>
       </div>
     </div>
-    <div class="foot-contact">
-      <p class="foot-label">Contacto</p>
-      <!-- TODO-CONFIRM-5: confirm contact address. -->
-      <a href="mailto:hello@nwave.co" class="foot-email">hello<wbr>@nwave.co</a>
-    </div>
-    <div class="foot-meta">
-      <span>© 2026 NEWAVE HIRE. Todos los derechos reservados.</span>
-      <a href="#main">Volver arriba ↑</a>
-    </div>
   </footer>
+
+  <script>
+
+    /* Nav scroll hide */
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      const y = window.scrollY;
+      nav.style.transform = y > lastY && y > 80 ? 'translateY(-100%)' : 'translateY(0)';
+      lastY = y;
+    });
+
+    /* Scroll animations */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    // Salvaguarda: sin IntersectionObserver, mostramos todo en vez de dejarlo invisible
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-animate]').forEach(el => el.classList.add('visible'));
+    }
+
+    /* FAQ accordion */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+
+  </script>
 
   <script src="landing.js" defer></script>
 </body>
