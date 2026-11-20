@@ -17,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # privacy/ y terms/ (borradores) y start/ y empezar/ (formulario) llevan noindex: fuera del sitemap hasta que se aprueben
       - name: Build sitemap.xml
         shell: bash
         run: |
@@ -33,7 +34,7 @@ jobs:
                 loc="$BASE/$rel"
               fi
               echo "  <url><loc>$loc</loc><lastmod>$TODAY</lastmod></url>"
-            done < <(find . -type f -name '*.html' -not -path './.git/*' -not -path './node_modules/*' | sort)
+            done < <(find . -type f -name '*.html' -not -path './.git/*' -not -path './node_modules/*' -not -path './privacy/*' -not -path './terms/*' -not -path './start/*' -not -path './empezar/*' | sort)
             echo '</urlset>'
           } > sitemap.xml
 

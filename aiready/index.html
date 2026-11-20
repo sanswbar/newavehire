@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Ready — NEWAVƎ HIRE</title>
-  <meta name="description" content="¿Ya estás construyendo con AI? Cuéntanos qué estás haciendo." />
+  <title>Haz visible tu perfil | NEWAVE Hire</title>
+  <meta name="description" content="Miembros de NEWAVE Academy: sube tu CV y haz visible tu perfil con reclutadores del piloto NEWAVE Hire." />
+  <link rel="canonical" href="https://newavehire.com/aiready/" />
+  <meta property="og:title" content="Haz visible tu perfil | NEWAVE Hire" />
+  <meta property="og:description" content="Miembros de NEWAVE Academy: sube tu CV y haz visible tu perfil con reclutadores del piloto NEWAVE Hire." />
+  <meta property="og:url" content="https://newavehire.com/aiready/" />
+  <meta property="og:type" content="website" />
+  <!-- TODO-CONFIRM-8: og:image temporal. Reemplazar por una imagen de 1200x630 si Santiago la provee. -->
+  <meta property="og:image" content="https://newavehire.com/images/HIREB1.png" />
+  <meta property="og:locale" content="es_MX" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../images/NEWAVEISO.png" />
+  <link rel="icon" type="image/png" href="/images/NEWAVEISO.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -18,7 +27,7 @@
       --bg-3:      #1a1f26;
       --white:     #ffffff;
       --muted:     #B7B6B6;
-      --subtle:    rgba(183, 182, 182, 0.35);
+      --subtle:    rgba(183, 182, 182, 0.72);
       --orange:    #FC7342;
       --orange-h:  #d95b28;
       --border:    rgba(183, 182, 182, 0.1);
@@ -72,11 +81,11 @@
       border: 1.5px solid var(--orange);
       color: var(--orange);
       font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 0.35rem 0.9rem;
+      padding: 0.5rem 1rem;
       border-radius: 100px;
       margin-bottom: 1.75rem;
     }
@@ -156,10 +165,10 @@
     }
     label .tag {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       color: var(--subtle);
       margin-left: 0.3rem;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.02em;
     }
 
     input, textarea, select {
@@ -301,6 +310,7 @@
       font-family: var(--mono);
       letter-spacing: 0.02em;
     }
+    #form-error { color: var(--orange); font-size: 0.85rem; }
 
     /* ── SUCCESS STATE ── */
     .success-state {
@@ -331,13 +341,16 @@
       body { padding-bottom: 3rem; }
       .form-card { border-radius: 20px; }
     }
+
+    /* Casillas de consentimiento: reusan .radio-option; el input general (width 100%, appearance none) las rompería */
+    .radio-option input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; padding: 0; margin: 0; -webkit-appearance: auto; appearance: auto; accent-color: var(--orange); cursor: pointer; }
   </style>
 </head>
 <body>
 
   <!-- LOGO -->
   <a href="https://newavehire.com" class="logo">
-    <img src="../images/logo.svg" alt="NEWAVE HIRE">
+    <img src="../images/logo.svg" alt="NEWAVE HIRE" width="530" height="116">
   </a>
 
   <!-- BADGE -->
@@ -348,11 +361,11 @@
 
   <!-- HEADLINE -->
   <div class="headline">
-    <h1>¿Ya estás<br><span>construyendo con AI?</span></h1>
+    <h1>Haz visible tu perfil<br><span>con reclutadores.</span></h1>
   </div>
 
   <p class="subtext">
-    Queremos aprender cómo estás usando IA y lo que has construido hasta ahora para conectarte con las mejores oportunidades.
+    Si eres miembro de NEWAVE Academy, sube tu CV y cuéntanos qué construyes con IA. Revisamos tu perfil y, con tu permiso, lo mostramos a reclutadores del piloto en Estados Unidos, Canadá y México. Ellos no te contactan directo: NEWAVE hace cada presentación y tú decides.
   </p>
 
   <!-- FORM CARD -->
@@ -374,6 +387,19 @@
         />
       </div>
 
+      <!-- Email -->
+      <div class="field">
+        <label for="email">Email <span class="tag">el mismo que usas en Skool</span></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="tu@email.com"
+          required
+          autocomplete="email"
+        />
+      </div>
+
       <!-- WhatsApp -->
       <div class="field">
         <label for="whatsapp">WhatsApp</label>
@@ -387,53 +413,94 @@
         />
       </div>
 
-      <!-- Qué estás construyendo -->
+      <!-- LinkedIn -->
       <div class="field">
-        <label for="building">¿Qué estás construyendo con AI ahorita?</label>
-        <textarea
-          id="building"
-          name="building"
-          placeholder="Ej. Un agente de WhatsApp para ventas, automatizaciones con n8n, un SaaS con Claude..."
-          required
-        ></textarea>
-      </div>
-
-      <!-- Demo link / Loom -->
-      <div class="field">
-        <label for="demo">¿Tienes un link o video Loom para compartir? <span class="tag">opcional</span></label>
+        <label for="linkedin">LinkedIn</label>
         <input
           type="url"
-          id="demo"
-          name="demo"
-          placeholder="https://loom.com/share/... o tu proyecto"
+          id="linkedin"
+          name="linkedin"
+          placeholder="https://linkedin.com/in/tu-perfil"
+          required
         />
+      </div>
+
+      <!-- País -->
+      <div class="field">
+        <label for="pais">País</label>
+        <div class="select-wrap">
+          <select id="pais" name="pais" required>
+            <option value="" disabled selected>Selecciona tu país</option>
+            <option value="México">México</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Perú">Perú</option>
+            <option value="Chile">Chile</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
       </div>
 
       <div class="divider"></div>
 
-      <!-- Área de trabajo -->
+      <!-- Rol que buscas -->
       <div class="field">
-        <label for="area">¿En qué área trabajas o quieres trabajar? <span class="tag">para Hire</span></label>
+        <label for="area">Rol que buscas <span class="tag">para Hire</span></label>
         <div class="select-wrap">
           <select id="area" name="area" required>
-            <option value="" disabled selected>Selecciona un área</option>
-            <option value="engineering">Ingeniería / Desarrollo</option>
-            <option value="product">Producto / PM</option>
-            <option value="design">Diseño / UX</option>
-            <option value="data">Datos / Analítica</option>
-            <option value="marketing">Marketing / Growth</option>
-            <option value="sales">Ventas / BizDev</option>
-            <option value="ops">Operaciones</option>
-            <option value="finance">Finanzas / Contabilidad</option>
-            <option value="customer">Customer Success / Soporte</option>
-            <option value="other">Otra</option>
+            <option value="" disabled selected>Selecciona un rol</option>
+            <option value="Customer Success">Customer Success</option>
+            <option value="Estrategia de IA">Estrategia de IA</option>
+            <option value="Growth / Marketing">Growth / Marketing</option>
+            <option value="Operaciones">Operaciones</option>
+            <option value="Ventas / SDR">Ventas / SDR</option>
+            <option value="Asistente Ejecutivo">Asistente Ejecutivo</option>
+            <option value="Gestión de Proyectos">Gestión de Proyectos</option>
+            <option value="Finanzas / Contabilidad">Finanzas / Contabilidad</option>
+            <option value="Customer Service">Customer Service</option>
+            <option value="Ingeniería / Desarrollo">Ingeniería / Desarrollo</option>
+            <option value="Diseño / UX">Diseño / UX</option>
+            <option value="Datos / Analítica">Datos / Analítica</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Años de experiencia -->
+      <div class="field">
+        <label for="anios">Años de experiencia</label>
+        <input
+          type="number"
+          id="anios"
+          name="anios"
+          placeholder="Ej. 3"
+          min="0"
+          max="60"
+          step="1"
+          inputmode="numeric"
+          required
+        />
+      </div>
+
+      <!-- Nivel de inglés -->
+      <div class="field">
+        <label for="ingles">Nivel de inglés</label>
+        <div class="select-wrap">
+          <select id="ingles" name="ingles" required>
+            <option value="" disabled selected>Selecciona tu nivel</option>
+            <option value="A2">A2</option>
+            <option value="B1">B1</option>
+            <option value="B2">B2</option>
+            <option value="B2+">B2+</option>
+            <option value="C1">C1</option>
+            <option value="C2">C2</option>
           </select>
         </div>
       </div>
 
       <!-- Experiencia en tech -->
       <div class="field">
-        <label>¿Tienes experiencia laboral en tech o estás en transición? <span class="tag">para segmentar</span></label>
+        <label>Tu experiencia en tech <span class="tag">para segmentar</span></label>
         <div class="radio-group">
           <label class="radio-option">
             <input type="radio" name="experiencia" value="senior" required />
@@ -454,70 +521,205 @@
         </div>
       </div>
 
+      <div class="divider"></div>
+
+      <!-- Qué estás construyendo -->
+      <div class="field">
+        <label for="building">Qué estás construyendo con IA</label>
+        <textarea
+          id="building"
+          name="building"
+          placeholder="Ej. Un agente de WhatsApp para ventas, automatizaciones con n8n, un SaaS con Claude..."
+          required
+        ></textarea>
+      </div>
+
+      <!-- Demo link / Loom -->
+      <div class="field">
+        <label for="demo">Link o video Loom de tu trabajo con IA <span class="tag">opcional</span></label>
+        <input
+          type="url"
+          id="demo"
+          name="demo"
+          placeholder="https://loom.com/share/... o tu proyecto"
+        />
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- CV -->
+      <div class="field">
+        <label for="cv">CV actualizado (PDF, máx. 5 MB)</label>
+        <input
+          type="file"
+          id="cv"
+          name="cv"
+          accept="application/pdf"
+        />
+      </div>
+
+      <div class="field">
+        <label for="cv_link">O comparte un link a tu CV <span class="tag">Google Drive o Dropbox con acceso por link</span></label>
+        <input
+          type="url"
+          id="cv_link"
+          name="cv_link"
+          placeholder="https://drive.google.com/..."
+        />
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Consentimientos -->
+      <div class="field">
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="checkbox" name="acepta_aviso" value="yes" required />
+            <span>Leí y acepto el <a href="/privacy/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Aviso de Privacidad</a>.</span>
+          </label>
+          <label class="radio-option">
+            <input type="checkbox" name="acepta_compartir" value="yes" required />
+            <span>Autorizo a NEWAVE a mostrar mi nombre, perfil, CV y LinkedIn a reclutadores aprobados en México, Estados Unidos, Canadá y otros países, solo para oportunidades laborales.</span>
+          </label>
+          <label class="radio-option">
+            <input type="checkbox" name="acepta_whatsapp" value="yes" />
+            <span>Acepto recibir avisos de NEWAVE Hire por WhatsApp.</span>
+          </label>
+        </div>
+      </div>
+
+      <input type="hidden" name="version_aviso" value="privacy-v0-draft" />
+      <input type="text" name="website_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+
       <button type="submit" class="btn-submit" id="submit-btn">
         Enviar mi perfil →
       </button>
 
-      <p class="trust">Tu info está segura. Solo la usamos para conectarte con oportunidades.</p>
+      <p class="trust" id="form-error" role="alert" hidden>No pudimos enviar tu perfil. Revisa tu conexión e intenta de nuevo.</p>
+
+      <p class="trust">Usamos tus datos según nuestro <a href="/privacy/" style="color: inherit; text-decoration: underline;">Aviso de Privacidad</a>. Puedes pedir que quitemos tu perfil cuando quieras. NEWAVE Hire no tiene costo para candidatos.</p>
     </form>
 
     <!-- SUCCESS STATE -->
     <div class="success-state" id="success-state">
       <div class="success-icon">✓</div>
       <h2>Perfil recibido</h2>
-      <p>Te contactamos pronto con oportunidades que hagan sentido para lo que estás construyendo.</p>
+      <p>Gracias. Revisamos tu perfil y te escribimos por correo. Participar no garantiza entrevistas ni empleo.</p>
     </div>
   </div>
 
   <script>
-    // Reemplaza esta URL con la de tu Apps Script desplegado
     const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyCB2GQgDgX9k_wFYTdDvT28GiCYGjMBXHC0rVr0XOSCCturZnR4mKMkQMJ4LT8E0BBLw/exec';
+    const MAX_CV_BYTES = 5 * 1024 * 1024;
 
     const form = document.getElementById('aiready-form');
     const successState = document.getElementById('success-state');
     const submitBtn = document.getElementById('submit-btn');
+    const formError = document.getElementById('form-error');
+    const cvInput = document.getElementById('cv');
+    const cvLinkInput = document.getElementById('cv_link');
+    const submitLabel = submitBtn.textContent;
 
-    form.addEventListener('submit', function(e) {
+    const MSG = {
+      network: 'No pudimos enviar tu perfil. Revisa tu conexión e intenta de nuevo.',
+      validation: 'Revisa que todos los campos obligatorios estén completos e intenta de nuevo.',
+      cvMissing: 'Sube tu CV en PDF o comparte un link a tu CV.',
+      cvType: 'El CV debe ser un archivo PDF.',
+      cvSize: 'El CV pesa más de 5 MB. Sube un PDF más ligero o comparte un link.'
+    };
+
+    const FIELDS = ['nombre', 'email', 'whatsapp', 'linkedin', 'pais', 'area', 'anios', 'ingles',
+                    'experiencia', 'building', 'demo', 'cv_link', 'version_aviso', 'website_hp'];
+    const CHECKBOXES = ['acepta_aviso', 'acepta_compartir', 'acepta_whatsapp'];
+
+    function showError(msg) {
+      formError.textContent = msg;
+      formError.hidden = false;
+    }
+
+    function resetButton() {
+      submitBtn.textContent = submitLabel;
+      submitBtn.disabled = false;
+    }
+
+    function cvProblem() {
+      const file = cvInput.files && cvInput.files[0];
+      if (!file) return cvLinkInput.value.trim() ? null : MSG.cvMissing;
+      if (file.type !== 'application/pdf') return MSG.cvType;
+      if (file.size > MAX_CV_BYTES) return MSG.cvSize;
+      return null;
+    }
+
+    function readAsBase64(file) {
+      return new Promise(function(resolve, reject) {
+        const reader = new FileReader();
+        reader.onload = function() {
+          const result = String(reader.result || '');
+          resolve(result.slice(result.indexOf(',') + 1));
+        };
+        reader.onerror = function() { reject(reader.error); };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    cvInput.addEventListener('change', function() {
+      const problem = cvProblem();
+      if (problem && problem !== MSG.cvMissing) showError(problem);
+      else formError.hidden = true;
+    });
+
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
+      formError.hidden = true;
+
+      const problem = cvProblem();
+      if (problem) { showError(problem); return; }
+
       submitBtn.textContent = 'Enviando...';
       submitBtn.disabled = true;
 
-      // Usamos iframe oculto para que Apps Script no redirija la página
-      const iframe = document.createElement('iframe');
-      iframe.name = 'hidden_iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-
-      const tempForm = document.createElement('form');
-      tempForm.method = 'POST';
-      tempForm.action = SHEET_URL;
-      tempForm.target = 'hidden_iframe';
-
-      const fields = ['nombre', 'whatsapp', 'building', 'demo', 'area', 'experiencia'];
-      fields.forEach(function(name) {
+      const params = new URLSearchParams();
+      FIELDS.forEach(function(name) {
         const el = form.elements[name];
         if (!el) return;
-        const val = el.type === 'radio'
-          ? (form.querySelector('input[name="' + name + '"]:checked') || {}).value || ''
+        const val = (el instanceof RadioNodeList || el.type === 'radio')
+          ? ((form.querySelector('input[name="' + name + '"]:checked') || {}).value || '')
           : el.value;
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = val;
-        tempForm.appendChild(input);
+        params.append(name, val);
+      });
+      CHECKBOXES.forEach(function(name) {
+        const el = form.elements[name];
+        params.append(name, el && el.checked ? 'yes' : '');
       });
 
-      document.body.appendChild(tempForm);
+      const controller = new AbortController();
+      const timer = setTimeout(function() { controller.abort(); }, 15000);
 
-      iframe.onload = function() {
-        form.style.display = 'none';
-        successState.style.display = 'block';
-        document.getElementById('form-title').textContent = 'Recibimos tu respuesta.';
-        document.body.removeChild(tempForm);
-        document.body.removeChild(iframe);
-      };
+      try {
+        const file = cvInput.files && cvInput.files[0];
+        if (file) {
+          params.append('cv_base64', await readAsBase64(file));
+          params.append('cv_nombre', file.name);
+          params.append('cv_tipo', file.type);
+        }
 
-      tempForm.submit();
+        const response = await fetch(SHEET_URL, { method: 'POST', body: params, signal: controller.signal });
+        const data = await response.json();
+
+        if (data && data.ok === true) {
+          form.style.display = 'none';
+          successState.style.display = 'block';
+          document.getElementById('form-title').textContent = 'Recibimos tu respuesta.';
+          return;
+        }
+        resetButton();
+        showError(data && data.error === 'validation' ? MSG.validation : MSG.network);
+      } catch (err) {
+        resetButton();
+        showError(MSG.network);
+      } finally {
+        clearTimeout(timer);
+      }
     });
 
     // WhatsApp: auto-format
