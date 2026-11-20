@@ -34,7 +34,7 @@ jobs:
                 loc="$BASE/$rel"
               fi
               echo "  <url><loc>$loc</loc><lastmod>$TODAY</lastmod></url>"
-            done < <(find . -type f -name '*.html' -not -path './.git/*' -not -path './node_modules/*' -not -path './privacy/*' -not -path './terms/*' -not -path './start/*' -not -path './empezar/*' | sort)
+            done < <(find . -type f -name '*.html' -not -path './.git/*' -not -path './node_modules/*' -not -path './privacy/*' -not -path './terms/*' -not -path './start/*' -not -path './empezar/*' -not -path './login/*' | sort)
             echo '</urlset>'
           } > sitemap.xml
 

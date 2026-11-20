@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in | NEWAVE Hire</title>
+  <meta name="description" content="Log in to NEWAVE Hire." />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://newavehire.com/login/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/images/NEWAVEISO.png" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /* TODO-CONFIRM-9: página temporal hasta que la app tenga su propio inicio de sesión. Cuando exista, esta página puede redirigir ahí. */
+    .login-shell { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3.5rem; padding: 7rem 1.25rem 4rem; }
+    .login-block { width: 100%; max-width: 520px; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; text-align: center; }
+    .login-block h1, .login-block h2 { font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    .login-block p { color: var(--muted); line-height: 1.7; }
+    .login-block .btn-primary { margin-top: 0.5rem; }
+    .login-sep { width: 60px; height: 1px; background: var(--border); }
+    .login-contact { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="logo">
+      <img src="/images/nwhirelogofooter.png" alt="NEWAVƎ HIRE" class="logo-img" width="1476" height="208" />
+    </a>
+  </nav>
+
+  <main class="login-shell">
+    <section class="login-block">
+      <span class="mono-tag">Log in</span>
+      <h1>The NEWAVE Hire platform is in its pilot.</h1>
+      <p>When we approve your recruiter account, we email you the link to sign in. If you don't have an account yet, create one first.</p>
+      <a href="/start/" class="btn-primary btn-large">Create account →</a>
+    </section>
+
+    <div class="login-sep" aria-hidden="true"></div>
+
+    <section class="login-block" lang="es">
+      <span class="mono-tag">Iniciar sesión</span>
+      <h2>La plataforma de NEWAVE Hire está en piloto.</h2>
+      <p>Cuando aprobamos tu cuenta de reclutador, te mandamos por correo el enlace para entrar. Si todavía no tienes cuenta, créala primero.</p>
+      <a href="/empezar/" class="btn-primary btn-large">Crear cuenta →</a>
+    </section>
+
+    <!-- TODO-CONFIRM-5: confirm contact address. -->
+    <p class="login-contact">hello@nwave.co</p>
+  </main>
+
+</body>
+</html>

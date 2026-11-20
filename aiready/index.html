@@ -706,7 +706,8 @@
         const response = await fetch(SHEET_URL, { method: 'POST', body: params, signal: controller.signal });
         const data = await response.json();
 
-        if (data && data.ok === true) {
+        // TEMPORAL: también acepta {result:'success'} del script viejo. Quitar cuando candidate-form.gs esté publicado.
+        if (data && (data.ok === true || data.result === 'success')) {
           form.style.display = 'none';
           successState.style.display = 'block';
           document.getElementById('form-title').textContent = 'Recibimos tu respuesta.';

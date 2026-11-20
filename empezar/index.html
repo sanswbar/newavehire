@@ -442,7 +442,8 @@
           .then(function (res) { return res.json(); })
           .then(function (data) {
             clearTimeout(timer);
-            if (!(data && data.ok === true)) return fail(data && data.fields);
+            // TEMPORAL: también acepta {result:'success'} del script viejo. Quitar cuando recruiter-form.gs esté publicado.
+            if (!(data && (data.ok === true || data.result === 'success'))) return fail(data && data.fields);
             if (APP_URL) { window.location.href = APP_URL; return; }
             form.style.display = 'none';
             document.getElementById('progressWrap').style.display = 'none';
