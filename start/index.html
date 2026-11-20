@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Request access | NEWAVE Hire</title>
-  <meta name="description" content="Request access to the NEWAVE Hire free pilot for recruiters." />
+  <title>Create account | NEWAVE Hire</title>
+  <meta name="description" content="Create your recruiter account for the NEWAVE Hire free pilot." />
   <meta name="robots" content="noindex" />
   <link rel="canonical" href="https://newavehire.com/start/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,6 +53,10 @@
     .start-success.visible { display: flex; }
     .start-success p { color: var(--muted); max-width: 420px; line-height: 1.7; }
     .start-success a { color: var(--orange); font-weight: 600; margin-top: 0.5rem; }
+    .nav-login { font-size: 0.82rem; font-weight: 600; color: var(--white); padding: 0.45rem 0.5rem; transition: opacity 0.2s; }
+    .nav-login:hover { opacity: 0.7; }
+    .start-login { text-align: center; font-size: 0.9rem; color: var(--muted); }
+    .start-login a { color: var(--orange); font-weight: 600; }
     .start-note { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; text-align: center; margin-top: 2rem; }
     @media (max-width: 640px) {
       .start-shell { padding-top: 5rem; }
@@ -69,6 +73,8 @@
     </a>
     <div class="nav-right">
       <a href="/empezar/" class="lang-toggle">ES</a>
+      <!-- TODO-CONFIRM-9: URL de inicio de sesión de la app. /login/ es temporal y hoy no existe. -->
+      <a href="/login/" class="nav-login">Log in</a>
     </div>
   </nav>
 
@@ -105,6 +111,7 @@
         <div class="nav-row">
           <button type="button" class="btn-primary btn-large" data-next="1">Continue →</button>
         </div>
+        <p class="start-login">Already have an account? <a href="/login/">Log in</a></p>
       </section>
       <section class="step" id="step-2" aria-labelledby="title-2">
         <h2 class="step-title" id="title-2" tabindex="-1">Your company</h2>
@@ -271,15 +278,15 @@
         <p class="field-error" id="formError" role="alert">Something went wrong. Please try again or write to hello@nwave.co</p>
         <div class="nav-row">
           <button type="button" class="btn-back" data-back="6">← Back</button>
-          <button type="submit" class="btn-primary btn-large" id="submitBtn">Send request →</button>
+          <button type="submit" class="btn-primary btn-large" id="submitBtn">Create account →</button>
         </div>
       </section>
     </form>
 
     <div class="start-success start-card" id="startSuccess" role="status">
       <div class="form-success-icon">✓</div>
-      <h2 class="step-title">Request received</h2>
-      <p>Thanks. We received your request. Our team will review it and reply by email.</p>
+      <h2 class="step-title">Account under review</h2>
+      <p>Thanks. We review every recruiter during the pilot and email you when your account is ready.</p>
       <a href="/">Back to NEWAVE Hire</a>
     </div>
 

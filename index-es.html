@@ -420,6 +420,10 @@
       .cert-pillar:last-child { grid-column: auto; }
     }
 
+    .nav-login { font-size: 0.82rem; font-weight: 600; color: var(--white); padding: 0.45rem 0.5rem; transition: opacity 0.2s; }
+    .nav-login:hover { opacity: 0.7; }
+    .nav-login, .nav-right .nav-cta { white-space: nowrap; }
+    @media (max-width: 480px) { .nav-login { display: none; } }
   </style>
   <noscript><style>[data-animate]{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
@@ -432,7 +436,9 @@
     </a>
     <div class="nav-right">
       <a href="index.html" class="lang-toggle">EN</a>
-      <a href="/empezar/" class="nav-cta">Solicitar acceso</a>
+      <!-- TODO-CONFIRM-9: URL de inicio de sesión de la app. /login/ es temporal y hoy no existe. -->
+      <a href="/login/" class="nav-login">Iniciar sesión</a>
+      <a href="/empezar/" class="nav-cta">Crear cuenta</a>
     </div>
   </nav>
 
@@ -452,8 +458,8 @@
         NEWAVE es la única plataforma que entrena, certifica y coloca profesionales remotos de LATAM.
       </p>
       <div class="hero-actions" data-animate data-delay="3">
-        <a href="/empezar/" class="btn-primary btn-large">Solicitar acceso al piloto →</a>
-        <a href="#certification" class="btn-ghost">Ver qué validamos</a>
+        <a href="/empezar/" class="btn-primary btn-large">Crear cuenta →</a>
+        <a href="/login/" class="btn-ghost">Iniciar sesión</a>
       </div>
     </div>
   </section>
@@ -502,7 +508,7 @@
         <h2>Las agencias encuentran personas.<br>No las preparan.</h2>
         <p>La mayoría de las agencias de staffing de LATAM buscan candidatos en LinkedIn, hacen un filtro rápido y te mandan un shortlist. El candidato se ve bien en papel. Luego llega la semana uno: luchan con la comunicación asíncrona, nunca usaron tus herramientas y necesitan dirección constante.</p>
         <p>El problema no es el talento. Es que nadie los preparó para trabajar como trabaja tu equipo. Eso es lo que hacemos diferente.</p>
-        <a href="/empezar/" class="btn-ghost">Solicitar acceso al piloto</a>
+        <a href="/empezar/" class="btn-ghost">Crear cuenta</a>
       </div>
       <div class="pain-right">
         <div class="pain-point" data-animate data-delay="1">
@@ -812,7 +818,7 @@
             <div class="step-line"></div>
           </div>
           <div class="step-content">
-            <h3>Solicita acceso</h3>
+            <h3>Crea tu cuenta</h3>
             <p>Cuéntanos quién eres y qué roles contratas. Revisamos a cada reclutador durante el piloto.</p>
             <span class="step-note step-note-time">~3 min para completarlo</span>
           </div>
@@ -1004,8 +1010,9 @@
         <span class="mono-tag" data-animate>Acceso al piloto</span>
         <h2 data-animate data-delay="1">Menos pasos de filtro.<br>Empieza con el piloto.</h2>
         <p data-animate data-delay="2">Cuéntanos quién eres y qué roles contratas. Revisamos cada solicitud y te respondemos por correo.</p>
-        <a href="/empezar/" class="btn-primary btn-large" data-animate data-delay="3">Solicitar acceso al piloto →</a>
+        <a href="/empezar/" class="btn-primary btn-large" data-animate data-delay="3">Crear cuenta →</a>
         <span class="form-note">Piloto gratuito · Sin compromiso</span>
+        <span class="form-note">Si ya tienes cuenta, <a href="/login/" class="footer-email">inicia sesión</a></span>
       </div>
     </div>
   </section>

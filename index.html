@@ -425,6 +425,10 @@
       .cert-pillar:last-child { grid-column: auto; }
     }
 
+    .nav-login { font-size: 0.82rem; font-weight: 600; color: var(--white); padding: 0.45rem 0.5rem; transition: opacity 0.2s; }
+    .nav-login:hover { opacity: 0.7; }
+    .nav-login, .nav-right .nav-cta { white-space: nowrap; }
+    @media (max-width: 480px) { .nav-login { display: none; } }
   </style>
   <noscript><style>[data-animate]{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
@@ -437,7 +441,9 @@
     </a>
     <div class="nav-right">
       <a href="index-es.html" class="lang-toggle">ES</a>
-      <a href="/start/" class="nav-cta">Request access</a>
+      <!-- TODO-CONFIRM-9: URL de inicio de sesión de la app. /login/ es temporal y hoy no existe. -->
+      <a href="/login/" class="nav-login">Log in</a>
+      <a href="/start/" class="nav-cta">Get started</a>
     </div>
   </nav>
 
@@ -457,8 +463,8 @@
         NEWAVE is the only platform that trains, certifies, and places LATAM remote professionals.
       </p>
       <div class="hero-actions" data-animate data-delay="3">
-        <a href="/start/" class="btn-primary btn-large">Request pilot access →</a>
-        <a href="#certification" class="btn-ghost">See what we validate</a>
+        <a href="/start/" class="btn-primary btn-large">Get started →</a>
+        <a href="/login/" class="btn-ghost">Log in</a>
       </div>
     </div>
   </section>
@@ -507,7 +513,7 @@
         <h2>Staffing agencies find people.<br>They don't prepare them.</h2>
         <p>Most LATAM staffing agencies pull candidates from LinkedIn, run a quick screen, and send you a shortlist. The candidate looks good on paper. Then week one happens: they struggle with async communication, they've never used your tools, and they need constant direction.</p>
         <p>The problem isn't the talent. It's that nobody prepared them to work the way your team works. That's what we do differently.</p>
-        <a href="/start/" class="btn-ghost">Request pilot access</a>
+        <a href="/start/" class="btn-ghost">Get started</a>
       </div>
       <div class="pain-right">
         <div class="pain-point" data-animate data-delay="1">
@@ -817,7 +823,7 @@
             <div class="step-line"></div>
           </div>
           <div class="step-content">
-            <h3>Request access</h3>
+            <h3>Create your account</h3>
             <p>Tell us who you are and the roles you hire for. We review each recruiter during the pilot.</p>
             <span class="step-note step-note-time">~3 min to complete</span>
           </div>
@@ -1009,8 +1015,9 @@
         <span class="mono-tag" data-animate>Pilot access</span>
         <h2 data-animate data-delay="1">Fewer screening steps.<br>Start with the pilot.</h2>
         <p data-animate data-delay="2">Tell us who you are and the roles you hire for. We review each request and reply by email.</p>
-        <a href="/start/" class="btn-primary btn-large" data-animate data-delay="3">Request pilot access →</a>
+        <a href="/start/" class="btn-primary btn-large" data-animate data-delay="3">Get started →</a>
         <span class="form-note">Free pilot · No commitment</span>
+        <span class="form-note">Already have an account? <a href="/login/" class="footer-email">Log in</a></span>
       </div>
     </div>
   </section>
