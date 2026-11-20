@@ -424,3 +424,64 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outlin
   .waves-a, .waves-b, .live-dot::after { animation: none; }
 }
 
+
+/* ── Menú hamburguesa ── */
+.menu-btn {
+  width: 44px; height: 44px; margin-left: 0.25rem;
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.2s;
+}
+.menu-btn:hover { background: rgba(255, 255, 255, 0.15); }
+.menu-btn span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform 0.35s var(--ease), opacity 0.2s; }
+.menu-open .menu-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-open .menu-btn span:nth-child(2) { opacity: 0; }
+.menu-open .menu-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu-open .nav { transform: none !important; }
+
+.menu-panel {
+  position: fixed; top: 56px; left: 0; right: 0; z-index: 99;
+  max-height: calc(100svh - 56px); overflow-y: auto;
+  background: var(--bg-2);
+  padding: clamp(2rem, 4vw, 3.5rem) var(--edge) clamp(2rem, 4vw, 3rem);
+  opacity: 0; visibility: hidden; transform: translateY(-12px);
+  transition: opacity 0.3s var(--ease), transform 0.4s var(--ease), visibility 0s linear 0.4s;
+}
+.menu-open .menu-panel { opacity: 1; visibility: visible; transform: none; transition: opacity 0.3s var(--ease), transform 0.4s var(--ease); }
+.menu-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 2.5rem; flex-wrap: wrap; }
+.menu-links { list-style: none; display: flex; flex-direction: column; gap: 0.15rem; }
+.menu-links a {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  font-size: clamp(1.75rem, 3.6vw, 3rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.2;
+  color: var(--ink); transition: color 0.2s;
+}
+.menu-links a span { font-size: 0.6em; color: var(--orange); opacity: 0; transform: translateX(-10px); transition: opacity 0.25s, transform 0.35s var(--ease); }
+.menu-links a:hover, .menu-links a:focus-visible { color: var(--orange); }
+.menu-links a:hover span, .menu-links a:focus-visible span { opacity: 1; transform: none; }
+.menu-links li { opacity: 0; transform: translateY(14px); transition: opacity 0.45s var(--ease), transform 0.55s var(--ease); }
+.menu-open .menu-links li { opacity: 1; transform: none; }
+.menu-open .menu-links li:nth-child(2) { transition-delay: 0.04s; }
+.menu-open .menu-links li:nth-child(3) { transition-delay: 0.08s; }
+.menu-open .menu-links li:nth-child(4) { transition-delay: 0.12s; }
+.menu-open .menu-links li:nth-child(5) { transition-delay: 0.16s; }
+.menu-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.menu-backdrop {
+  position: fixed; inset: 0; z-index: 98; background: rgba(0, 0, 0, 0.55);
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0s linear 0.3s;
+}
+.menu-open .menu-backdrop { opacity: 1; visibility: visible; transition: opacity 0.3s; }
+#certification, #roles, #how, #comparison, #faq { scroll-margin-top: 72px; }
+
+@media (max-width: 768px) {
+  .menu-panel { top: 52px; max-height: calc(100svh - 52px); }
+  .menu-btn { width: 40px; height: 40px; }
+  .nav-right { gap: 0.5rem; }
+}
+@media (max-width: 420px) {
+  .lang-toggle { padding: 0.3rem 0.2rem; }
+  .nav-cta { padding: 0.45rem 0.85rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-panel, .menu-links li, .menu-btn span { transition: none; }
+}

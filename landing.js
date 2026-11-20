@@ -85,3 +85,27 @@
     update();
   }
 })();
+
+/* Menú hamburguesa: abre y cierra con el botón, con Escape, tocando fuera o al elegir un tema */
+(function () {
+  var btn = document.querySelector('.menu-btn');
+  var panel = document.getElementById('site-menu');
+  var backdrop = document.querySelector('.menu-backdrop');
+  if (!btn || !panel) return;
+  var openLabel = btn.getAttribute('aria-label');
+  var closeLabel = btn.getAttribute('data-close-label');
+  function set(open, viaKeyboard) {
+    document.body.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? closeLabel : openLabel);
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (open && viaKeyboard) { var first = panel.querySelector('a'); if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 50); }
+  }
+  // Solo enfoca el primer tema si se abrió con teclado (detail 0); con el mouse no se marca nada
+  btn.addEventListener('click', function (e) { set(!document.body.classList.contains('menu-open'), e.detail === 0); });
+  if (backdrop) backdrop.addEventListener('click', function () { set(false); });
+  panel.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) { set(false); btn.focus(); }
+  });
+})();

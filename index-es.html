@@ -440,8 +440,27 @@
       <!-- TODO-CONFIRM-9: URL de inicio de sesión de la app. /login/ es temporal y hoy no existe. -->
       <a href="/login/" class="nav-login">Iniciar sesión</a>
       <a href="/empezar/" class="nav-cta">Crear cuenta</a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="Menú" data-close-label="Cerrar menú"><span></span><span></span><span></span></button>
     </div>
   </nav>
+
+  <!-- MENÚ -->
+  <div class="menu-panel" id="site-menu" aria-hidden="true">
+    <nav class="menu-inner" aria-label="Menú">
+      <ul class="menu-links">
+        <li><a href="#certification">Certificación<span aria-hidden="true">→</span></a></li>
+        <li><a href="#roles">Roles<span aria-hidden="true">→</span></a></li>
+        <li><a href="#how">Cómo funciona<span aria-hidden="true">→</span></a></li>
+        <li><a href="#comparison">Comparación<span aria-hidden="true">→</span></a></li>
+        <li><a href="#faq">Preguntas frecuentes<span aria-hidden="true">→</span></a></li>
+      </ul>
+      <div class="menu-actions">
+        <a href="/empezar/" class="hero-btn hero-btn-main">Crear cuenta<span class="hero-btn-arrow" aria-hidden="true">→</span></a>
+        <a href="/login/" class="hero-btn hero-btn-alt">Iniciar sesión</a>
+      </div>
+    </nav>
+  </div>
+  <div class="menu-backdrop" aria-hidden="true"></div>
 
   <!-- HERO -->
   <section class="hero">
@@ -729,7 +748,7 @@
   </div>
 
   <!-- TALENT SHOWCASE -->
-  <section class="talent-section">
+  <section class="talent-section" id="roles">
     <div class="talent-inner">
       <div class="talent-header" data-animate>
         <h2>Busca por rol.</h2>
@@ -984,7 +1003,7 @@
   </section>
 
   <!-- COMPARISON -->
-  <section class="comparison-section">
+  <section class="comparison-section" id="comparison">
     <div class="comparison-inner">
       <h2 data-animate data-delay="1">Las otras agencias filtran. <br>Nosotros certificamos.</h2>
       <p class="comparison-sub" data-animate data-delay="2">Las preguntas que realmente le importan a los empleadores.</p>
@@ -1048,7 +1067,7 @@
   </section>
 
   <!-- FAQ -->
-  <section class="faq-section">
+  <section class="faq-section" id="faq">
     <div class="faq-inner">
       <div class="faq-header" data-animate>
         <h2>Preguntas frecuentes.</h2>

@@ -445,8 +445,27 @@
       <!-- TODO-CONFIRM-9: URL de inicio de sesión de la app. /login/ es temporal y hoy no existe. -->
       <a href="/login/" class="nav-login">Log in</a>
       <a href="/start/" class="nav-cta">Get started</a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="Menu" data-close-label="Close menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
+
+  <!-- MENÚ -->
+  <div class="menu-panel" id="site-menu" aria-hidden="true">
+    <nav class="menu-inner" aria-label="Menu">
+      <ul class="menu-links">
+        <li><a href="#certification">Certification<span aria-hidden="true">→</span></a></li>
+        <li><a href="#roles">Roles<span aria-hidden="true">→</span></a></li>
+        <li><a href="#how">How it works<span aria-hidden="true">→</span></a></li>
+        <li><a href="#comparison">Comparison<span aria-hidden="true">→</span></a></li>
+        <li><a href="#faq">FAQ<span aria-hidden="true">→</span></a></li>
+      </ul>
+      <div class="menu-actions">
+        <a href="/start/" class="hero-btn hero-btn-main">Get started<span class="hero-btn-arrow" aria-hidden="true">→</span></a>
+        <a href="/login/" class="hero-btn hero-btn-alt">Log in</a>
+      </div>
+    </nav>
+  </div>
+  <div class="menu-backdrop" aria-hidden="true"></div>
 
   <!-- HERO -->
   <section class="hero">
@@ -734,7 +753,7 @@
   </div>
 
   <!-- TALENT SHOWCASE -->
-  <section class="talent-section">
+  <section class="talent-section" id="roles">
     <div class="talent-inner">
       <div class="talent-header" data-animate>
         <h2>Browse by role.</h2>
@@ -989,7 +1008,7 @@
   </section>
 
   <!-- COMPARISON -->
-  <section class="comparison-section">
+  <section class="comparison-section" id="comparison">
     <div class="comparison-inner">
       <h2 data-animate data-delay="1">Other agencies screen. <br>We certify.</h2>
       <p class="comparison-sub" data-animate data-delay="2">The questions employers actually care about.</p>
@@ -1053,7 +1072,7 @@
   </section>
 
   <!-- FAQ -->
-  <section class="faq-section">
+  <section class="faq-section" id="faq">
     <div class="faq-inner">
       <div class="faq-header" data-animate>
         <h2>Common questions.</h2>
