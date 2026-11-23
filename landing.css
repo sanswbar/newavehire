@@ -407,6 +407,31 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outlin
 .hero-btn-alt:hover { background: rgba(255, 255, 255, 0.14); transform: translateY(-2px); }
 .hero-actions { gap: 0.75rem; }
 .hero-note { display: inline-flex; align-items: center; gap: 0.6rem; }
+.audience-note {
+  margin: 0.85rem 0 0;
+  max-width: 38rem;
+  font-family: "DM Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #B7B6B6;
+}
+.audience-note a {
+  color: #FC7342;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cta-field .audience-note {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: #14181E;
+  color: #B7B6B6;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  max-width: 38rem;
+}
+.cta-field .audience-note a { color: #FC7342; }
 .live-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #34d399; flex-shrink: 0; }
 .live-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #34d399; animation: ping 2s var(--ease) infinite; }
 @keyframes ping { from { transform: scale(1); opacity: 0.6; } to { transform: scale(3); opacity: 0; } }
